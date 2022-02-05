@@ -1,0 +1,78 @@
+openapi: 3.0.0
+
+info:
+  description: "This is description of categories API"
+  version: "1.0.0"
+  title: "Category service API"
+
+servers:
+  - url: http://localhost:8080/{basePath}/
+    variables:
+      basePath:
+        default: api/v1
+
+tags:
+  - name: "Category"
+
+paths:
+  /category/all:
+    get:
+      summary: Return list of all categories
+      tags:
+        - "Category"
+      description: Return the list of all categories
+      operationId: getAll
+      responses:
+        "200":
+          description: Request is proceded successfully.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CategoryDto'
+
+  /category/{categoryId}:
+    get:
+      summary: Retriving category by id
+      operationId: getById
+      tags:
+        - "Category"
+      responses:
+        "200":
+          description: Request is proceded successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryDto'
+      parameters:
+        - name: "categoryId"
+          in: "path"
+          description: "OK"
+          required: true
+          schema:
+            type: integer
+
+components:
+  schemas:
+    CategoryDto:
+      description: This is category tree
+      type: object
+      required:
+        - id
+        - name
+      properties:
+        id:
+          description: unique identifier of category id
+          type: integer
+        name:
+          description: the name of category
+          type: string
+        parent:
+          description: unique identifier of parent category id
+          type: integer
+        children:
+          description: the list of children category
+          type: array
+          items:
+            $ref: integer
