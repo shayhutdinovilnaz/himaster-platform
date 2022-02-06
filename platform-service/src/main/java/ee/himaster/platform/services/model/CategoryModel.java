@@ -1,5 +1,6 @@
 package ee.himaster.platform.services.model;
 
+import ee.himaster.core.localization.model.LocalizedStringModel;
 import ee.himaster.core.service.model.ItemModel;
 import java.util.List;
 import javax.persistence.Entity;
@@ -17,9 +18,10 @@ import lombok.ToString;
 @RequiredArgsConstructor
 @ToString(exclude = {"parentCategory"})
 public class CategoryModel extends ItemModel {
+
     @ManyToOne
     @JoinColumn
-    private String name;
+    private LocalizedStringModel name;
 
     @ManyToOne
     @JoinColumn

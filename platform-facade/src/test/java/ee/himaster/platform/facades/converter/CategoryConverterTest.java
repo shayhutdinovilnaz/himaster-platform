@@ -37,17 +37,13 @@ public class CategoryConverterTest {
     @Test
     public void convert_validSource_success() {
         final CategoryModel parentCategoryModel = new CategoryModel();
-        final String parentName = "Parent category";
         final Integer parentId = 1;
         final CategoryModel childCategoryModel = new CategoryModel();
-        final String childName = "Child name";
         final Integer childId = 2;
         parentCategoryModel.setId(parentId);
-        parentCategoryModel.setName(parentName);
         parentCategoryModel.setChildrenCategories(Collections.singletonList(childCategoryModel));
 
         childCategoryModel.setId(childId);
-        childCategoryModel.setName(childName);
         childCategoryModel.setParentCategory(parentCategoryModel);
 
         CategoryDto result = underTest.convert(parentCategoryModel);
@@ -59,17 +55,14 @@ public class CategoryConverterTest {
 
     @Test
     public void reverseConvert_validSource_success() {
-        final String parentName = "Parent category";
-        final String childName = "Child name";
         final int parentId = 1;
         final int childId = 2;
+
         final CategoryDto parentCategoryDTO = new CategoryDto();
         parentCategoryDTO.setId(parentId);
-        parentCategoryDTO.setName(parentName);
         parentCategoryDTO.setChildren(Collections.singletonList(childId));
 
         CategoryModel childCategoryModel = new CategoryModel();
-        childCategoryModel.setName(childName);
         childCategoryModel.setId(childId);
 
         when(categoryService.getCategoryById(childId)).thenReturn(childCategoryModel);
