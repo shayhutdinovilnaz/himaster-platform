@@ -5,11 +5,11 @@ import java.util.List;
 
 public interface CategoryService {
     /**
-     * Retrieve all categories
+     * Retrieve root categories
      *
-     * @return list of search result categories
+     * @return list of  root categories
      */
-    List<CategoryModel> getAllCategories();
+    List<CategoryModel> getRootCategories();
 
     /**
      * Retrieve a category by id

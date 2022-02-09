@@ -17,8 +17,8 @@ public class DefaultCategoryService implements CategoryService {
     private final CategoryRepository categoryRepository;
 
     @Override
-    public List<CategoryModel> getAllCategories() {
-        return categoryRepository.findAll();
+    public List<CategoryModel> getRootCategories() {
+        return categoryRepository.getAllByParentCategoryIsNull();
     }
 
     @Override

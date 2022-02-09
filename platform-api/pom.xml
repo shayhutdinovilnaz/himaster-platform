@@ -49,7 +49,7 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <inputSpec>${project.basedir}/src/main/resources/api/contract.yaml</inputSpec>
+                            <inputSpec>${project.basedir}/src/main/resources/api/openapi-contract.yaml</inputSpec>
                             <language>spring</language>
                             <output>${project.build.directory}/generated-sources/</output>
                             <generateSupportingFiles>false</generateSupportingFiles>

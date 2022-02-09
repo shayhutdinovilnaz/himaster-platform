@@ -1,9 +1,9 @@
 openapi: 3.0.0
 
 info:
-  description: "This is description of categories API"
+  description: "This is description of Platform API"
   version: "1.0.0"
-  title: "Category service API"
+  title: "Platform service API"
 
 servers:
   - url: http://localhost:8080/{basePath}/
@@ -15,13 +15,13 @@ tags:
   - name: "Category"
 
 paths:
-  /category/all:
+  /category/roots:
     get:
-      summary: Return list of all categories
+      summary: Return list of root categories
       tags:
         - "Category"
-      description: Return the list of all categories
-      operationId: getAll
+      description: Return the list of all root categories
+      operationId: getRootsCategories
       responses:
         "200":
           description: Request is proceded successfully.
@@ -31,6 +31,13 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/CategoryDto'
+          headers:
+            Locale-code:
+              required: true
+              description: The locale code of site
+              schema:
+                type: string
+
 
   /category/{categoryId}:
     get:
@@ -45,10 +52,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CategoryDto'
+          headers:
+            Locale-code:
+              required: true
+              description: The locale code of site
+              schema:
+                type: string
       parameters:
         - name: "categoryId"
           in: "path"
-          description: "OK"
+          description: "Category id"
           required: true
           schema:
             type: integer
