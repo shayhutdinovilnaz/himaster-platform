@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 @Component
 @RequiredArgsConstructor
@@ -20,13 +19,11 @@ public class DefaultCategoryFacade implements CategoryFacade {
 
 
     @Override
-    @Transactional
     public CategoryDto getById(Integer categoryId) {
         return categoryConverter.convert(categoryService.getCategoryById(categoryId));
     }
 
     @Override
-    @Transactional
     public List<CategoryDto> getRootCategories() {
         return CollectionUtils.emptyIfNull(categoryService.getRootCategories())
                 .stream()

@@ -1,19 +1,31 @@
 spring:
   application:
-    name: categories-service
+    name: platforms-service
   datasource:
-    url: ${DB_HOST:jdbc:mysql://localhost:3306/authDB?createDatabaseIfNotExist=true&useUnicode=true&serverTimezone=UTC}
+    url: ${DB_HOST:jdbc:mysql://localhost:3306/platform?createDatabaseIfNotExist=true&useUnicode=true&serverTimezone=UTC}
     username: ${DB_USERNAME:root}
     password: ${DB_PASSWORD:Qwerty-2}
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      ddl-auto: update
+
     properties:
       hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
         show_sql: true
         format_sql: true
 server:
   port: ${PORT:8081}
+
+himaster:
+  localization:
+    request:
+      filter:
+        enabled: true
+    entity:
+      scan:
+        enabled: true
 
