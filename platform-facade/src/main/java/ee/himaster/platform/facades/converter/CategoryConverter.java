@@ -48,13 +48,13 @@ public class CategoryConverter extends BasicConverter<CategoryDto, CategoryModel
         final CategoryModel target = super.reverseConvert(source);
 
         if (source.getParent() != null) {
-            target.setParentCategory(categoryService.getCategoryById(source.getParent()));
+            target.setParentCategory(categoryService.getById(source.getParent()));
         }
 
         if (CollectionUtils.isNotEmpty(source.getChildren())) {
             final List<CategoryModel> childrenCategories = source.getChildren()
                     .stream()
-                    .map(categoryService::getCategoryById)
+                    .map(categoryService::getById)
                     .collect(Collectors.toList());
             target.setChildrenCategories(childrenCategories);
         }
