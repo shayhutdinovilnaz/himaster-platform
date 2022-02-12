@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: platforms-service
+  jpa:
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      ddl-auto: update
+
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        show_sql: true
+        format_sql: true
+server:
+  port: 8081
+
+himaster:
+  localization:
+    request:
+      filter:
+        enabled: true
+    entity:
+      scan:
+        enabled: true

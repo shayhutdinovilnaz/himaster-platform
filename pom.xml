@@ -20,6 +20,7 @@
         <module>platform-api</module>
         <module>platform-facade</module>
         <module>platform-web-application</module>
+        <module>platform-integration-tests</module>
     </modules>
 
 </project>

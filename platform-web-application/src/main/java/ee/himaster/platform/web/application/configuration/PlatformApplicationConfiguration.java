@@ -13,7 +13,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableJpaRepositories(value = "ee.himaster.platform*")
 @ComponentScan(value = "ee.himaster.platform*")
 @EntityScan(value = "ee.himaster.platform.services.model*")
-public class ApplicationConfiguration {
+public class PlatformApplicationConfiguration {
 
     @Bean
     Supplier<CategoryModel> categoryModelSupplier() {
