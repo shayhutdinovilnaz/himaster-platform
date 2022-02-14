@@ -65,13 +65,13 @@ public class CategoryConverterTest {
         CategoryModel childCategoryModel = new CategoryModel();
         childCategoryModel.setId(childId);
 
-        when(categoryService.getCategoryById(childId)).thenReturn(childCategoryModel);
+        when(categoryService.getById(childId)).thenReturn(childCategoryModel);
 
         CategoryModel result = underTest.reverseConvert(parentCategoryDTO);
 
         Assert.assertNotNull(result);
         Assert.assertEquals(childId, result.getChildrenCategories().get(0).getId(), 0);
-        verify(categoryService).getCategoryById(childId);
+        verify(categoryService).getById(childId);
         verify(basicCategoryPopulator).reversePopulate(eq(parentCategoryDTO), any(CategoryModel.class));
         verifyNoMoreInteractions(basicCategoryPopulator);
     }

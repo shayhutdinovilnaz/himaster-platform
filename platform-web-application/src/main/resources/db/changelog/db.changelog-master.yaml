@@ -1,0 +1,40 @@
+databaseChangeLog:
+  - logicalFilePath: db/changelog/db.changelog-master.yaml
+  - changeSet:
+      id: 1
+      author: Ilnaz Shaikhutdinov
+      comment: "Create admin user"
+      changes:
+        - insert:
+            tableName: LocalizedStringModel
+            columns:
+              - column:
+                  name: id
+                  value: 1
+              - column:
+                  name: createdTime
+                  value: "2015-04-14 11:19:01"
+              - column:
+                  name: modifiedTime
+                  value: "2015-04-14 11:19:01"
+        - insert:
+            tableName: LocalizedStringValueModel
+            columns:
+              - column:
+                  name: id
+                  value: 1
+              - column:
+                  name: createdTime
+                  value: "2015-04-14 11:19:01"
+              - column:
+                  name: modifiedTime
+                  value: "2015-04-14 11:19:01"
+              - column:
+                  name: language
+                  value: "RUSSIAN"
+              - column:
+                  name: value
+                  value: "Косметика"
+              - column:
+                  name: localized_value_id
+                  value: 1

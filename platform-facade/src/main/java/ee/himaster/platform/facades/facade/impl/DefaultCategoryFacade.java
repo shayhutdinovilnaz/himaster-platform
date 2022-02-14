@@ -20,7 +20,7 @@ public class DefaultCategoryFacade implements CategoryFacade {
 
     @Override
     public CategoryDto getById(Integer categoryId) {
-        return categoryConverter.convert(categoryService.getCategoryById(categoryId));
+        return categoryConverter.convert(categoryService.getById(categoryId));
     }
 
     @Override
