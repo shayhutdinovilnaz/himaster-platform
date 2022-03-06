@@ -1,0 +1,82 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1.2.1
+      author: shaikhutdinov.ilnaz (generated)
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                  name: id
+                  type: INT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: createdTime
+                  type: datetime
+              - column:
+                  constraints:
+                    nullable: false
+                  name: modifiedTime
+                  type: datetime
+              - column:
+                  name: name_id
+                  type: INT
+              - column:
+                  name: parentCategory_id
+                  type: INT
+            tableName: CategoryModel
+  - changeSet:
+      id: 1.2.2
+      author: shaikhutdinov.ilnaz (generated)
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: name_id
+            indexName: Name_id_index
+            tableName: CategoryModel
+  - changeSet:
+      id: 1.2.3
+      author: shaikhutdinov.ilnaz (generated)
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: parentCategory_id
+            indexName: ParentCategory_id_index
+            tableName: CategoryModel
+  - changeSet:
+      id: 1.2.4
+      author: shaikhutdinov.ilnaz (generated)
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: name_id
+            baseTableName: CategoryModel
+            constraintName: Name_id_constraint
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: RESTRICT
+            onUpdate: RESTRICT
+            referencedColumnNames: id
+            referencedTableName: LocalizedStringModel
+            validate: true
+  - changeSet:
+      id: 1.2.5
+      author: shaikhutdinov.ilnaz (generated)
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: parentCategory_id
+            baseTableName: CategoryModel
+            constraintName: ParentCategory_id_constraint
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: RESTRICT
+            onUpdate: RESTRICT
+            referencedColumnNames: id
+            referencedTableName: CategoryModel
+            validate: true
+

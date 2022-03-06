@@ -5,16 +5,15 @@ spring:
     hibernate:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-      ddl-auto: update
+      ddl-auto: none
 
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
         show_sql: true
         format_sql: true
-
   liquibase:
-    enabled: false
+    change-log: classpath:db/changelog/db.changelog-test.yaml
 
 server:
   port: 8081

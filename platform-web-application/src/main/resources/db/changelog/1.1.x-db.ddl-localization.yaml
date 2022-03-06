@@ -1,0 +1,99 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1.1.1
+      author: shaikhutdinov.ilnaz (generated)
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                  name: id
+                  type: INT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: createdTime
+                  type: datetime
+              - column:
+                  constraints:
+                    nullable: false
+                  name: modifiedTime
+                  type: datetime
+              - column:
+                  name: default_value
+                  type: VARCHAR(255)
+            tableName: LocalizedStringModel
+  - changeSet:
+      id: 1.1.2
+      author: shaikhutdinov.ilnaz (generated)
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                  name: id
+                  type: INT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: createdTime
+                  type: datetime
+              - column:
+                  constraints:
+                    nullable: false
+                  name: modifiedTime
+                  type: datetime
+              - column:
+                  name: language
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: value
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: localized_value_id
+                  type: INT
+            tableName: LocalizedStringValueModel
+  - changeSet:
+      id: 1.1.3
+      author: shaikhutdinov.ilnaz (generated)
+      changes:
+        - addUniqueConstraint:
+            columnNames: language, localized_value_id
+            constraintName: Language_localized_value_id_constraint
+            tableName: LocalizedStringValueModel
+  - changeSet:
+      id: 1.1.4
+      author: shaikhutdinov.ilnaz (generated)
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: localized_value_id
+            indexName: Localized_value_id_index
+            tableName: LocalizedStringValueModel
+  - changeSet:
+      id: 1.1.5
+      author: shaikhutdinov.ilnaz (generated)
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: localized_value_id
+            baseTableName: LocalizedStringValueModel
+            constraintName: Localized_value_id_constraint
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: RESTRICT
+            onUpdate: RESTRICT
+            referencedColumnNames: id
+            referencedTableName: LocalizedStringModel
+            validate: true
+
