@@ -73,12 +73,12 @@ components:
       type: object
       required:
         - id
-        - name
+        - title
       properties:
         id:
           description: unique identifier of category id
           type: integer
-        name:
+        title:
           description: the name of category
           type: string
         parent:

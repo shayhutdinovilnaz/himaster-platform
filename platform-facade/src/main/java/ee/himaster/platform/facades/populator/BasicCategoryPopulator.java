@@ -15,14 +15,14 @@ public class BasicCategoryPopulator implements Populator<CategoryDto, CategoryMo
     @Override
     public CategoryDto populate(CategoryModel source, CategoryDto target) {
         target.setId(source.getId());
-        target.setName(localizedStringService.getLocalizedStringValue(source.getTitle()));
+        target.setTitle(localizedStringService.getLocalizedStringValue(source.getTitle()));
         return target;
     }
 
     @Override
     public CategoryModel reversePopulate(CategoryDto source, CategoryModel target) {
         target.setId(source.getId());
-        target.setTitle(localizedStringService.addLocalizedStringValue(source.getName(), target.getTitle()));
+        target.setTitle(localizedStringService.addLocalizedStringValue(source.getTitle(), target.getTitle()));
         return target;
     }
 }

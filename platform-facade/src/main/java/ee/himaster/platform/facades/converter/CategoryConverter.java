@@ -26,7 +26,7 @@ public class CategoryConverter extends BasicConverter<CategoryDto, CategoryModel
 
     @Override
     public CategoryDto convert(CategoryModel source) {
-        final CategoryDto target = super.convert(source);
+        final var target = super.convert(source);
 
         if (source.getParentCategory() != null) {
             target.setParent(source.getParentCategory().getId());
@@ -45,7 +45,7 @@ public class CategoryConverter extends BasicConverter<CategoryDto, CategoryModel
 
     @Override
     public CategoryModel reverseConvert(CategoryDto source) {
-        final CategoryModel target = super.reverseConvert(source);
+        final var target = super.reverseConvert(source);
 
         if (source.getParent() != null) {
             target.setParentCategory(categoryService.getById(source.getParent()));
