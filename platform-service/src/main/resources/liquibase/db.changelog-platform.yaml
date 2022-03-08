@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - include:
+      file: initialization/1.1.x-db.ddl-category.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: content/1.1.x-db.initialization-data-category.yaml
+      relativeToChangelogFile: true

@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: 1.3.0.0
+      id: 1.2.0.0
       author: Ilnaz Shaikhutdinov
       comment: "Initialize tutor category"
       changes:
@@ -71,7 +71,7 @@ databaseChangeLog:
                   name: title
                   value: 1
   - changeSet:
-      id: 1.3.0.1
+      id: 1.2.0.1
       author: Ilnaz Shaikhutdinov
       comment: "Initialize tutoring of english language category"
       changes:
@@ -285,7 +285,7 @@ databaseChangeLog:
                   name: parentCategory_id
                   value: 2
   - changeSet:
-      id: 1.3.0.2
+      id: 1.2.0.2
       author: Ilnaz Shaikhutdinov
       comment: "Initialize tutoring of Acting category"
       changes:
@@ -425,3 +425,5 @@ databaseChangeLog:
               - column:
                   name: parentCategory_id
                   value: 5
+
+

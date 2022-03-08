@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: 1.2.1
+      id: 1.1.1
       author: shaikhutdinov.ilnaz (generated)
       changes:
         - createTable:
@@ -30,7 +30,7 @@ databaseChangeLog:
                   type: INT
             tableName: CATEGORY
   - changeSet:
-      id: 1.2.2
+      id: 1.1.2
       author: shaikhutdinov.ilnaz (generated)
       changes:
         - createIndex:
@@ -40,7 +40,7 @@ databaseChangeLog:
             indexName: Title_index
             tableName: CATEGORY
   - changeSet:
-      id: 1.2.3
+      id: 1.1.3
       author: shaikhutdinov.ilnaz (generated)
       changes:
         - createIndex:
@@ -50,7 +50,7 @@ databaseChangeLog:
             indexName: ParentCategory_id_index
             tableName: CATEGORY
   - changeSet:
-      id: 1.2.4
+      id: 1.1.4
       author: shaikhutdinov.ilnaz (generated)
       changes:
         - addForeignKeyConstraint:
@@ -65,7 +65,7 @@ databaseChangeLog:
             referencedTableName: LOCALIZED_STRING
             validate: true
   - changeSet:
-      id: 1.2.5
+      id: 1.1.5
       author: shaikhutdinov.ilnaz (generated)
       changes:
         - addForeignKeyConstraint:

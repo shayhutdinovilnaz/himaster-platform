@@ -1,11 +1,10 @@
 databaseChangeLog:
-  - logicalFilePath: db/changelog/db.changelog-master.yaml
   - include:
-      file: 1.1.x-db.ddl-localization-test.yaml
-      relativeToChangelogFile: true
+      file: classpath://liquibase/db.ddl-localization.yaml
+      relativeToChangelogFile: false
   - include:
-      file: 1.2.x-db.ddl-category-test.yaml
-      relativeToChangelogFile: true
+      file: classpath://liquibase/initialization/db.changelog-platform-initialization.yaml
+      relativeToChangelogFile: false
   - include:
-      file: 1.3.x-db.initialization-data-category-test.yaml
+      file: sampledata/db.initialization-data-category-test.yaml
       relativeToChangelogFile: true
