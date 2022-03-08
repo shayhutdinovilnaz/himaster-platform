@@ -13,7 +13,7 @@ import lombok.ToString;
 
 import static ee.himaster.platform.services.model.CategoryModel.ENTITY_GRAPH_PARAMETERS_WITH_CHILDREN_CATEGORIES;
 
-@Entity
+@Entity(name = "CATEGORY")
 @Getter
 @Setter
 @RequiredArgsConstructor
@@ -23,8 +23,8 @@ public class CategoryModel extends ItemModel {
     public static final String ENTITY_GRAPH_PARAMETERS_WITH_CHILDREN_CATEGORIES = "withChildrenCategories";
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn
-    private LocalizedStringModel name;
+    @JoinColumn(name = "title")
+    private LocalizedStringModel title;
 
     @ManyToOne
     @JoinColumn

@@ -1,41 +1,427 @@
 databaseChangeLog:
   - changeSet:
-      id: 1.3.0
+      id: 1.3.0.0
       author: Ilnaz Shaikhutdinov
-      comment: "Create admin user"
+      comment: "Initialize tutor category"
       changes:
         - insert:
-            tableName: LocalizedStringModel
+            tableName: LOCALIZED_STRING
             columns:
               - column:
                   name: id
                   value: 1
               - column:
+                  name: default_value
+                  value: "Tutors"
+              - column:
                   name: createdTime
-                  value: "2015-04-14 11:19:01"
+                  value: "now()"
               - column:
                   name: modifiedTime
-                  value: "2015-04-14 11:19:01"
+                  value: "now()"
         - insert:
-            tableName: LocalizedStringValueModel
+            tableName: LOCALIZED_STRING_VALUE
             columns:
               - column:
-                  name: id
-                  value: 1
-              - column:
                   name: createdTime
-                  value: "2015-04-14 11:19:01"
+                  value: "now()"
               - column:
                   name: modifiedTime
-                  value: "2015-04-14 11:19:01"
+                  value: "now()"
               - column:
                   name: language
                   value: "RUSSIAN"
               - column:
                   name: value
-                  value: "Косметика"
+                  value: "Репетиторы"
               - column:
                   name: localized_value_id
                   value: 1
+        - insert:
+            tableName: LOCALIZED_STRING_VALUE
+            columns:
+              - column:
+                  name: createdTime
+                  value: "now()"
+              - column:
+                  name: modifiedTime
+                  value: "now()"
+              - column:
+                  name: language
+                  value: "ENGLISH"
+              - column:
+                  name: value
+                  value: "Tutors"
+              - column:
+                  name: localized_value_id
+                  value: 1
+        - insert:
+            tableName: CATEGORY
+            columns:
+              - colume:
+                  name: id
+                  value: 1
+              - column:
+                  name: createdTime
+                  value: "now()"
+              - column:
+                  name: modifiedTime
+                  value: "now()"
+              - column:
+                  name: title
+                  value: 1
+  - changeSet:
+      id: 1.3.0.1
+      author: Ilnaz Shaikhutdinov
+      comment: "Initialize tutoring of english language category"
+      changes:
+        - insert:
+            tableName: LOCALIZED_STRING
+            columns:
+              - column:
+                  name: id
+                  value: 2
+              - column:
+                  name: default_value
+                  value: "English language"
+              - column:
+                  name: createdTime
+                  value: "now()"
+              - column:
+                  name: modifiedTime
+                  value: "now()"
+        - insert:
+            tableName: LOCALIZED_STRING_VALUE
+            columns:
+              - column:
+                  name: createdTime
+                  value: "now()"
+              - column:
+                  name: modifiedTime
+                  value: "now()"
+              - column:
+                  name: language
+                  value: "RUSSIAN"
+              - column:
+                  name: value
+                  value: "Английский язык"
+              - column:
+                  name: localized_value_id
+                  value: 2
+        - insert:
+            tableName: LOCALIZED_STRING_VALUE
+            columns:
+              - column:
+                  name: createdTime
+                  value: "now()"
+              - column:
+                  name: modifiedTime
+                  value: "now()"
+              - column:
+                  name: language
+                  value: "ENGLISH"
+              - column:
+                  name: value
+                  value: "English language"
+              - column:
+                  name: localized_value_id
+                  value: 2
+        - insert:
+            tableName: CATEGORY
+            columns:
+              - column:
+                  name: createdTime
+                  value: "now()"
+              - column:
+                  name: modifiedTime
+                  value: "now()"
+              - colume:
+                  name: id
+                  value: 2
+              - column:
+                  name: title
+                  value: 2
+              - column:
+                  name: parentCategory_id
+                  value: 1
 
+        - insert:
+            tableName: LOCALIZED_STRING
+            columns:
+              - column:
+                  name: id
+                  value: 3
+              - column:
+                  name: default_value
+                  value: "A-Level"
+              - column:
+                  name: createdTime
+                  value: "now()"
+              - column:
+                  name: modifiedTime
+                  value: "now()"
+        - insert:
+            tableName: LOCALIZED_STRING_VALUE
+            columns:
+              - column:
+                  name: createdTime
+                  value: "now()"
+              - column:
+                  name: modifiedTime
+                  value: "now()"
+              - column:
+                  name: language
+                  value: "RUSSIAN"
+              - column:
+                  name: value
+                  value: "A-Level"
+              - column:
+                  name: localized_value_id
+                  value: 3
+        - insert:
+            tableName: LOCALIZED_STRING_VALUE
+            columns:
+              - column:
+                  name: createdTime
+                  value: "now()"
+              - column:
+                  name: modifiedTime
+                  value: "now()"
+              - column:
+                  name: language
+                  value: "ENGLISH"
+              - column:
+                  name: value
+                  value: "A-Level"
+              - column:
+                  name: localized_value_id
+                  value: 3
+        - insert:
+            tableName: CATEGORY
+            columns:
+              - column:
+                  name: createdTime
+                  value: "now()"
+              - column:
+                  name: modifiedTime
+                  value: "now()"
+              - column:
+                  name: id
+                  value: 3
+              - column:
+                  name: title
+                  value: 3
+              - column:
+                  name: parentCategory_id
+                  value: 2
 
+        - insert:
+            tableName: LOCALIZED_STRING
+            columns:
+              - column:
+                  name: id
+                  value: 4
+              - column:
+                  name: default_value
+                  value: "A1 Movers"
+              - column:
+                  name: createdTime
+                  value: "now()"
+              - column:
+                  name: modifiedTime
+                  value: "now()"
+        - insert:
+            tableName: LOCALIZED_STRING_VALUE
+            columns:
+              - column:
+                  name: createdTime
+                  value: "now()"
+              - column:
+                  name: modifiedTime
+                  value: "now()"
+              - column:
+                  name: language
+                  value: "RUSSIAN"
+              - column:
+                  name: value
+                  value: "A1 Movers"
+              - column:
+                  name: localized_value_id
+                  value: 4
+        - insert:
+            tableName: LOCALIZED_STRING_VALUE
+            columns:
+              - column:
+                  name: createdTime
+                  value: "now()"
+              - column:
+                  name: modifiedTime
+                  value: "now()"
+              - column:
+                  name: language
+                  value: "ENGLISH"
+              - column:
+                  name: value
+                  value: "A1 Movers"
+              - column:
+                  name: localized_value_id
+                  value: 4
+        - insert:
+            tableName: CATEGORY
+            columns:
+              - column:
+                  name: createdTime
+                  value: "now()"
+              - column:
+                  name: modifiedTime
+                  value: "now()"
+              - column:
+                  name: id
+                  value: 4
+              - column:
+                  name: title
+                  value: 4
+              - column:
+                  name: parentCategory_id
+                  value: 2
+  - changeSet:
+      id: 1.3.0.2
+      author: Ilnaz Shaikhutdinov
+      comment: "Initialize tutoring of Acting category"
+      changes:
+        - insert:
+            tableName: LOCALIZED_STRING
+            columns:
+              - column:
+                  name: id
+                  value: 5
+              - column:
+                  name: default_value
+                  value: "Acting"
+              - column:
+                  name: createdTime
+                  value: "now()"
+              - column:
+                  name: modifiedTime
+                  value: "now()"
+        - insert:
+            tableName: LOCALIZED_STRING_VALUE
+            columns:
+              - column:
+                  name: createdTime
+                  value: "now()"
+              - column:
+                  name: modifiedTime
+                  value: "now()"
+              - column:
+                  name: language
+                  value: "RUSSIAN"
+              - column:
+                  name: value
+                  value: "Актерское мастерство"
+              - column:
+                  name: localized_value_id
+                  value: 5
+        - insert:
+            tableName: LOCALIZED_STRING_VALUE
+            columns:
+              - column:
+                  name: createdTime
+                  value: "now()"
+              - column:
+                  name: modifiedTime
+                  value: "now()"
+              - column:
+                  name: language
+                  value: "ENGLISH"
+              - column:
+                  name: value
+                  value: "Acting"
+              - column:
+                  name: localized_value_id
+                  value: 5
+        - insert:
+            tableName: CATEGORY
+            columns:
+              - column:
+                  name: createdTime
+                  value: "now()"
+              - column:
+                  name: modifiedTime
+                  value: "now()"
+              - column:
+                  name: id
+                  value: 5
+              - column:
+                  name: title
+                  value: 5
+              - column:
+                  name: parentCategory_id
+                  value: 2
+
+        - insert:
+            tableName: LOCALIZED_STRING
+            columns:
+              - column:
+                  name: id
+                  value: 6
+              - column:
+                  name: default_value
+                  value: "Rhetoric"
+              - column:
+                  name: createdTime
+                  value: "now()"
+              - column:
+                  name: modifiedTime
+                  value: "now()"
+        - insert:
+            tableName: LOCALIZED_STRING_VALUE
+            columns:
+              - column:
+                  name: createdTime
+                  value: "now()"
+              - column:
+                  name: modifiedTime
+                  value: "now()"
+              - column:
+                  name: language
+                  value: "RUSSIAN"
+              - column:
+                  name: value
+                  value: "Риторика"
+              - column:
+                  name: localized_value_id
+                  value: 6
+        - insert:
+            tableName: LOCALIZED_STRING_VALUE
+            columns:
+              - column:
+                  name: createdTime
+                  value: "now()"
+              - column:
+                  name: modifiedTime
+                  value: "now()"
+              - column:
+                  name: language
+                  value: "ENGLISH"
+              - column:
+                  name: value
+                  value: "Rhetoric"
+              - column:
+                  name: localized_value_id
+                  value: 6
+        - insert:
+            tableName: CATEGORY
+            columns:
+              - column:
+                  name: createdTime
+                  value: "now()"
+              - column:
+                  name: modifiedTime
+                  value: "now()"
+              - column:
+                  name: title
+                  value: 6
+              - column:
+                  name: parentCategory_id
+                  value: 5

@@ -23,12 +23,12 @@ databaseChangeLog:
                   name: modifiedTime
                   type: datetime
               - column:
-                  name: name_id
+                  name: title
                   type: INT
               - column:
                   name: parentCategory_id
                   type: INT
-            tableName: CategoryModel
+            tableName: CATEGORY
   - changeSet:
       id: 1.2.2
       author: shaikhutdinov.ilnaz (generated)
@@ -36,9 +36,9 @@ databaseChangeLog:
         - createIndex:
             columns:
               - column:
-                  name: name_id
-            indexName: Name_id_index
-            tableName: CategoryModel
+                  name: title
+            indexName: Title_index
+            tableName: CATEGORY
   - changeSet:
       id: 1.2.3
       author: shaikhutdinov.ilnaz (generated)
@@ -48,21 +48,21 @@ databaseChangeLog:
               - column:
                   name: parentCategory_id
             indexName: ParentCategory_id_index
-            tableName: CategoryModel
+            tableName: CATEGORY
   - changeSet:
       id: 1.2.4
       author: shaikhutdinov.ilnaz (generated)
       changes:
         - addForeignKeyConstraint:
-            baseColumnNames: name_id
-            baseTableName: CategoryModel
-            constraintName: Name_id_constraint
+            baseColumnNames: title
+            baseTableName: CATEGORY
+            constraintName: Title_constraint
             deferrable: false
             initiallyDeferred: false
             onDelete: RESTRICT
             onUpdate: RESTRICT
             referencedColumnNames: id
-            referencedTableName: LocalizedStringModel
+            referencedTableName: LOCALIZED_STRING
             validate: true
   - changeSet:
       id: 1.2.5
@@ -70,13 +70,13 @@ databaseChangeLog:
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: parentCategory_id
-            baseTableName: CategoryModel
+            baseTableName: CATEGORY
             constraintName: ParentCategory_id_constraint
             deferrable: false
             initiallyDeferred: false
             onDelete: RESTRICT
             onUpdate: RESTRICT
             referencedColumnNames: id
-            referencedTableName: CategoryModel
+            referencedTableName: CATEGORY
             validate: true
 
