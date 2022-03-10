@@ -17,7 +17,6 @@ public class DefaultCategoryFacade implements CategoryFacade {
     private final CategoryService categoryService;
     private final BasicConverter<CategoryDto, CategoryModel> categoryConverter;
 
-
     @Override
     public CategoryDto getById(Integer categoryId) {
         return categoryConverter.convert(categoryService.getById(categoryId));

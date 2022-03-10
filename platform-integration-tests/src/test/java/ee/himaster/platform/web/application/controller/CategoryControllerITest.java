@@ -5,6 +5,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.util.LinkedMultiValueMap;
 
 public class CategoryControllerITest extends AbstractControllerIntegrationTest {
+
     @Test
     public void getById_withoutLocaleCode_exception() throws Exception {
         final var id = 1;
@@ -31,11 +32,19 @@ public class CategoryControllerITest extends AbstractControllerIntegrationTest {
     }
 
     @Test
-    public void getById_categoryNotExist_fail() {
-//        final var id = 1;
-//        final var path = "/platform/api/v1/category/" + id;
-//        final var headerValues = new LinkedMultiValueMap<String, String>();
-//        headerValues.add(REQUEST_HEADER_LOCALE_CODE_PARAM_NAME, EE_EN_LOCALE_CODE);
-//        performGetAndMatchResults(path, new HttpHeaders(headerValues), HTTP_STATUS_OK_RESULT_MATCHER);
+    public void getById_categoryNotExist_fail() throws Exception {
+        final var id = 999;
+        final var path = "/v1/category/" + id;
+        final var headerValues = new LinkedMultiValueMap<String, String>();
+        headerValues.add(REQUEST_HEADER_LOCALE_CODE_PARAM_NAME, EE_EN_LOCALE_CODE);
+        performGetAndMatchResults(path, new HttpHeaders(headerValues), HTTP_STATUS_NOT_FOUND_RESULT_MATCHER);
+    }
+
+    @Test
+    public void getRootsCategories_success() throws Exception {
+        final var path = "/v1/category/roots";
+        final var headerValues = new LinkedMultiValueMap<String, String>();
+        headerValues.add(REQUEST_HEADER_LOCALE_CODE_PARAM_NAME, EE_EN_LOCALE_CODE);
+        performGetAndMatchResults(path, new HttpHeaders(headerValues), HTTP_STATUS_OK_RESULT_MATCHER);
     }
 }

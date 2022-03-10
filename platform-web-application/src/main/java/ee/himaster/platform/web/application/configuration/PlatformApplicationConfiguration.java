@@ -1,8 +1,15 @@
 package ee.himaster.platform.web.application.configuration;
 
+import ee.himaster.core.service.converter.impl.BasicConverter;
+import ee.himaster.core.service.populator.Populator;
 import ee.himaster.platform.dto.CategoryDto;
 import ee.himaster.platform.services.model.CategoryModel;
+
+import java.util.List;
 import java.util.function.Supplier;
+
+import ee.himaster.platform.services.service.CategoryService;
+import liquibase.pro.packaged.B;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -16,12 +23,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 public class PlatformApplicationConfiguration {
 
     @Bean
-    Supplier<CategoryModel> categoryModelSupplier() {
-        return CategoryModel::new;
-    }
-
-    @Bean
-    Supplier<CategoryDto> categoryDtoSupplier() {
-        return CategoryDto::new;
+    BasicConverter<CategoryDto, CategoryModel> categoryConverter(List<Populator<CategoryDto, CategoryModel>> populators) {
+        return new BasicConverter<>(populators, CategoryDto::new, CategoryModel::new);
     }
 }
