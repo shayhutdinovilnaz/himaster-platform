@@ -24,7 +24,7 @@ public class CategoryController implements CategoryApi {
         try {
             return ResponseEntity.ok(categoryFacade.getById(categoryId));
         } catch (ModelNotFoundException e) {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.noContent().build();
         }
     }
 

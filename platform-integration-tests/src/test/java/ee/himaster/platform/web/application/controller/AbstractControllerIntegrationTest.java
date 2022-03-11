@@ -35,6 +35,7 @@ public abstract class AbstractControllerIntegrationTest extends AbstractIntegrat
     private ObjectMapper objectMapper;
 
     protected static final ResultMatcher HTTP_STATUS_CREATED_RESULT_MATCHER = MockMvcResultMatchers.status().isCreated();
+    protected static final ResultMatcher HTTP_STATUS_NO_CONTENT_RESULT_MATCHER = MockMvcResultMatchers.status().isNoContent();
     protected static final ResultMatcher HTTP_STATUS_UNPROCESSABLE_ENTITY_RESULT_MATCHER = MockMvcResultMatchers.status().isUnprocessableEntity();
     protected static final ResultMatcher HTTP_STATUS_BAD_REQUEST_RESULT_MATCHER = MockMvcResultMatchers.status().isBadRequest();
     protected static final ResultMatcher HTTP_STATUS_SERVER_ERROR_RESULT_MATCHER = MockMvcResultMatchers.status().is5xxServerError();

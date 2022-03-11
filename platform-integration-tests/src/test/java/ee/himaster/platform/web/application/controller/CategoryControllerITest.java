@@ -37,7 +37,7 @@ public class CategoryControllerITest extends AbstractControllerIntegrationTest {
         final var path = "/v1/category/" + id;
         final var headerValues = new LinkedMultiValueMap<String, String>();
         headerValues.add(REQUEST_HEADER_LOCALE_CODE_PARAM_NAME, EE_EN_LOCALE_CODE);
-        performGetAndMatchResults(path, new HttpHeaders(headerValues), HTTP_STATUS_NOT_FOUND_RESULT_MATCHER);
+        performGetAndMatchResults(path, new HttpHeaders(headerValues), HTTP_STATUS_NO_CONTENT_RESULT_MATCHER);
     }
 
     @Test

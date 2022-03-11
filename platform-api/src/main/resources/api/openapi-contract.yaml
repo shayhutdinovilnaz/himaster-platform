@@ -64,7 +64,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CategoryDto'
-        "403":
+        "204":
           description: The category by id was not found.
 
 components:
