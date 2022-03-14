@@ -13,6 +13,8 @@ servers:
 
 tags:
   - name: "Category"
+  - name: "Language"
+  - name: "City"
 
 paths:
   /category/roots:
@@ -67,10 +69,66 @@ paths:
         "204":
           description: The category by id was not found.
 
+  /city/all:
+    get:
+      summary: List of cities in country
+      operationId: getAllCitiesInCountry
+      tags:
+        - "City"
+      parameters:
+        - name: "countryIsoCode"
+          in: "query"
+          description: "Iso-code of country"
+          required: true
+          schema:
+            type: string
+        - in: header
+          name: Locale-code
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Request is proceded successfully.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CityDto'
+
+  /language/all:
+    get:
+      summary: List of languages which avaialble in a country
+      operationId: getAllLanguagesInCountry
+      tags:
+        - "Language"
+      parameters:
+        - name: "countryIsoCode"
+          in: "query"
+          description: "Iso-code of country"
+          required: true
+          schema:
+            type: string
+        - in: header
+          name: Locale-code
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Request is proceded successfully.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LanguageDto'
+
 components:
   schemas:
     CategoryDto:
-      description: This is category tree
+      description: Category tree
       type: object
       required:
         - id
@@ -90,3 +148,26 @@ components:
           type: array
           items:
             $ref: integer
+    CityDto:
+      description: The DTO object of a city
+      type: object
+      required:
+        - title
+      properties:
+        title:
+          description: the title of a language
+          type: string
+
+    LanguageDto:
+      description: The DTO object of a language
+      type: object
+      required:
+        - isoCode
+        - title
+      properties:
+        isoCode:
+          description: the iso-code of a language
+          type: string
+        title:
+          description: the title of a language
+          type: string
