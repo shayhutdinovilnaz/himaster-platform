@@ -1,6 +1,5 @@
 package ee.himaster.platform.facades.facade;
 
-import ee.himaster.platform.dto.CityDto;
 import ee.himaster.platform.dto.LanguageDto;
 
 import java.util.List;

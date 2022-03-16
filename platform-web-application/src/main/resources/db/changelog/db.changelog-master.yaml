@@ -1,7 +1,7 @@
 databaseChangeLog:
   - logicalFilePath: db/changelog/db.changelog-master.yaml
   - include:
-      file: classpath://liquibase/db.ddl-localization.yaml
+      file: classpath://liquibase/db.ddl-localization.xml
       relativeToChangelogFile: false
   - include:
       file: classpath://liquibase/db.changelog-platform.yaml

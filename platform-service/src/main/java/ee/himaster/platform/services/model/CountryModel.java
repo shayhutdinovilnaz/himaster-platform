@@ -1,20 +1,28 @@
 package ee.himaster.platform.services.model;
 
 import ee.himaster.core.service.model.ItemModel;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
 
-@Entity(name = "COUNTRY")
-@Data
-@EqualsAndHashCode(callSuper = true)
+@Getter
+@Setter
+@Entity(name = "country")
 public class CountryModel extends ItemModel {
 
-    @Column
+    @Column(unique = true)
     private String isoCode;
 
     @OneToMany(mappedBy = "country", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CityModel> cities;
+
+    @ManyToMany
+    @JoinTable(
+            name = "COUNTRY_LANGUAGE",
+            joinColumns = @JoinColumn(name = "country_id"),
+            inverseJoinColumns = @JoinColumn(name = "language_id")
+    )
+    private List<LanguageModel> languages;
 }

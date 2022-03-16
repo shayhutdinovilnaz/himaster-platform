@@ -1,6 +1,5 @@
 package ee.himaster.platform.facades.facade.impl;
 
-import ee.himaster.core.localization.model.Country;
 import ee.himaster.core.service.converter.impl.BasicConverter;
 import ee.himaster.platform.dto.CityDto;
 import ee.himaster.platform.facades.facade.CityFacade;
@@ -10,15 +9,19 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
 public class DefaultCityFacade implements CityFacade {
-    private final CityService categoryService;
+    private final CityService cityService;
     private final BasicConverter<CityDto, CityModel> cityConverter;
 
     @Override
     public List<CityDto> getCities(final String countryIsoCode) {
-        return null;
+        return cityService.getByCountry(countryIsoCode)
+                .stream()
+                .map(cityConverter::convert)
+                .collect(Collectors.toList());
     }
 }

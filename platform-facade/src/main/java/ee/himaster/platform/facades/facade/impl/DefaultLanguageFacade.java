@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
@@ -18,6 +19,9 @@ public class DefaultLanguageFacade implements LanguageFacade {
 
     @Override
     public List<LanguageDto> getLanguages(final String countryIsoCode) {
-        return null;
+        return languageService.getByCountry(countryIsoCode)
+                .stream()
+                .map(languageConverter::convert)
+                .collect(Collectors.toList());
     }
 }

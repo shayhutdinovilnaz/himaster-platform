@@ -1,6 +1,5 @@
 package ee.himaster.platform.facades.facade;
 
-import ee.himaster.platform.dto.CategoryDto;
 import ee.himaster.platform.dto.CityDto;
 
 import java.util.List;

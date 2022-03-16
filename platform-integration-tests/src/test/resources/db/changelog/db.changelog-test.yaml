@@ -1,6 +1,6 @@
 databaseChangeLog:
   - include:
-      file: classpath://liquibase/db.ddl-localization.yaml
+      file: classpath://liquibase/db.ddl-localization.xml
       relativeToChangelogFile: false
   - include:
       file: classpath://liquibase/initialization/db.changelog-platform-initialization.yaml

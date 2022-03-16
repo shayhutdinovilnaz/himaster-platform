@@ -5,7 +5,7 @@ databaseChangeLog:
       comment: "Initialize tutor category"
       changes:
         - insert:
-            tableName: LOCALIZED_STRING
+            tableName: localized_string
             columns:
               - column:
                   name: id
@@ -14,19 +14,19 @@ databaseChangeLog:
                   name: default_value
                   value: "Tutors"
               - column:
-                  name: createdTime
+                  name: created_time
                   value: "now()"
               - column:
-                  name: modifiedTime
+                  name: modified_time
                   value: "now()"
         - insert:
-            tableName: LOCALIZED_STRING_VALUE
+            tableName: localized_string_value
             columns:
               - column:
-                  name: createdTime
+                  name: created_time
                   value: "now()"
               - column:
-                  name: modifiedTime
+                  name: modified_time
                   value: "now()"
               - column:
                   name: language
@@ -38,13 +38,13 @@ databaseChangeLog:
                   name: localized_value_id
                   value: 1
         - insert:
-            tableName: LOCALIZED_STRING_VALUE
+            tableName: localized_string_value
             columns:
               - column:
-                  name: createdTime
+                  name: created_time
                   value: "now()"
               - column:
-                  name: modifiedTime
+                  name: modified_time
                   value: "now()"
               - column:
                   name: language
@@ -56,16 +56,16 @@ databaseChangeLog:
                   name: localized_value_id
                   value: 1
         - insert:
-            tableName: CATEGORY
+            tableName: category
             columns:
               - colume:
                   name: id
                   value: 1
               - column:
-                  name: createdTime
+                  name: created_time
                   value: "now()"
               - column:
-                  name: modifiedTime
+                  name: modified_time
                   value: "now()"
               - column:
                   name: title
@@ -76,7 +76,7 @@ databaseChangeLog:
       comment: "Initialize tutoring of english language category"
       changes:
         - insert:
-            tableName: LOCALIZED_STRING
+            tableName: localized_string
             columns:
               - column:
                   name: id
@@ -85,19 +85,19 @@ databaseChangeLog:
                   name: default_value
                   value: "English language"
               - column:
-                  name: createdTime
+                  name: created_time
                   value: "now()"
               - column:
-                  name: modifiedTime
+                  name: modified_time
                   value: "now()"
         - insert:
-            tableName: LOCALIZED_STRING_VALUE
+            tableName: localized_string_value
             columns:
               - column:
-                  name: createdTime
+                  name: created_time
                   value: "now()"
               - column:
-                  name: modifiedTime
+                  name: modified_time
                   value: "now()"
               - column:
                   name: language
@@ -109,13 +109,13 @@ databaseChangeLog:
                   name: localized_value_id
                   value: 2
         - insert:
-            tableName: LOCALIZED_STRING_VALUE
+            tableName: localized_string_value
             columns:
               - column:
-                  name: createdTime
+                  name: created_time
                   value: "now()"
               - column:
-                  name: modifiedTime
+                  name: modified_time
                   value: "now()"
               - column:
                   name: language
@@ -127,13 +127,13 @@ databaseChangeLog:
                   name: localized_value_id
                   value: 2
         - insert:
-            tableName: CATEGORY
+            tableName: category
             columns:
               - column:
-                  name: createdTime
+                  name: created_time
                   value: "now()"
               - column:
-                  name: modifiedTime
+                  name: modified_time
                   value: "now()"
               - colume:
                   name: id
@@ -142,11 +142,11 @@ databaseChangeLog:
                   name: title
                   value: 2
               - column:
-                  name: parentCategory_id
+                  name: parent_category_id
                   value: 1
 
         - insert:
-            tableName: LOCALIZED_STRING
+            tableName: localized_string
             columns:
               - column:
                   name: id
@@ -155,19 +155,19 @@ databaseChangeLog:
                   name: default_value
                   value: "A-Level"
               - column:
-                  name: createdTime
+                  name: created_time
                   value: "now()"
               - column:
-                  name: modifiedTime
+                  name: modified_time
                   value: "now()"
         - insert:
-            tableName: LOCALIZED_STRING_VALUE
+            tableName: localized_string_value
             columns:
               - column:
-                  name: createdTime
+                  name: created_time
                   value: "now()"
               - column:
-                  name: modifiedTime
+                  name: modified_time
                   value: "now()"
               - column:
                   name: language
@@ -179,13 +179,13 @@ databaseChangeLog:
                   name: localized_value_id
                   value: 3
         - insert:
-            tableName: LOCALIZED_STRING_VALUE
+            tableName: localized_string_value
             columns:
               - column:
-                  name: createdTime
+                  name: created_time
                   value: "now()"
               - column:
-                  name: modifiedTime
+                  name: modified_time
                   value: "now()"
               - column:
                   name: language
@@ -197,13 +197,13 @@ databaseChangeLog:
                   name: localized_value_id
                   value: 3
         - insert:
-            tableName: CATEGORY
+            tableName: category
             columns:
               - column:
-                  name: createdTime
+                  name: created_time
                   value: "now()"
               - column:
-                  name: modifiedTime
+                  name: modified_time
                   value: "now()"
               - column:
                   name: id
@@ -212,11 +212,11 @@ databaseChangeLog:
                   name: title
                   value: 3
               - column:
-                  name: parentCategory_id
+                  name: parent_category_id
                   value: 2
 
         - insert:
-            tableName: LOCALIZED_STRING
+            tableName: localized_string
             columns:
               - column:
                   name: id
@@ -225,19 +225,19 @@ databaseChangeLog:
                   name: default_value
                   value: "A1 Movers"
               - column:
-                  name: createdTime
+                  name: created_time
                   value: "now()"
               - column:
-                  name: modifiedTime
+                  name: modified_time
                   value: "now()"
         - insert:
-            tableName: LOCALIZED_STRING_VALUE
+            tableName: localized_string_value
             columns:
               - column:
-                  name: createdTime
+                  name: created_time
                   value: "now()"
               - column:
-                  name: modifiedTime
+                  name: modified_time
                   value: "now()"
               - column:
                   name: language
@@ -249,13 +249,13 @@ databaseChangeLog:
                   name: localized_value_id
                   value: 4
         - insert:
-            tableName: LOCALIZED_STRING_VALUE
+            tableName: localized_string_value
             columns:
               - column:
-                  name: createdTime
+                  name: created_time
                   value: "now()"
               - column:
-                  name: modifiedTime
+                  name: modified_time
                   value: "now()"
               - column:
                   name: language
@@ -267,13 +267,13 @@ databaseChangeLog:
                   name: localized_value_id
                   value: 4
         - insert:
-            tableName: CATEGORY
+            tableName: category
             columns:
               - column:
-                  name: createdTime
+                  name: created_time
                   value: "now()"
               - column:
-                  name: modifiedTime
+                  name: modified_time
                   value: "now()"
               - column:
                   name: id
@@ -282,7 +282,7 @@ databaseChangeLog:
                   name: title
                   value: 4
               - column:
-                  name: parentCategory_id
+                  name: parent_category_id
                   value: 2
   - changeSet:
       id: 3
@@ -290,7 +290,7 @@ databaseChangeLog:
       comment: "Initialize tutoring of Acting category"
       changes:
         - insert:
-            tableName: LOCALIZED_STRING
+            tableName: localized_string
             columns:
               - column:
                   name: id
@@ -299,19 +299,19 @@ databaseChangeLog:
                   name: default_value
                   value: "Acting"
               - column:
-                  name: createdTime
+                  name: created_time
                   value: "now()"
               - column:
-                  name: modifiedTime
+                  name: modified_time
                   value: "now()"
         - insert:
-            tableName: LOCALIZED_STRING_VALUE
+            tableName: localized_string_value
             columns:
               - column:
-                  name: createdTime
+                  name: created_time
                   value: "now()"
               - column:
-                  name: modifiedTime
+                  name: modified_time
                   value: "now()"
               - column:
                   name: language
@@ -323,13 +323,13 @@ databaseChangeLog:
                   name: localized_value_id
                   value: 5
         - insert:
-            tableName: LOCALIZED_STRING_VALUE
+            tableName: localized_string_value
             columns:
               - column:
-                  name: createdTime
+                  name: created_time
                   value: "now()"
               - column:
-                  name: modifiedTime
+                  name: modified_time
                   value: "now()"
               - column:
                   name: language
@@ -341,13 +341,13 @@ databaseChangeLog:
                   name: localized_value_id
                   value: 5
         - insert:
-            tableName: CATEGORY
+            tableName: category
             columns:
               - column:
-                  name: createdTime
+                  name: created_time
                   value: "now()"
               - column:
-                  name: modifiedTime
+                  name: modified_time
                   value: "now()"
               - column:
                   name: id
@@ -356,11 +356,11 @@ databaseChangeLog:
                   name: title
                   value: 5
               - column:
-                  name: parentCategory_id
+                  name: parent_category_id
                   value: 2
 
         - insert:
-            tableName: LOCALIZED_STRING
+            tableName: localized_string
             columns:
               - column:
                   name: id
@@ -369,19 +369,19 @@ databaseChangeLog:
                   name: default_value
                   value: "Rhetoric"
               - column:
-                  name: createdTime
+                  name: created_time
                   value: "now()"
               - column:
-                  name: modifiedTime
+                  name: modified_time
                   value: "now()"
         - insert:
-            tableName: LOCALIZED_STRING_VALUE
+            tableName: localized_string_value
             columns:
               - column:
-                  name: createdTime
+                  name: created_time
                   value: "now()"
               - column:
-                  name: modifiedTime
+                  name: modified_time
                   value: "now()"
               - column:
                   name: language
@@ -393,13 +393,13 @@ databaseChangeLog:
                   name: localized_value_id
                   value: 6
         - insert:
-            tableName: LOCALIZED_STRING_VALUE
+            tableName: localized_string_value
             columns:
               - column:
-                  name: createdTime
+                  name: created_time
                   value: "now()"
               - column:
-                  name: modifiedTime
+                  name: modified_time
                   value: "now()"
               - column:
                   name: language
@@ -411,17 +411,19 @@ databaseChangeLog:
                   name: localized_value_id
                   value: 6
         - insert:
-            tableName: CATEGORY
+            tableName: category
             columns:
               - column:
-                  name: createdTime
+                  name: created_time
                   value: "now()"
               - column:
-                  name: modifiedTime
+                  name: modified_time
                   value: "now()"
               - column:
                   name: title
                   value: 6
               - column:
-                  name: parentCategory_id
+                  name: parent_category_id
                   value: 5
+
+
