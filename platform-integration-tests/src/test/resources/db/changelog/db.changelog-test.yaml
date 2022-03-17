@@ -8,3 +8,9 @@ databaseChangeLog:
   - include:
       file: sampledata/db.initialization-data-category-test.yaml
       relativeToChangelogFile: true
+  - include:
+      file: sampledata/db.initialization-data-country-test.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: sampledata/db.initialization-data-language-test.yaml
+      relativeToChangelogFile: true

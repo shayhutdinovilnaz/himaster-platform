@@ -1,4 +1,4 @@
-package ee.himaster.platform.web.application.controller;
+package ee.himaster.platform.web.application.controller.v1;
 
 import ee.himaster.platform.api.controller.CityApi;
 import ee.himaster.platform.dto.CityDto;

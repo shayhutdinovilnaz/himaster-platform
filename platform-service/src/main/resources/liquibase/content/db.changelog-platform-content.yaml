@@ -1,4 +1,10 @@
 databaseChangeLog:
   - include:
-      file: 1.1.x-db.initialization-data-category.yaml
+      file: db.initialization-data-category.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: db.initialization-data-country.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: db.initialization-data-language.yaml
       relativeToChangelogFile: true

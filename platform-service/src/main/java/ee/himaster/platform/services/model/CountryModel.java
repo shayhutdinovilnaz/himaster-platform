@@ -12,7 +12,7 @@ import java.util.List;
 @Entity(name = "country")
 public class CountryModel extends ItemModel {
 
-    @Column(unique = true)
+    @Column(unique = true, name = "iso_code")
     private String isoCode;
 
     @OneToMany(mappedBy = "country", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -20,7 +20,7 @@ public class CountryModel extends ItemModel {
 
     @ManyToMany
     @JoinTable(
-            name = "COUNTRY_LANGUAGE",
+            name = "country_language",
             joinColumns = @JoinColumn(name = "country_id"),
             inverseJoinColumns = @JoinColumn(name = "language_id")
     )

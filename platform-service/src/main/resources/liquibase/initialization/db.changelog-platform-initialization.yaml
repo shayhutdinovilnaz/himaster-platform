@@ -1,4 +1,4 @@
 databaseChangeLog:
   - include:
-      file: 1.1.x-db.ddl-category.xml
+      file: 20220316-db.ddl.xml
       relativeToChangelogFile: true

@@ -1,6 +1,5 @@
-package ee.himaster.platform.web.application.controller;
+package ee.himaster.platform.web.application.controller.v1;
 
-import ee.himaster.core.service.exception.ModelNotFoundException;
 import ee.himaster.platform.api.controller.CategoryApi;
 import ee.himaster.platform.dto.CategoryDto;
 import ee.himaster.platform.facades.facade.CategoryFacade;
@@ -21,11 +20,7 @@ public class CategoryController implements CategoryApi {
 
     @Override
     public ResponseEntity<CategoryDto> getById(Integer categoryId, String localeCode) {
-        try {
-            return ResponseEntity.ok(categoryFacade.getById(categoryId));
-        } catch (ModelNotFoundException e) {
-            return ResponseEntity.noContent().build();
-        }
+        return ResponseEntity.ok(categoryFacade.getById(categoryId));
     }
 
     @Override

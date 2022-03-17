@@ -26,7 +26,7 @@ public class DefaultCityService extends AbstractModelService<CityModel> implemen
     @Override
     @Transactional
     public List<CityModel> getByCountry(final String countryIsoCode) {
-        return Optional.of(countryRepository.getByIsoCode(countryIsoCode))
+        return Optional.ofNullable(countryRepository.getByIsoCode(countryIsoCode))
                 .map(CountryModel::getCities)
                 .orElseThrow(() -> new ModelNotFoundException("Country is not found. Country code: " + countryIsoCode));
     }

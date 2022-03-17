@@ -24,7 +24,7 @@ public class DefaultLanguageService extends AbstractModelService<LanguageModel> 
 
     @Override
     public List<LanguageModel> getByCountry(String countryIsoCode) {
-        return Optional.of(countryRepository.getByIsoCode(countryIsoCode))
+        return Optional.ofNullable(countryRepository.getByIsoCode(countryIsoCode))
                 .map(CountryModel::getLanguages)
                 .orElseThrow(() -> new ModelNotFoundException("Country is not found. Country code: " + countryIsoCode));
     }

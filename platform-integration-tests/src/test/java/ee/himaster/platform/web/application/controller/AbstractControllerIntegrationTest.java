@@ -5,12 +5,6 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import ee.himaster.platform.util.AbstractIntegrationTest;
-
-import java.io.IOException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import javax.servlet.http.HttpServletResponse;
-
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +15,10 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
+import org.springframework.util.MultiValueMap;
 
-import static org.junit.Assert.assertTrue;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 public abstract class AbstractControllerIntegrationTest extends AbstractIntegrationTest {
 
@@ -95,6 +89,17 @@ public abstract class AbstractControllerIntegrationTest extends AbstractIntegrat
         return mockMvc.perform(MockMvcRequestBuilders
                         .get(url)
                         .headers(headers)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(ResultMatcher.matchAll(resultMatchers))
+                .andReturn().getResponse();
+    }
+
+    protected HttpServletResponse performGetAndMatchResults(String url, HttpHeaders headers, MultiValueMap<String, String> params,
+                                                            ResultMatcher... resultMatchers) throws Exception {
+        return mockMvc.perform(MockMvcRequestBuilders
+                        .get(url)
+                        .headers(headers)
+                        .queryParams(params)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(ResultMatcher.matchAll(resultMatchers))
                 .andReturn().getResponse();

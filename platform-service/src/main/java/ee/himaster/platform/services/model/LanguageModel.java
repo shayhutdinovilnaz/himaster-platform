@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Entity(name = "language")
 public class LanguageModel extends ItemModel {
 
-    @Column(name = "isoCode", nullable = false)
+    @Column(name = "iso_code", nullable = false)
     private String isoCode;
 
     @ManyToOne(cascade = CascadeType.ALL)

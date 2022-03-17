@@ -1,5 +1,6 @@
-package ee.himaster.platform.web.application.controller;
+package ee.himaster.platform.web.application.controller.v1;
 
+import ee.himaster.platform.web.application.controller.AbstractControllerIntegrationTest;
 import org.junit.Test;
 import org.springframework.http.HttpHeaders;
 import org.springframework.util.LinkedMultiValueMap;
@@ -37,7 +38,7 @@ public class CategoryControllerITest extends AbstractControllerIntegrationTest {
         final var path = "/v1/category/" + id;
         final var headerValues = new LinkedMultiValueMap<String, String>();
         headerValues.add(REQUEST_HEADER_LOCALE_CODE_PARAM_NAME, EE_EN_LOCALE_CODE);
-        performGetAndMatchResults(path, new HttpHeaders(headerValues), HTTP_STATUS_NO_CONTENT_RESULT_MATCHER);
+        performGetAndMatchResults(path, new HttpHeaders(headerValues), HTTP_STATUS_BAD_REQUEST_RESULT_MATCHER);
     }
 
     @Test
