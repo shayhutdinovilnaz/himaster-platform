@@ -3,6 +3,7 @@ package ee.himaster.platform.web.application.controller.v1;
 import ee.himaster.platform.api.controller.CityApi;
 import ee.himaster.platform.dto.CityDto;
 import ee.himaster.platform.facades.facade.CityFacade;
+import ee.himaster.platform.web.application.controller.BaseController;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +16,7 @@ import java.util.List;
 @RequestMapping("/v1")
 @RestController
 @Slf4j
-public class CityController implements CityApi {
+public class CityController extends BaseController implements CityApi {
     private final CityFacade cityFacade;
 
     @Override

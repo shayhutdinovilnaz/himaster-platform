@@ -3,6 +3,7 @@ package ee.himaster.platform.web.application.controller.v1;
 import ee.himaster.platform.api.controller.LanguageApi;
 import ee.himaster.platform.dto.LanguageDto;
 import ee.himaster.platform.facades.facade.LanguageFacade;
+import ee.himaster.platform.web.application.controller.BaseController;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +16,7 @@ import java.util.List;
 @RequestMapping("/v1")
 @RestController
 @Slf4j
-public class LanguageController implements LanguageApi {
+public class LanguageController extends BaseController implements LanguageApi {
     private final LanguageFacade languageFacade;
 
     @Override
