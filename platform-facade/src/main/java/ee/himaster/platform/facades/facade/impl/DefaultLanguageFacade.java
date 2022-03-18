@@ -22,6 +22,7 @@ public class DefaultLanguageFacade implements LanguageFacade {
         return languageService.getByCountry(countryIsoCode)
                 .stream()
                 .map(languageConverter::convert)
+                .sorted((a, b) -> a.getTitle().compareToIgnoreCase(b.getTitle()))
                 .collect(Collectors.toList());
     }
 }

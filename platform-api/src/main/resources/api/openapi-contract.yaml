@@ -13,8 +13,7 @@ servers:
 
 tags:
   - name: "Category"
-  - name: "Language"
-  - name: "City"
+  - name: "SiteConfig"
 
 paths:
   /category/roots:
@@ -66,15 +65,15 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CategoryDto'
-        "204":
+        "403":
           description: The category by id was not found.
 
-  /city/all:
+  /siteconfig/city/all:
     get:
       summary: List of cities in country
       operationId: getAllCitiesInCountry
       tags:
-        - "City"
+        - "SiteConfig"
       parameters:
         - name: "countryIsoCode"
           in: "query"
@@ -96,13 +95,15 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/CityDto'
+        "403":
+          description: The country was not found.
 
-  /language/all:
+  /siteconfig/language/all:
     get:
       summary: List of languages which avaialble in a country
       operationId: getAllLanguagesInCountry
       tags:
-        - "Language"
+        - "SiteConfig"
       parameters:
         - name: "countryIsoCode"
           in: "query"
@@ -124,6 +125,39 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/LanguageDto'
+
+        "403":
+          description: The country was not found.
+
+  /siteconfig/locale:
+    get:
+      summary: The locale for region and language. If a language are not exist then return default locale for region.
+      operationId: getLocaleByRegionAndLanguage
+      tags:
+        - "SiteConfig"
+      parameters:
+        - name: "regionCode"
+          in: "query"
+          description: "The code of region"
+          required: true
+          schema:
+            type: string
+        - name: "languageIsoCode"
+          in: "query"
+          description: "The iso-code of language"
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Request is proceded successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocaleDto'
+
+        "403":
+          description: The locale was not found.
 
 components:
   schemas:
@@ -170,4 +204,27 @@ components:
           type: string
         title:
           description: the title of a language
+          type: string
+
+    LocaleDto:
+      description: The DTO object of a locale
+      type: object
+      required:
+        - code
+        - timeZoneId
+        - languageIsoCode
+        - ccy
+
+      properties:
+        code:
+          description: the code of a locale
+          type: string
+        timeZoneId:
+          description: the time-zone of locale
+          type: string
+        languageIsoCode:
+          description: the iso-code of language
+          type: string
+        ccy:
+          description: the currency code
           type: string

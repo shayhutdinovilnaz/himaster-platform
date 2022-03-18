@@ -22,8 +22,8 @@ import java.io.IOException;
 
 public abstract class AbstractControllerIntegrationTest extends AbstractIntegrationTest {
 
-    protected static final String EE_RU_LOCALE_CODE = "EE_RU";
-    protected static final String EE_EN_LOCALE_CODE = "EE_EN";
+    protected static final String EE_RU_LOCALE_CODE = "EST_RU";
+    protected static final String EE_EN_LOCALE_CODE = "EST_EN";
     protected static final String REQUEST_HEADER_LOCALE_CODE_PARAM_NAME = "Locale-code";
 
     private ObjectMapper objectMapper;
@@ -62,9 +62,9 @@ public abstract class AbstractControllerIntegrationTest extends AbstractIntegrat
         return response;
     }
 
-    protected HttpServletResponse performPostAndMatchResults(String url, String jsonBody, HttpHeaders headers, ResultMatcher... resultMatchers) throws Exception {
+    protected MockHttpServletResponse performPostAndMatchResults(String url, String jsonBody, HttpHeaders headers, ResultMatcher... resultMatchers) throws Exception {
 
-        HttpServletResponse response =
+        MockHttpServletResponse response =
                 mockMvc.perform(MockMvcRequestBuilders
                                 .post(url)
                                 .content(jsonBody)

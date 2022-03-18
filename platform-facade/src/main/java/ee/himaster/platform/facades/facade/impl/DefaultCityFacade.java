@@ -22,6 +22,7 @@ public class DefaultCityFacade implements CityFacade {
         return cityService.getByCountry(countryIsoCode)
                 .stream()
                 .map(cityConverter::convert)
+                .sorted((a, b) -> a.getTitle().compareToIgnoreCase(b.getTitle()))
                 .collect(Collectors.toList());
     }
 }
