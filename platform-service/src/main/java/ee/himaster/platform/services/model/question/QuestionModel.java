@@ -2,7 +2,7 @@ package ee.himaster.platform.services.model.question;
 
 import ee.himaster.core.localization.model.LocalizedStringValueModel;
 import ee.himaster.core.service.model.ItemModel;
-import ee.himaster.platform.services.model.question.answer.AnswerOptionModel;
+import ee.himaster.platform.services.model.question.answer.option.AnswerOptionModel;
 import lombok.Getter;
 import lombok.Setter;
 

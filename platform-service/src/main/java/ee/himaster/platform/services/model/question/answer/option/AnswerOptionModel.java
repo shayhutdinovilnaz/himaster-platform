@@ -1,4 +1,4 @@
-package ee.himaster.platform.services.model.question.answer;
+package ee.himaster.platform.services.model.question.answer.option;
 
 import ee.himaster.core.localization.model.LocalizedStringValueModel;
 import ee.himaster.core.service.model.ItemModel;
@@ -17,6 +17,8 @@ public class AnswerOptionModel extends ItemModel {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "label")
     private LocalizedStringValueModel label;
+
+    private String qualifier;
 
     private int priority;
 
