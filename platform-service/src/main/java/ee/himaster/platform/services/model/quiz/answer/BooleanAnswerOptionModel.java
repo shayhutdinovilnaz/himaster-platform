@@ -16,6 +16,6 @@ public class BooleanAnswerOptionModel extends AnswerOptionModel {
     private Boolean value;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "localized_value")
-    private LocalizedStringValueModel localizedValue;
+    @JoinColumn(name = "title")
+    private LocalizedStringValueModel title;
 }
