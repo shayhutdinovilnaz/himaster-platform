@@ -16,8 +16,6 @@ public class QuizItemModel extends ItemModel {
 
     private int order;
 
-    private String qualifier;
-
     @ManyToOne
     @JoinColumn(name = "answer_option")
     private AnswerOptionModel answerOption;
