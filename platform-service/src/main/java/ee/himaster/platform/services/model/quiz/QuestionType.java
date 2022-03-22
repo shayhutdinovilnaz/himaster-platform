@@ -1,4 +1,4 @@
-package ee.himaster.platform.services.model.question;
+package ee.himaster.platform.services.model.quiz;
 
 public enum QuestionType {
     CHECKBOX,

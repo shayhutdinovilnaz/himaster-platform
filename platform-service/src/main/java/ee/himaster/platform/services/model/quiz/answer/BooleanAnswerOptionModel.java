@@ -1,4 +1,4 @@
-package ee.himaster.platform.services.model.question.answer.option;
+package ee.himaster.platform.services.model.quiz.answer;
 
 import ee.himaster.core.localization.model.LocalizedStringValueModel;
 import lombok.Getter;
