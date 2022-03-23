@@ -1,4 +1,4 @@
-package ee.himaster.platform.services.model.quiz.answer;
+package ee.himaster.platform.services.model.quiz.answer.option;
 
 import ee.himaster.core.localization.model.LocalizedStringValueModel;
 import lombok.Getter;
@@ -11,11 +11,10 @@ import javax.persistence.ManyToOne;
 
 @Getter
 @Setter
-@Entity(name = "answer_option_boolean")
-public class BooleanAnswerOptionModel extends AnswerOptionModel {
-    private Boolean value;
+@Entity(name = "answer_option_string")
+public class StringAnswerOptionModel extends AnswerOptionModel {
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "title")
-    private LocalizedStringValueModel title;
+    @JoinColumn(name = "value")
+    private LocalizedStringValueModel value;
 }

@@ -1,4 +1,4 @@
-package ee.himaster.platform.services.model.quiz.answer;
+package ee.himaster.platform.services.model.quiz.answer.option;
 
 import lombok.Getter;
 import lombok.Setter;

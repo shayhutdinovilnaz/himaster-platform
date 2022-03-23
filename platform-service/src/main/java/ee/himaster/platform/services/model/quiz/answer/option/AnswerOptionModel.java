@@ -1,4 +1,4 @@
-package ee.himaster.platform.services.model.quiz.answer;
+package ee.himaster.platform.services.model.quiz.answer.option;
 
 import ee.himaster.core.localization.model.LocalizedStringValueModel;
 import ee.himaster.core.service.model.ItemModel;
