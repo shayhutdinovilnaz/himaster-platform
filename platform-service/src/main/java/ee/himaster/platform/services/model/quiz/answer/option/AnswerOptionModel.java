@@ -22,11 +22,11 @@ public class AnswerOptionModel extends ItemModel {
 
     private int priority;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "question")
     private QuestionModel question;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "next_question")
     private QuestionModel nextQuestion;
 }

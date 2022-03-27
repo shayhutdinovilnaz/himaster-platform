@@ -15,7 +15,7 @@ public class CountryModel extends ItemModel {
     @Column(unique = true, name = "iso_code")
     private String isoCode;
 
-    @OneToMany(mappedBy = "country", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "country")
     private List<CityModel> cities;
 
     @ManyToMany
