@@ -31,6 +31,10 @@ public class DefaultQuizService extends AbstractModelService<QuizModel> implemen
 
     @Override
     public QuizModel create(final Integer userId, final CategoryModel category) {
+
+        Objects.requireNonNull(userId);
+        Objects.requireNonNull(category);
+
         var quizModel = new QuizModel();
         quizModel.setUserId(userId);
         quizModel.setCategory(category);
@@ -40,19 +44,18 @@ public class DefaultQuizService extends AbstractModelService<QuizModel> implemen
 
     @Override
     public QuizModel getByUser(final Integer userId) {
+
+        Objects.requireNonNull(userId);
+
         return Optional.ofNullable(quizRepository.getByUserId(userId))
                 .orElseThrow(() -> new ModelNotFoundException("The quiz is not found for user. User id: " + userId));
     }
 
     @Override
     public QuestionModel getNextQuestion(final QuizModel quiz) {
-        final var question = retrieveNextQuestion(quiz);
-        if (question == null) {
-            log.error("The next question was not defined. QuizId={}", quiz.getId());
-            throw new ModelNotFoundException("The next question was not defined");
-        } else {
-            return question;
-        }
+        Objects.requireNonNull(quiz);
+
+        return retrieveNextQuestion(quiz);
     }
 
     private QuestionModel retrieveNextQuestion(final QuizModel quiz) {
@@ -78,6 +81,8 @@ public class DefaultQuizService extends AbstractModelService<QuizModel> implemen
 
     @Override
     public QuizModel applyAnswers(final List<AnswerModel> answers, final QuizModel quiz) {
+        Objects.requireNonNull(answers);
+        Objects.requireNonNull(quiz);
 
         addAnswers(answers, quiz);
 
@@ -169,6 +174,8 @@ public class DefaultQuizService extends AbstractModelService<QuizModel> implemen
 
     @Override
     public QuizModel revertToPreviousQuestion(final QuizModel quiz) {
+        Objects.requireNonNull(quiz);
+
         final var previousStep = quiz.getCurrentStep() - 1;
         final var previousItem = quiz.getItems()
                 .stream().filter(i -> i.getOrder() == previousStep)
