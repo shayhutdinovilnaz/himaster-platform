@@ -117,7 +117,9 @@ public class DefaultQuizService extends AbstractModelService<QuizModel> implemen
         items.addAll(newQuizItems);
         items.sort(Comparator.comparingInt(QuizItemModel::getOrder));
 
-        quiz.setCurrentStep(quiz.getCurrentStep() + 1);
+
+        final var drift = newQuizItems.isEmpty() ? 0 : 1;
+        quiz.setCurrentStep(quiz.getCurrentStep() + drift);
     }
 
     private List<QuizItemModel> createNewQuizItems(List<AnswerModel> answers, QuizModel quiz) {
@@ -176,7 +178,7 @@ public class DefaultQuizService extends AbstractModelService<QuizModel> implemen
     public QuizModel revertToPreviousQuestion(final QuizModel quiz) {
         Objects.requireNonNull(quiz);
 
-        if (quiz.getCurrentStep() == 0) {
+        if (quiz.getCurrentStep() <= 1) {
             return quiz;
         }
 
@@ -186,17 +188,36 @@ public class DefaultQuizService extends AbstractModelService<QuizModel> implemen
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("The previous question was not found. QuizId=" + quiz.getId()));
 
+        final var currentItem = quiz.getItems()
+                .stream().filter(i -> i.getOrder() == quiz.getCurrentStep())
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("The previous question was not found. QuizId=" + quiz.getId()));
+
         final var nextQuestionsIds = CollectionUtils.emptyIfNull(previousItem.getAnswers())
-                .stream().map(AnswerModel::getOption)
+                .stream()
+                .map(AnswerModel::getOption)
                 .map(AnswerOptionModel::getNextQuestion)
                 .map(ItemModel::getId)
+                .filter(Objects::nonNull)
                 .collect(Collectors.toList());
+
+        final var isNextQuestionForPrevious = quiz.getItems().stream()
+                .filter(quizItemModel -> quizItemModel.getAnswers() != null)
+                .filter(quizItemModel -> quizItemModel.getOrder() != previousStep)
+                .flatMap(quizItemModel -> quizItemModel.getAnswers().stream())
+                .map(AnswerModel::getOption)
+                .map(AnswerOptionModel::getNextQuestion)
+                .filter(Objects::nonNull)
+                .map(ItemModel::getId)
+                .anyMatch(nextQuestionId -> nextQuestionId.equals(currentItem.getQuestion().getId()));
 
         final var itemsForRemoving = quiz.getItems().stream()
-                .filter(item -> nextQuestionsIds.contains(item.getQuestion().getId()) || item.getOrder() == quiz.getCurrentStep())
+                .filter(item -> nextQuestionsIds.contains(item.getQuestion().getId()) || (item.getOrder() == quiz.getCurrentStep() && !isNextQuestionForPrevious))
                 .collect(Collectors.toList());
 
-        quizItemRepository.deleteAll(itemsForRemoving);
+        if (!itemsForRemoving.isEmpty()) {
+            quizItemRepository.deleteAll(itemsForRemoving);
+        }
 
         final var newQuizItems = quiz.getItems().stream()
                 .filter(item -> !nextQuestionsIds.contains(item.getQuestion().getId()) || item.getOrder() == previousStep)
