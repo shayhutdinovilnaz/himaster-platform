@@ -15,6 +15,8 @@ import org.assertj.core.util.Lists;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
@@ -31,6 +33,9 @@ public class DefaultQuizServiceTest extends AbstractModelServiceTest<QuizModel> 
     @InjectMocks
     private DefaultQuizService underTest;
 
+    @Captor
+    private ArgumentCaptor<List<QuizItemModel>> quizItemArgumentCaptor;
+
     @Mock
     private QuizRepository quizRepository;
 
@@ -42,6 +47,7 @@ public class DefaultQuizServiceTest extends AbstractModelServiceTest<QuizModel> 
 
     @Test
     public void create_argumentsValid_success() {
+
         var userId = 1;
         var category = new CategoryModel();
 
@@ -54,6 +60,7 @@ public class DefaultQuizServiceTest extends AbstractModelServiceTest<QuizModel> 
 
     @Test
     public void getByUser_userExist_success() {
+
         var userId = 1;
         var quiz = new QuizModel();
 
@@ -65,6 +72,7 @@ public class DefaultQuizServiceTest extends AbstractModelServiceTest<QuizModel> 
 
     @Test(expected = ModelNotFoundException.class)
     public void getByUser_userNotExist_exception() {
+
         var userId = 1;
 
         when(quizRepository.getByUserId(userId)).thenReturn(null);
@@ -74,6 +82,7 @@ public class DefaultQuizServiceTest extends AbstractModelServiceTest<QuizModel> 
 
     @Test
     public void getNextQuestion_initializeQuestionNotExist_null() {
+
         var category = new CategoryModel();
         var quiz = new QuizModel();
         quiz.setCategory(category);
@@ -90,6 +99,7 @@ public class DefaultQuizServiceTest extends AbstractModelServiceTest<QuizModel> 
 
     @Test
     public void getNextQuestion_initializeQuestionExist_success() {
+
         var category = new CategoryModel();
         var initializeQuestion = new QuestionModel();
         var quiz = new QuizModel();
@@ -107,6 +117,7 @@ public class DefaultQuizServiceTest extends AbstractModelServiceTest<QuizModel> 
 
     @Test
     public void getNextQuestion_nextQuestionExist_success() {
+
         var category = new CategoryModel();
         var firstQuestion = new QuestionModel();
         var secondQuestion = new QuestionModel();
@@ -128,6 +139,7 @@ public class DefaultQuizServiceTest extends AbstractModelServiceTest<QuizModel> 
 
     @Test
     public void getNextQuestion_nextQuestionNotExist_null() {
+
         var category = new CategoryModel();
         var firstQuestion = new QuestionModel();
         var secondQuestion = new QuestionModel();
@@ -147,6 +159,7 @@ public class DefaultQuizServiceTest extends AbstractModelServiceTest<QuizModel> 
 
     @Test
     public void applyAnswers_oneAnswerWithNextQuestion_answersAreSubmitAndNextItemIsAdded() {
+
         final var question1 = new QuestionModel();
         question1.setId(1);
 
@@ -193,6 +206,7 @@ public class DefaultQuizServiceTest extends AbstractModelServiceTest<QuizModel> 
 
     @Test
     public void applyAnswers_oneAnswerWithoutNextQuestionAndSummarizeQuestionNotExist_answersAreSubmit() {
+
         final var question1 = new QuestionModel();
         question1.setId(1);
 
@@ -236,6 +250,7 @@ public class DefaultQuizServiceTest extends AbstractModelServiceTest<QuizModel> 
 
     @Test
     public void applyAnswers_oneAnswerWithNextQuestionAndOneQuestionAheadAlso_answersAreSubmitAndNextItemIsAddedAndQuestionsAheadIsSaved() {
+
         final var question1 = new QuestionModel();
         question1.setId(1);
 
@@ -281,6 +296,7 @@ public class DefaultQuizServiceTest extends AbstractModelServiceTest<QuizModel> 
 
     @Test
     public void applyAnswers_oneAnswerWithoutNextQuestionAndSummarizeQuestionIsAdded_answersAreSubmitAndNextItemIsAdded() {
+
         final var question1 = new QuestionModel();
         question1.setId(1);
 
@@ -331,6 +347,7 @@ public class DefaultQuizServiceTest extends AbstractModelServiceTest<QuizModel> 
 
     @Test
     public void applyAnswers_fewAnswersWithSameNextQuestion_answersAreSubmitAndNextItemIsAdded() {
+
         final var question1 = new QuestionModel();
         question1.setId(1);
 
@@ -385,6 +402,7 @@ public class DefaultQuizServiceTest extends AbstractModelServiceTest<QuizModel> 
 
     @Test
     public void applyAnswers_fewAnswersWithDifferentNextQuestions_answersAreSubmitAndNextItemIsAdded() {
+
         final var question1 = new QuestionModel();
         question1.setId(1);
 
@@ -445,6 +463,7 @@ public class DefaultQuizServiceTest extends AbstractModelServiceTest<QuizModel> 
 
     @Test
     public void applyAnswers_fewAnswersOnlyOneNextQuestion_answersAreSubmitAndNextItemIsAdded() {
+
         final var question1 = new QuestionModel();
         question1.setId(1);
 
@@ -499,6 +518,7 @@ public class DefaultQuizServiceTest extends AbstractModelServiceTest<QuizModel> 
 
     @Test
     public void applyAnswers_fewAnswersWithoutNextQuestions_answersAreSubmitAndSummarizeItemIsAdded() {
+
         final var question1 = new QuestionModel();
         question1.setId(1);
 
@@ -557,6 +577,7 @@ public class DefaultQuizServiceTest extends AbstractModelServiceTest<QuizModel> 
 
     @Test
     public void applyAnswers_fewAnswersWithoutNextQuestionsAndSummarizeQuestionIsAddedAlready_answersAreSubmitAndNextItemIsNotAdded() {
+
         final var question1 = new QuestionModel();
         question1.setId(1);
 
@@ -605,6 +626,132 @@ public class DefaultQuizServiceTest extends AbstractModelServiceTest<QuizModel> 
 
         verify(questionRepository).findSummarizeQuestion(category);
         verify(quizRepository).save(quiz);
+
+    }
+
+    @Test
+    public void revertToPreviousQuestion_zeroStep_nothingChanged() {
+        final var question1 = new QuestionModel();
+        question1.setId(1);
+
+        final List<QuizItemModel> quizItems = new ArrayList<>();
+        quizItems.add(createItem(question1, null, 0));
+
+        final var quiz = new QuizModel();
+        quiz.setCurrentStep(0);
+        quiz.setItems(quizItems);
+
+        QuizModel result = underTest.revertToPreviousQuestion(quiz);
+
+        Assert.assertEquals(0, result.getCurrentStep());
+        Assert.assertEquals(1, result.getItems().size());
+    }
+
+    @Test
+    public void revertToPreviousQuestion_lastStep_currentStepRemoved() {
+        final var question1 = new QuestionModel();
+        question1.setId(1);
+
+        final var question2 = new QuestionModel();
+        question2.setId(2);
+
+        final var answerOption = new AnswerOptionModel();
+        answerOption.setQuestion(question1);
+        answerOption.setNextQuestion(question2);
+
+        final var answer = new AnswerModel();
+        answer.setOption(answerOption);
+        final var answers = Lists.newArrayList(answer);
+
+        final List<QuizItemModel> quizItems = new ArrayList<>();
+        final var quizItem1 = createItem(question1, answers, 0);
+        final var quizItem2 = createItem(question2, null, 1);
+        quizItems.add(quizItem1);
+        quizItems.add(quizItem2);
+
+        final var category = new CategoryModel();
+
+        final var quiz = new QuizModel();
+        quiz.setCurrentStep(1);
+        quiz.setCategory(category);
+        quiz.setItems(quizItems);
+
+        final var result = underTest.revertToPreviousQuestion(quiz);
+        Assert.assertNotNull(result);
+        Assert.assertEquals(0, result.getCurrentStep());
+        Assert.assertEquals(1, result.getItems().size());
+
+        Assert.assertEquals(question1, result.getItems().get(0).getQuestion());
+        Assert.assertEquals(1, result.getItems().get(0).getOrder());
+        Assert.assertEquals(answers, result.getItems().get(0).getAnswers());
+
+        verify(quizItemRepository).deleteAll(quizItemArgumentCaptor.capture());
+        Assert.assertEquals(quizItem2, quizItemArgumentCaptor.getValue().get(0));
+        verify(quizRepository).save(quiz);
+
+    }
+
+    @Test
+    public void revertToPreviousQuestion_middleStepOnlyWithOneNextQuestions_currentStepAndNextStepRemoved() {
+        final var question1 = new QuestionModel();
+        question1.setId(1);
+
+        final var question2 = new QuestionModel();
+        question2.setId(2);
+
+        final var question3 = new QuestionModel();
+        question2.setId(3);
+
+        final var answerOption1 = new AnswerOptionModel();
+        answerOption1.setQuestion(question1);
+        answerOption1.setNextQuestion(question2);
+
+        final var answer1 = new AnswerModel();
+        answer1.setOption(answerOption1);
+
+        final var answerOption2 = new AnswerOptionModel();
+        answerOption2.setQuestion(question2);
+        answerOption2.setNextQuestion(null);
+
+        final var answer2 = new AnswerModel();
+        answer2.setOption(answerOption2);
+
+        final List<QuizItemModel> quizItems = new ArrayList<>();
+        final var answersForQuizItem1 = Lists.newArrayList(answer1);
+        final var quizItem1 = createItem(question1, answersForQuizItem1, 0);
+        final var quizItem2 = createItem(question2, Lists.newArrayList(answer2), 1);
+        final var quizItem3 = createItem(question3, null, 2);
+        quizItems.add(quizItem1);
+        quizItems.add(quizItem2);
+        quizItems.add(quizItem3);
+
+        final var category = new CategoryModel();
+
+        final var quiz = new QuizModel();
+        quiz.setCurrentStep(1);
+        quiz.setCategory(category);
+        quiz.setItems(quizItems);
+
+        final var result = underTest.revertToPreviousQuestion(quiz);
+        Assert.assertNotNull(result);
+        Assert.assertEquals(0, result.getCurrentStep());
+        Assert.assertEquals(2, result.getItems().size());
+
+        Assert.assertEquals(question1, result.getItems().get(0).getQuestion());
+        Assert.assertEquals(1, result.getItems().get(0).getOrder());
+        Assert.assertEquals(answersForQuizItem1, result.getItems().get(0).getAnswers());
+
+        verify(quizItemRepository).deleteAll(quizItemArgumentCaptor.capture());
+        Assert.assertEquals(quizItem2, quizItemArgumentCaptor.getValue().get(0));
+        verify(quizRepository).save(quiz);
+        verifyNoMoreInteractions(quizRepository, quizItemRepository);
+    }
+
+    public void revertToPreviousQuestion_middleStepOnlyWithTwoNextQuestions_currentStepAndTwoNextStepRemoved() {
+
+    }
+
+    public void revertToPreviousQuestion_middleStepTwoNextQuestionsAndAlsoAdditionalQuestions_currentStepAndTwoNextStepRemoved() {
 
     }
 

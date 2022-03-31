@@ -15,6 +15,7 @@ import ee.himaster.platform.services.repository.QuizRepository;
 import ee.himaster.platform.services.service.QuizService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
@@ -175,41 +176,49 @@ public class DefaultQuizService extends AbstractModelService<QuizModel> implemen
     public QuizModel revertToPreviousQuestion(final QuizModel quiz) {
         Objects.requireNonNull(quiz);
 
+        if (quiz.getCurrentStep() == 0) {
+            return quiz;
+        }
+
         final var previousStep = quiz.getCurrentStep() - 1;
         final var previousItem = quiz.getItems()
                 .stream().filter(i -> i.getOrder() == previousStep)
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("The previous question was not found. QuizId=" + quiz.getId()));
 
-        final var nextQuestionsIds = previousItem.getAnswers()
+        final var nextQuestionsIds = CollectionUtils.emptyIfNull(previousItem.getAnswers())
                 .stream().map(AnswerModel::getOption)
                 .map(AnswerOptionModel::getNextQuestion)
                 .map(ItemModel::getId)
                 .collect(Collectors.toList());
 
         final var itemsForRemoving = quiz.getItems().stream()
-                .filter(item -> nextQuestionsIds.contains(item.getQuestion().getId()) || item.getOrder() == previousStep).collect(Collectors.toList());
+                .filter(item -> nextQuestionsIds.contains(item.getQuestion().getId()) || item.getOrder() == quiz.getCurrentStep())
+                .collect(Collectors.toList());
 
         quizItemRepository.deleteAll(itemsForRemoving);
 
         final var newQuizItems = quiz.getItems().stream()
-                .filter(item -> !nextQuestionsIds.contains(item.getQuestion().getId()) && item.getOrder() != previousStep)
+                .filter(item -> !nextQuestionsIds.contains(item.getQuestion().getId()) || item.getOrder() == previousStep)
                 .sorted(Comparator.comparingInt(QuizItemModel::getOrder))
                 .collect(Collectors.toList());
 
-        recalculateItemOrder(newQuizItems);
+        recalculateItemOrder(newQuizItems, quiz);
 
         save(quiz);
 
         return quiz;
     }
 
-    private void recalculateItemOrder(final List<QuizItemModel> newQuizItems) {
+    private void recalculateItemOrder(final List<QuizItemModel> newQuizItems, QuizModel quiz) {
         int order = 0;
         for (QuizItemModel newQuizItem : newQuizItems) {
             order++;
             newQuizItem.setOrder(order);
         }
+
+        quiz.setItems(newQuizItems);
+        quiz.setCurrentStep(quiz.getCurrentStep() - 1);
     }
 
     @Override
