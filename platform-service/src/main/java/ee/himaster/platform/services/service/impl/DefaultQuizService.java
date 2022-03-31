@@ -146,6 +146,7 @@ public class DefaultQuizService extends AbstractModelService<QuizModel> implemen
         final var questionsFromAnswers = answers.stream()
                 .map(AnswerModel::getOption)
                 .map(AnswerOptionModel::getNextQuestion)
+                .filter(Objects::nonNull)
                 .collect(Collectors.toList());
 
         if (questionsFromAnswers.isEmpty()) {
@@ -161,15 +162,13 @@ public class DefaultQuizService extends AbstractModelService<QuizModel> implemen
             final var isAdded = quiz.getItems()
                     .stream()
                     .map(QuizItemModel::getQuestion)
-                    .noneMatch(e -> e.getId().equals(summarizeQuestion.getId()));
+                    .anyMatch(e -> e.getId().equals(summarizeQuestion.getId()));
 
-            if (isAdded) {
-                return Collections.emptyList();
-            }
+            return isAdded ? Collections.emptyList() : Collections.singletonList(summarizeQuestion);
+
+        } else {
+            return Collections.emptyList();
         }
-
-        return Collections.singletonList(summarizeQuestion);
-
     }
 
     @Override

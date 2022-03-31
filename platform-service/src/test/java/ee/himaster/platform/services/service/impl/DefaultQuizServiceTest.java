@@ -147,14 +147,17 @@ public class DefaultQuizServiceTest extends AbstractModelServiceTest<QuizModel> 
 
     @Test
     public void applyAnswers_oneAnswerWithNextQuestion_answersAreSubmitAndNextItemIsAdded() {
-        final var question = new QuestionModel();
-        question.setId(1);
+        final var question1 = new QuestionModel();
+        question1.setId(1);
+
+        final var question2 = new QuestionModel();
+        question2.setId(2);
 
         final var nextQuestion = new QuestionModel();
-        nextQuestion.setId(2);
+        nextQuestion.setId(3);
 
         final var answerOption = new AnswerOptionModel();
-        answerOption.setQuestion(question);
+        answerOption.setQuestion(question1);
         answerOption.setNextQuestion(nextQuestion);
 
         final var answer = new AnswerModel();
@@ -162,57 +165,446 @@ public class DefaultQuizServiceTest extends AbstractModelServiceTest<QuizModel> 
         final var answers = Lists.newArrayList(answer);
 
         final List<QuizItemModel> quizItems = new ArrayList<>();
-        quizItems.add(createItem(question, null, 0));
+        quizItems.add(createItem(question1, null, 0));
+        quizItems.add(createItem(question2, null, 1));
 
         final var quiz = new QuizModel();
-        quiz.setCurrentStep(0);
+        quiz.setCurrentStep(1);
         quiz.setItems(quizItems);
 
 
         final var result = underTest.applyAnswers(answers, quiz);
         Assert.assertNotNull(result);
-        Assert.assertEquals(1, result.getCurrentStep());
+        Assert.assertEquals(2, result.getCurrentStep());
+        Assert.assertEquals(3, result.getItems().size());
+
+        Assert.assertEquals(question1, result.getItems().get(0).getQuestion());
+        Assert.assertEquals(0, result.getItems().get(0).getOrder());
+
+        Assert.assertEquals(question2, result.getItems().get(1).getQuestion());
+        Assert.assertEquals(1, result.getItems().get(1).getOrder());
+        Assert.assertEquals(answers, result.getItems().get(1).getAnswers());
+
+        Assert.assertEquals(nextQuestion, result.getItems().get(2).getQuestion());
+        Assert.assertEquals(2, result.getItems().get(2).getOrder());
+
+        verify(quizRepository).save(quiz);
+    }
+
+    @Test
+    public void applyAnswers_oneAnswerWithoutNextQuestionAndSummarizeQuestionNotExist_answersAreSubmit() {
+        final var question1 = new QuestionModel();
+        question1.setId(1);
+
+        final var question2 = new QuestionModel();
+        question2.setId(2);
+
+        final var answerOption = new AnswerOptionModel();
+        answerOption.setQuestion(question1);
+        answerOption.setNextQuestion(null);
+
+        final var answer = new AnswerModel();
+        answer.setOption(answerOption);
+        final var answers = Lists.newArrayList(answer);
+
+        final List<QuizItemModel> quizItems = new ArrayList<>();
+        quizItems.add(createItem(question1, null, 0));
+        quizItems.add(createItem(question2, null, 1));
+
+        final var category = new CategoryModel();
+
+        final var quiz = new QuizModel();
+        quiz.setCurrentStep(1);
+        quiz.setCategory(category);
+        quiz.setItems(quizItems);
+
+        final var result = underTest.applyAnswers(answers, quiz);
+        Assert.assertNotNull(result);
+        Assert.assertEquals(2, result.getCurrentStep());
         Assert.assertEquals(2, result.getItems().size());
 
-        Assert.assertEquals(question, result.getItems().get(0).getQuestion());
+        Assert.assertEquals(question1, result.getItems().get(0).getQuestion());
+        Assert.assertEquals(0, result.getItems().get(0).getOrder());
+
+        Assert.assertEquals(question2, result.getItems().get(1).getQuestion());
+        Assert.assertEquals(1, result.getItems().get(1).getOrder());
+        Assert.assertEquals(answers, result.getItems().get(1).getAnswers());
+
+        verify(questionRepository).findSummarizeQuestion(category);
+        verify(quizRepository).save(quiz);
+    }
+
+    @Test
+    public void applyAnswers_oneAnswerWithNextQuestionAndOneQuestionAheadAlso_answersAreSubmitAndNextItemIsAddedAndQuestionsAheadIsSaved() {
+        final var question1 = new QuestionModel();
+        question1.setId(1);
+
+        final var question3 = new QuestionModel();
+        question3.setId(2);
+
+        final var nextQuestion = new QuestionModel();
+        nextQuestion.setId(3);
+
+        final var answerOption = new AnswerOptionModel();
+        answerOption.setQuestion(question1);
+        answerOption.setNextQuestion(nextQuestion);
+
+        final var answer = new AnswerModel();
+        answer.setOption(answerOption);
+        final var answers = Lists.newArrayList(answer);
+
+        final List<QuizItemModel> quizItems = new ArrayList<>();
+        quizItems.add(createItem(question1, null, 0));
+        quizItems.add(createItem(question3, null, 1));
+
+        final var quiz = new QuizModel();
+        quiz.setCurrentStep(0);
+        quiz.setItems(quizItems);
+
+        final var result = underTest.applyAnswers(answers, quiz);
+        Assert.assertNotNull(result);
+        Assert.assertEquals(1, result.getCurrentStep());
+        Assert.assertEquals(3, result.getItems().size());
+
+        Assert.assertEquals(question1, result.getItems().get(0).getQuestion());
         Assert.assertEquals(0, result.getItems().get(0).getOrder());
         Assert.assertEquals(answers, result.getItems().get(0).getAnswers());
 
         Assert.assertEquals(nextQuestion, result.getItems().get(1).getQuestion());
         Assert.assertEquals(1, result.getItems().get(1).getOrder());
 
+        Assert.assertEquals(question3, result.getItems().get(2).getQuestion());
+        Assert.assertEquals(2, result.getItems().get(2).getOrder());
+
         verify(quizRepository).save(quiz);
     }
 
-    public void applyAnswers_oneAnswerWithoutNextQuestionAndSummarizeQuestionNotExist_answersAreSubmit() {
-
-    }
-
-    public void applyAnswers_oneAnswerWithNextQuestionAndOneQuestionAheadAlso_answersAreSubmitAndNextItemIsAddedAndQuestionsAheadIsSaved() {
-
-    }
-
+    @Test
     public void applyAnswers_oneAnswerWithoutNextQuestionAndSummarizeQuestionIsAdded_answersAreSubmitAndNextItemIsAdded() {
+        final var question1 = new QuestionModel();
+        question1.setId(1);
 
+        final var question2 = new QuestionModel();
+        question2.setId(2);
+
+        final var summarizeQuestion = new QuestionModel();
+        summarizeQuestion.setId(3);
+
+        final var answerOption = new AnswerOptionModel();
+        answerOption.setQuestion(question2);
+        answerOption.setNextQuestion(null);
+
+        final var answer = new AnswerModel();
+        answer.setOption(answerOption);
+        final var answers = Lists.newArrayList(answer);
+
+        final List<QuizItemModel> quizItems = new ArrayList<>();
+        quizItems.add(createItem(question1, null, 0));
+        quizItems.add(createItem(question2, null, 1));
+
+        final var category = new CategoryModel();
+        final var quiz = new QuizModel();
+        quiz.setCurrentStep(1);
+        quiz.setItems(quizItems);
+        quiz.setCategory(category);
+
+        when(questionRepository.findSummarizeQuestion(category)).thenReturn(summarizeQuestion);
+
+        final var result = underTest.applyAnswers(answers, quiz);
+        Assert.assertNotNull(result);
+        Assert.assertEquals(2, result.getCurrentStep());
+        Assert.assertEquals(3, result.getItems().size());
+
+        Assert.assertEquals(question1, result.getItems().get(0).getQuestion());
+        Assert.assertEquals(0, result.getItems().get(0).getOrder());
+
+        Assert.assertEquals(question2, result.getItems().get(1).getQuestion());
+        Assert.assertEquals(1, result.getItems().get(1).getOrder());
+        Assert.assertEquals(answers, result.getItems().get(1).getAnswers());
+
+        Assert.assertEquals(summarizeQuestion, result.getItems().get(2).getQuestion());
+        Assert.assertEquals(2, result.getItems().get(2).getOrder());
+
+        verify(questionRepository).findSummarizeQuestion(category);
+        verify(quizRepository).save(quiz);
     }
 
-    public void applyAnswers_fewAnswersWithNextQuestion_answersAreSubmitAndNextItemIsAdded() {
+    @Test
+    public void applyAnswers_fewAnswersWithSameNextQuestion_answersAreSubmitAndNextItemIsAdded() {
+        final var question1 = new QuestionModel();
+        question1.setId(1);
 
+        final var question2 = new QuestionModel();
+        question2.setId(2);
+
+        final var nextQuestion = new QuestionModel();
+        nextQuestion.setId(3);
+
+        final var answerOption1 = new AnswerOptionModel();
+        answerOption1.setQuestion(question1);
+        answerOption1.setNextQuestion(nextQuestion);
+
+        final var answerOption2 = new AnswerOptionModel();
+        answerOption2.setQuestion(question1);
+        answerOption2.setNextQuestion(nextQuestion);
+
+        final var answer1 = new AnswerModel();
+        answer1.setOption(answerOption1);
+
+        final var answer2 = new AnswerModel();
+        answer2.setOption(answerOption2);
+
+        final var answers = Lists.newArrayList(answer1, answer2);
+
+        final List<QuizItemModel> quizItems = new ArrayList<>();
+        quizItems.add(createItem(question1, null, 0));
+        quizItems.add(createItem(question2, null, 1));
+
+        final var quiz = new QuizModel();
+        quiz.setCurrentStep(1);
+        quiz.setItems(quizItems);
+
+
+        final var result = underTest.applyAnswers(answers, quiz);
+        Assert.assertNotNull(result);
+        Assert.assertEquals(2, result.getCurrentStep());
+        Assert.assertEquals(3, result.getItems().size());
+
+        Assert.assertEquals(question1, result.getItems().get(0).getQuestion());
+        Assert.assertEquals(0, result.getItems().get(0).getOrder());
+
+        Assert.assertEquals(question2, result.getItems().get(1).getQuestion());
+        Assert.assertEquals(1, result.getItems().get(1).getOrder());
+        Assert.assertEquals(answers, result.getItems().get(1).getAnswers());
+
+        Assert.assertEquals(nextQuestion, result.getItems().get(2).getQuestion());
+        Assert.assertEquals(2, result.getItems().get(2).getOrder());
+
+        verify(quizRepository).save(quiz);
     }
 
+    @Test
     public void applyAnswers_fewAnswersWithDifferentNextQuestions_answersAreSubmitAndNextItemIsAdded() {
+        final var question1 = new QuestionModel();
+        question1.setId(1);
 
+        final var question2 = new QuestionModel();
+        question2.setId(2);
+
+        final var nextQuestion1 = new QuestionModel();
+        nextQuestion1.setId(3);
+
+        final var nextQuestion2 = new QuestionModel();
+        nextQuestion2.setId(4);
+
+        final var answerOption1 = new AnswerOptionModel();
+        answerOption1.setQuestion(question1);
+        answerOption1.setNextQuestion(nextQuestion1);
+
+        final var answerOption2 = new AnswerOptionModel();
+        answerOption2.setQuestion(question1);
+        answerOption2.setNextQuestion(nextQuestion2);
+
+        final var answer1 = new AnswerModel();
+        answer1.setOption(answerOption1);
+
+        final var answer2 = new AnswerModel();
+        answer2.setOption(answerOption2);
+
+        final var answers = Lists.newArrayList(answer1, answer2);
+
+        final List<QuizItemModel> quizItems = new ArrayList<>();
+        quizItems.add(createItem(question1, null, 0));
+        quizItems.add(createItem(question2, null, 1));
+
+        final var quiz = new QuizModel();
+        quiz.setCurrentStep(1);
+        quiz.setItems(quizItems);
+
+
+        final var result = underTest.applyAnswers(answers, quiz);
+        Assert.assertNotNull(result);
+        Assert.assertEquals(2, result.getCurrentStep());
+        Assert.assertEquals(4, result.getItems().size());
+
+        Assert.assertEquals(question1, result.getItems().get(0).getQuestion());
+        Assert.assertEquals(0, result.getItems().get(0).getOrder());
+
+        Assert.assertEquals(question2, result.getItems().get(1).getQuestion());
+        Assert.assertEquals(1, result.getItems().get(1).getOrder());
+        Assert.assertEquals(answers, result.getItems().get(1).getAnswers());
+
+        Assert.assertEquals(nextQuestion1, result.getItems().get(2).getQuestion());
+        Assert.assertEquals(2, result.getItems().get(2).getOrder());
+
+        Assert.assertEquals(nextQuestion2, result.getItems().get(3).getQuestion());
+        Assert.assertEquals(3, result.getItems().get(3).getOrder());
+
+        verify(quizRepository).save(quiz);
     }
 
+    @Test
     public void applyAnswers_fewAnswersOnlyOneNextQuestion_answersAreSubmitAndNextItemIsAdded() {
+        final var question1 = new QuestionModel();
+        question1.setId(1);
 
+        final var question2 = new QuestionModel();
+        question2.setId(2);
+
+        final var nextQuestion = new QuestionModel();
+        nextQuestion.setId(3);
+
+        final var answerOption1 = new AnswerOptionModel();
+        answerOption1.setQuestion(question1);
+        answerOption1.setNextQuestion(nextQuestion);
+
+        final var answerOption2 = new AnswerOptionModel();
+        answerOption2.setQuestion(question1);
+        answerOption2.setNextQuestion(null);
+
+        final var answer1 = new AnswerModel();
+        answer1.setOption(answerOption1);
+
+        final var answer2 = new AnswerModel();
+        answer2.setOption(answerOption2);
+
+        final var answers = Lists.newArrayList(answer1, answer2);
+
+        final List<QuizItemModel> quizItems = new ArrayList<>();
+        quizItems.add(createItem(question1, null, 0));
+        quizItems.add(createItem(question2, null, 1));
+
+        final var quiz = new QuizModel();
+        quiz.setCurrentStep(1);
+        quiz.setItems(quizItems);
+
+
+        final var result = underTest.applyAnswers(answers, quiz);
+        Assert.assertNotNull(result);
+        Assert.assertEquals(2, result.getCurrentStep());
+        Assert.assertEquals(3, result.getItems().size());
+
+        Assert.assertEquals(question1, result.getItems().get(0).getQuestion());
+        Assert.assertEquals(0, result.getItems().get(0).getOrder());
+
+        Assert.assertEquals(question2, result.getItems().get(1).getQuestion());
+        Assert.assertEquals(1, result.getItems().get(1).getOrder());
+        Assert.assertEquals(answers, result.getItems().get(1).getAnswers());
+
+        Assert.assertEquals(nextQuestion, result.getItems().get(2).getQuestion());
+        Assert.assertEquals(2, result.getItems().get(2).getOrder());
+
+        verify(quizRepository).save(quiz);
     }
 
+    @Test
     public void applyAnswers_fewAnswersWithoutNextQuestions_answersAreSubmitAndSummarizeItemIsAdded() {
+        final var question1 = new QuestionModel();
+        question1.setId(1);
 
+        final var question2 = new QuestionModel();
+        question2.setId(2);
+
+        final var summarizeQuestion = new QuestionModel();
+        summarizeQuestion.setId(3);
+
+        final var answerOption1 = new AnswerOptionModel();
+        answerOption1.setQuestion(question1);
+        answerOption1.setNextQuestion(null);
+
+        final var answerOption2 = new AnswerOptionModel();
+        answerOption2.setQuestion(question1);
+        answerOption2.setNextQuestion(null);
+
+        final var answer1 = new AnswerModel();
+        answer1.setOption(answerOption1);
+
+        final var answer2 = new AnswerModel();
+        answer2.setOption(answerOption2);
+
+        final var answers = Lists.newArrayList(answer1, answer2);
+
+        final List<QuizItemModel> quizItems = new ArrayList<>();
+        quizItems.add(createItem(question1, null, 0));
+        quizItems.add(createItem(question2, null, 1));
+
+        final var category = new CategoryModel();
+        final var quiz = new QuizModel();
+        quiz.setCurrentStep(1);
+        quiz.setCategory(category);
+        quiz.setItems(quizItems);
+
+        when(questionRepository.findSummarizeQuestion(category)).thenReturn(summarizeQuestion);
+
+        final var result = underTest.applyAnswers(answers, quiz);
+        Assert.assertNotNull(result);
+        Assert.assertEquals(2, result.getCurrentStep());
+        Assert.assertEquals(3, result.getItems().size());
+
+        Assert.assertEquals(question1, result.getItems().get(0).getQuestion());
+        Assert.assertEquals(0, result.getItems().get(0).getOrder());
+
+        Assert.assertEquals(question2, result.getItems().get(1).getQuestion());
+        Assert.assertEquals(1, result.getItems().get(1).getOrder());
+        Assert.assertEquals(answers, result.getItems().get(1).getAnswers());
+
+        Assert.assertEquals(summarizeQuestion, result.getItems().get(2).getQuestion());
+        Assert.assertEquals(2, result.getItems().get(2).getOrder());
+
+        verify(questionRepository).findSummarizeQuestion(category);
+        verify(quizRepository).save(quiz);
     }
 
+    @Test
     public void applyAnswers_fewAnswersWithoutNextQuestionsAndSummarizeQuestionIsAddedAlready_answersAreSubmitAndNextItemIsNotAdded() {
+        final var question1 = new QuestionModel();
+        question1.setId(1);
+
+        final var summarizeQuestion = new QuestionModel();
+        summarizeQuestion.setId(3);
+
+        final var answerOption1 = new AnswerOptionModel();
+        answerOption1.setQuestion(question1);
+        answerOption1.setNextQuestion(null);
+
+        final var answerOption2 = new AnswerOptionModel();
+        answerOption2.setQuestion(question1);
+        answerOption2.setNextQuestion(null);
+
+        final var answer1 = new AnswerModel();
+        answer1.setOption(answerOption1);
+
+        final var answer2 = new AnswerModel();
+        answer2.setOption(answerOption2);
+
+        final var answers = Lists.newArrayList(answer1, answer2);
+
+        final List<QuizItemModel> quizItems = new ArrayList<>();
+        quizItems.add(createItem(question1, null, 0));
+        quizItems.add(createItem(summarizeQuestion, null, 1));
+
+        final var category = new CategoryModel();
+        final var quiz = new QuizModel();
+        quiz.setCurrentStep(1);
+        quiz.setCategory(category);
+        quiz.setItems(quizItems);
+
+        when(questionRepository.findSummarizeQuestion(category)).thenReturn(summarizeQuestion);
+
+        final var result = underTest.applyAnswers(answers, quiz);
+        Assert.assertNotNull(result);
+        Assert.assertEquals(2, result.getCurrentStep());
+        Assert.assertEquals(2, result.getItems().size());
+
+        Assert.assertEquals(question1, result.getItems().get(0).getQuestion());
+        Assert.assertEquals(0, result.getItems().get(0).getOrder());
+
+        Assert.assertEquals(summarizeQuestion, result.getItems().get(1).getQuestion());
+        Assert.assertEquals(1, result.getItems().get(1).getOrder());
+        Assert.assertEquals(answers, result.getItems().get(1).getAnswers());
+
+        verify(questionRepository).findSummarizeQuestion(category);
+        verify(quizRepository).save(quiz);
 
     }
 
