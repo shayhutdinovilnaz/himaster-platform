@@ -14,6 +14,7 @@ servers:
 tags:
   - name: "Category"
   - name: "SiteConfig"
+  - name: "Quiz"
 
 paths:
   /category/roots:
@@ -159,6 +160,47 @@ paths:
         "403":
           description: The locale was not found.
 
+  /quiz/create:
+    post:
+      summary: Create the new quiz for the category
+      description: Return the new created quiz
+      operationId: create
+      tags:
+        - "Quiz"
+      parameters:
+        - name: "userId"
+          in: "query"
+          description: "The quiz of the user"
+          required: false
+          schema:
+            type: number
+        - name: "sessionId"
+          in: "query"
+          description: "The quiz of the session"
+          required: false
+          schema:
+            type: number
+        - name: "categoryId"
+          in: "query"
+          description: "The category of the quiz"
+          required: true
+          schema:
+            type: number
+        - in: header
+          name: Locale-code
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Request is proceded successfully.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/QuizDto'
+
 components:
   schemas:
     CategoryDto:
@@ -211,6 +253,52 @@ components:
       type: object
       required:
         - code
+        - timeZoneId
+        - languageIsoCode
+        - ccy
+
+      properties:
+        code:
+          description: the code of a locale
+          type: string
+        timeZoneId:
+          description: the time-zone of locale
+          type: string
+        languageIsoCode:
+          description: the iso-code of language
+          type: string
+        ccy:
+          description: the currency code
+          type: string
+
+    QuizDto:
+      description: The DTO object of a quiz
+      type: object
+      required:
+        - id
+        - timeZoneId
+        - languageIsoCode
+        - ccy
+
+      properties:
+        code:
+          description: the code of a locale
+          type: string
+        timeZoneId:
+          description: the time-zone of locale
+          type: string
+        languageIsoCode:
+          description: the iso-code of language
+          type: string
+        ccy:
+          description: the currency code
+          type: string
+
+    QuestionDto:
+      description: The DTO object of a quiz
+      type: object
+      required:
+        - id
         - timeZoneId
         - languageIsoCode
         - ccy

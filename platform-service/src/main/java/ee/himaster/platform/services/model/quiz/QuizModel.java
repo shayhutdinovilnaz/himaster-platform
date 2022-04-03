@@ -16,8 +16,11 @@ public class QuizModel extends ItemModel {
 
     private int currentStep;
 
-    @Column(name = "user_id", nullable = false)
+    @Column(name = "user_id")
     private Integer userId;
+
+    @Column(name = "session_id")
+    private Integer sessionId;
 
     @ManyToOne
     @JoinColumn(nullable = false)

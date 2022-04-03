@@ -31,14 +31,15 @@ public class DefaultQuizService extends AbstractModelService<QuizModel> implemen
     private final QuestionRepository questionRepository;
 
     @Override
-    public QuizModel create(final Integer userId, final CategoryModel category) {
+    public QuizModel create(final Integer userId, final Integer sessionId, final CategoryModel category) {
 
-        Objects.requireNonNull(userId);
         Objects.requireNonNull(category);
 
         var quizModel = new QuizModel();
         quizModel.setUserId(userId);
+        quizModel.setSessionId(sessionId);
         quizModel.setCategory(category);
+
         save(quizModel);
         return quizModel;
     }

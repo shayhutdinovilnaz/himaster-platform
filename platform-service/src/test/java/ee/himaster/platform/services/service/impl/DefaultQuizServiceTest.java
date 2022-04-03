@@ -49,9 +49,10 @@ public class DefaultQuizServiceTest extends AbstractModelServiceTest<QuizModel> 
     public void create_argumentsValid_success() {
 
         var userId = 1;
+        var sessionId = 1;
         var category = new CategoryModel();
 
-        final var quizModel = underTest.create(userId, category);
+        final var quizModel = underTest.create(userId, sessionId, category);
 
         verify(quizRepository).save(quizModel);
         Assert.assertEquals(userId, quizModel.getUserId(), 0);

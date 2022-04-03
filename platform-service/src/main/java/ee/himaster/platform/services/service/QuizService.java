@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface QuizService {
 
-    QuizModel create(Integer userId, CategoryModel category);
+    QuizModel create(Integer userId, Integer sessionId, CategoryModel category);
 
     QuizModel getByUser(Integer userId);
 
