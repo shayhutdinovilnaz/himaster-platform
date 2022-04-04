@@ -272,47 +272,89 @@ components:
           type: string
 
     QuizDto:
-      description: The DTO object of a quiz
       type: object
       required:
-        - id
-        - timeZoneId
-        - languageIsoCode
-        - ccy
-
+        - currentStep
       properties:
-        code:
-          description: the code of a locale
+        currentStep:
+          type: number
+        userId:
           type: string
-        timeZoneId:
-          description: the time-zone of locale
+        sessionId:
           type: string
-        languageIsoCode:
-          description: the iso-code of language
-          type: string
-        ccy:
-          description: the currency code
-          type: string
+        category:
+          $ref: '#/components/schemas/CategoryDto'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/QuizItemDto'
+
+    QuizItemDto:
+      type: object
+      properties:
+        order:
+          type: number
+        question:
+          $ref: '#/components/schemas/QuestionDto'
+        answers:
+          type: array
+          items:
+            $ref: '#/components/schemas/AnswerDto'
 
     QuestionDto:
-      description: The DTO object of a quiz
       type: object
-      required:
-        - id
-        - timeZoneId
-        - languageIsoCode
-        - ccy
-
       properties:
-        code:
-          description: the code of a locale
+        type:
+          $ref: '#/components/schemas/QuestionType'
+        title:
           type: string
-        timeZoneId:
-          description: the time-zone of locale
+        answerOptions:
+          type: array
+          items:
+            $ref: '#/components/schemas/AnswerDto'
+
+    AnswerOptionDto:
+      type: object
+      properties:
+        label:
           type: string
-        languageIsoCode:
-          description: the iso-code of language
+        value:
           type: string
-        ccy:
-          description: the currency code
+        title:
           type: string
+        qualifier:
+          type: string
+        priority:
+          type: number
+        type:
+          $ref: '#/components/schemas/AnswerType'
+
+    AnswerDto:
+      type: object
+      properties:
+        value:
+          type: string
+        type:
+          $ref: '#/components/schemas/AnswerType'
+
+    AnswerType:
+      type: string
+      enum:
+        - BOOLEAN
+        - NUMBERIC
+        - STRING
+        - NONE
+
+    QuestionType:
+      type: string
+      enum:
+        - CHECKBOX
+        - COMBO_BOX
+        - DATE_PICKER
+        - DATE_TIME_PICKER
+        - TIME_PICKER
+        - LIST_BOX
+        - NUMBER_FIELD
+        - RADIO_BUTTON
+        - TEXT_AREA
+        - TEXT_FIELD

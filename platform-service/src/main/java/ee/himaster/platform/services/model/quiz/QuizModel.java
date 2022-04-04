@@ -14,6 +14,7 @@ import java.util.List;
 @Entity(name = "quiz")
 public class QuizModel extends ItemModel {
 
+    @Column(name = "current_step")
     private int currentStep;
 
     @Column(name = "user_id")
