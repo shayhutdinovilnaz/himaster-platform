@@ -32,8 +32,17 @@ public class DefaultQuizService extends AbstractModelService<QuizModel> implemen
 
     @Override
     public QuizModel create(final Integer userId, final Integer sessionId, final CategoryModel category) {
-
         Objects.requireNonNull(category);
+
+        if (userId != null) {
+            final var quizOfUser = quizRepository.getByUserId(userId);
+            this.delete(quizOfUser);
+        }
+
+        if (sessionId != null) {
+            final var quizOfSession = quizRepository.getByUserId(userId);
+            this.delete(quizOfSession);
+        }
 
         var quizModel = new QuizModel();
         quizModel.setUserId(userId);

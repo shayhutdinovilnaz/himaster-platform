@@ -219,7 +219,9 @@ paths:
         content:
           'application/json':
             schema:
-              $ref: '#/components/schemas/AnswerDto'
+              type: array
+              items:
+                $ref: '#/components/schemas/AnswerDto'
       responses:
         "200":
           description: Request is proceded successfully.
