@@ -197,9 +197,80 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/QuizDto'
+                $ref: '#/components/schemas/QuizDto'
+
+  /quiz/apply-answer/{quizId}:
+    post:
+      operationId: applyAnswer
+      tags:
+        - "Quiz"
+      parameters:
+        - name: "quizId"
+          in: "path"
+          required: true
+          schema:
+            type: integer
+        - in: header
+          name: Locale-code
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          'application/json':
+            schema:
+              $ref: '#/components/schemas/AnswerDto'
+      responses:
+        "200":
+          description: Request is proceded successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuizDto'
+
+  /quiz/revert/{quizId}:
+    post:
+      operationId: revertQuiz
+      tags:
+        - "Quiz"
+      parameters:
+        - name: "quizId"
+          in: "path"
+          required: true
+          schema:
+            type: integer
+        - in: header
+          name: Locale-code
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Request is proceded successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuizDto'
+
+  /quiz/delete/{quizId}:
+    delete:
+      operationId: delete
+      tags:
+        - "Quiz"
+      parameters:
+        - name: "quizId"
+          in: "path"
+          required: true
+          schema:
+            type: integer
+        - in: header
+          name: Locale-code
+          required: true
+          schema:
+            type: string
+      responses:
+        "204":
+          description: Request is proceded successfully.
 
 components:
   schemas:
@@ -276,8 +347,10 @@ components:
       required:
         - currentStep
       properties:
+        id:
+          type: integer
         currentStep:
-          type: number
+          type: integer
         userId:
           type: string
         sessionId:
@@ -292,8 +365,10 @@ components:
     QuizItemDto:
       type: object
       properties:
+        id:
+          type: integer
         order:
-          type: number
+          type: integer
         question:
           $ref: '#/components/schemas/QuestionDto'
         answers:
@@ -304,6 +379,8 @@ components:
     QuestionDto:
       type: object
       properties:
+        id:
+          type: integer
         type:
           $ref: '#/components/schemas/QuestionType'
         title:
@@ -311,11 +388,13 @@ components:
         answerOptions:
           type: array
           items:
-            $ref: '#/components/schemas/AnswerDto'
+            $ref: '#/components/schemas/AnswerOptionDto'
 
     AnswerOptionDto:
       type: object
       properties:
+        id:
+          type: integer
         label:
           type: string
         value:
@@ -325,7 +404,7 @@ components:
         qualifier:
           type: string
         priority:
-          type: number
+          type: integer
         type:
           $ref: '#/components/schemas/AnswerType'
 
@@ -336,6 +415,8 @@ components:
           type: string
         type:
           $ref: '#/components/schemas/AnswerType'
+        option:
+          $ref: '#/components/schemas/AnswerOptionDto'
 
     AnswerType:
       type: string
