@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 
 @Getter
 @Setter
-@Entity(name = "answer_string")
-public class StringAnswerModel extends AnswerModel {
+@Entity(name = "answer_input_string")
+public class InputStringAnswerModel extends AnswerModel {
     private String value;
 }

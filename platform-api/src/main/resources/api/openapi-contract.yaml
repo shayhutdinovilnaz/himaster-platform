@@ -423,9 +423,11 @@ components:
     AnswerType:
       type: string
       enum:
-        - BOOLEAN
-        - NUMBERIC
-        - STRING
+        - SELECTIVE_BOOLEAN
+        - SELECTIVE_NUMBERIC
+        - SELECTIVE_STRING
+        - INPUT_STRING
+        - INPUT_NUMERIC
         - NONE
 
     QuestionType:

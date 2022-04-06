@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 
 @Getter
 @Setter
-@Entity(name = "answer_numeric")
-public class NumericAnswerModel extends AnswerModel {
+@Entity(name = "answer_input_numeric")
+public class InputNumericAnswerModel extends AnswerModel {
     private Integer value;
 }
