@@ -413,6 +413,8 @@ components:
     AnswerDto:
       type: object
       properties:
+        id:
+          type: integer
         value:
           type: string
         type:

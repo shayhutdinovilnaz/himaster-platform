@@ -13,7 +13,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @MappedSuperclass
-public class AnswerOptionModel extends ItemModel {
+public abstract class AnswerOptionModel extends ItemModel {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "label")

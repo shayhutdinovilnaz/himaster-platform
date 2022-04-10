@@ -10,9 +10,8 @@ import javax.persistence.*;
 
 @Getter
 @Setter
-@Entity(name = "answer")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public class AnswerModel extends ItemModel {
+@MappedSuperclass
+public abstract class AnswerModel extends ItemModel {
 
     @ManyToOne
     @JoinColumn
