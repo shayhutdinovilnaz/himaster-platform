@@ -1,4 +1,4 @@
-package ee.himaster.platform.facades.populator;
+package ee.himaster.platform.facades.populator.quiz.option;
 
 import ee.himaster.core.localization.service.LocalizedStringService;
 import ee.himaster.core.service.populator.Populator;

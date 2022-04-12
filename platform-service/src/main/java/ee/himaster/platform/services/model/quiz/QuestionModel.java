@@ -1,5 +1,6 @@
 package ee.himaster.platform.services.model.quiz;
 
+import ee.himaster.core.localization.model.LocalizedStringModel;
 import ee.himaster.core.localization.model.LocalizedStringValueModel;
 import ee.himaster.core.service.model.ItemModel;
 import ee.himaster.platform.services.model.quiz.answer.option.AnswerOptionModel;
@@ -19,7 +20,7 @@ public class QuestionModel extends ItemModel {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "title")
-    private LocalizedStringValueModel title;
+    private LocalizedStringModel title;
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
     private List<AnswerOptionModel> answerOptions;

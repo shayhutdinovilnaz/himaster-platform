@@ -1,4 +1,4 @@
-package ee.himaster.platform.facades.populator;
+package ee.himaster.platform.facades.populator.quiz;
 
 import ee.himaster.core.service.populator.Populator;
 import ee.himaster.platform.dto.QuizDto;
