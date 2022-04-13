@@ -1,6 +1,6 @@
 package ee.himaster.platform.services.model.quiz;
 
-public enum QuestionType {
+public enum QuestionComponentType {
     CHECKBOX,
     COMBO_BOX,
     DATE_PICKER,

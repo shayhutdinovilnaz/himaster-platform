@@ -9,7 +9,7 @@ import ee.himaster.platform.services.model.quiz.answer.option.AnswerOptionModel;
 import ee.himaster.platform.services.model.quiz.answer.option.SelectiveBooleanAnswerOptionModel;
 import ee.himaster.platform.services.model.quiz.answer.option.SelectiveNumericAnswerOptionModel;
 import ee.himaster.platform.services.model.quiz.answer.option.SelectiveStringAnswerOptionModel;
-import ee.himaster.platform.services.service.SelectiveAnswerOptionService;
+import ee.himaster.platform.services.service.AnswerOptionService;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Map;
@@ -17,7 +17,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class BasicSelectiveAnswerPopulator extends AbstractAnswerPopulator<SelectiveAnswerModel> {
     private final Map<AnswerType, Converter<AnswerOptionDto, AnswerOptionModel>> optionConverterMap;
-    private final Map<AnswerType, SelectiveAnswerOptionService<AnswerOptionModel>> optionServiceMap;
+    private final Map<AnswerType, AnswerOptionService<AnswerOptionModel>> optionServiceMap;
 
     @Override
     protected Converter<AnswerOptionDto, AnswerOptionModel> getOptionConverter(final SelectiveAnswerModel answerModel) {

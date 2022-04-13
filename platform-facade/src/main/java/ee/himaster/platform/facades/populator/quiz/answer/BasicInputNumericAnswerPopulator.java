@@ -6,13 +6,14 @@ import ee.himaster.platform.dto.AnswerOptionDto;
 import ee.himaster.platform.dto.AnswerType;
 import ee.himaster.platform.services.model.quiz.answer.InputNumericAnswerModel;
 import ee.himaster.platform.services.model.quiz.answer.option.AnswerOptionModel;
-import ee.himaster.platform.services.service.InputNumericAnswerOptionService;
+import ee.himaster.platform.services.model.quiz.answer.option.InputNumericAnswerOptionModel;
+import ee.himaster.platform.services.service.AnswerOptionService;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class BasicInputNumericAnswerPopulator extends AbstractAnswerPopulator<InputNumericAnswerModel> {
     private final Converter<AnswerOptionDto, AnswerOptionModel> optionConverter;
-    private final InputNumericAnswerOptionService optionService;
+    private final AnswerOptionService<InputNumericAnswerOptionModel> optionService;
 
     @Override
     protected Converter<AnswerOptionDto, AnswerOptionModel> getOptionConverter(final InputNumericAnswerModel answerModel) {
