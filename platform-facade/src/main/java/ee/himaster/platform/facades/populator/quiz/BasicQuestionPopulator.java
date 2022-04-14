@@ -11,14 +11,18 @@ import ee.himaster.platform.services.model.quiz.QuestionModel;
 import ee.himaster.platform.services.model.quiz.QuestionComponentType;
 import ee.himaster.platform.services.model.quiz.answer.option.AnswerOptionModel;
 import ee.himaster.platform.services.service.AnswerOptionService;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.CollectionUtils;
+import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
 @Slf4j
+@Component
 public class BasicQuestionPopulator implements Populator<QuestionModel, QuestionDto> {
     private final LocalizedStringService localizedStringService;
     private final Map<AnswerType, AnswerOptionService<AnswerOptionModel>> optionServices;
@@ -36,6 +40,10 @@ public class BasicQuestionPopulator implements Populator<QuestionModel, Question
     }
 
     private List<AnswerOptionModel> getAnswerOptions(final List<AnswerOptionDto> answerOptions) {
+        if (CollectionUtils.isEmpty(answerOptions)) {
+            return Collections.emptyList();
+        }
+
         return answerOptions
                 .stream()
                 .map(a -> optionServices.get(a.getType()).getById(a.getId()))
@@ -81,6 +89,10 @@ public class BasicQuestionPopulator implements Populator<QuestionModel, Question
     }
 
     private List<AnswerOptionDto> getAnswerOptions(QuestionModel questionModel) {
+        if (CollectionUtils.isEmpty(questionModel.getAnswerOptions())) {
+            return Collections.emptyList();
+        }
+
         return questionModel
                 .getAnswerOptions()
                 .stream()

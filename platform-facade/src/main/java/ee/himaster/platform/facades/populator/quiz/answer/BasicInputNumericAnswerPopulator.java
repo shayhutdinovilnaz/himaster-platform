@@ -9,8 +9,10 @@ import ee.himaster.platform.services.model.quiz.answer.option.AnswerOptionModel;
 import ee.himaster.platform.services.model.quiz.answer.option.InputNumericAnswerOptionModel;
 import ee.himaster.platform.services.service.AnswerOptionService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
+@Component
 public class BasicInputNumericAnswerPopulator extends AbstractAnswerPopulator<InputNumericAnswerModel> {
     private final Converter<AnswerOptionDto, AnswerOptionModel> optionConverter;
     private final AnswerOptionService<InputNumericAnswerOptionModel> optionService;

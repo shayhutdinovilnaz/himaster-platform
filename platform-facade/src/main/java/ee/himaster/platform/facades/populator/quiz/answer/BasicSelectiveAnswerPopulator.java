@@ -13,8 +13,10 @@ import ee.himaster.platform.services.service.AnswerOptionService;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Map;
+import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
+@Component
 public class BasicSelectiveAnswerPopulator extends AbstractAnswerPopulator<SelectiveAnswerModel> {
     private final Map<AnswerType, Converter<AnswerOptionDto, AnswerOptionModel>> optionConverterMap;
     private final Map<AnswerType, AnswerOptionService<AnswerOptionModel>> optionServiceMap;

@@ -354,9 +354,9 @@ components:
         currentStep:
           type: integer
         userId:
-          type: string
+          type: integer
         sessionId:
-          type: string
+          type: integer
         category:
           $ref: '#/components/schemas/CategoryDto'
         items:
