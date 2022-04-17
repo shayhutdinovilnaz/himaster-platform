@@ -173,19 +173,19 @@ paths:
           description: "The quiz of the user"
           required: false
           schema:
-            type: number
+            type: integer
         - name: "sessionId"
           in: "query"
           description: "The quiz of the session"
           required: false
           schema:
-            type: number
+            type: integer
         - name: "categoryId"
           in: "query"
           description: "The category of the quiz"
           required: true
           schema:
-            type: number
+            type: integer
         - in: header
           name: Locale-code
           required: true
@@ -426,7 +426,7 @@ components:
       type: string
       enum:
         - SELECTIVE_BOOLEAN
-        - SELECTIVE_NUMBERIC
+        - SELECTIVE_NUMERIC
         - SELECTIVE_STRING
         - INPUT_STRING
         - INPUT_NUMERIC

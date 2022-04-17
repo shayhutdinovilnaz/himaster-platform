@@ -1,17 +1,18 @@
 package ee.himaster.platform.services.model.quiz.answer.option;
 
 import ee.himaster.core.localization.model.LocalizedStringModel;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+
+import javax.persistence.*;
+
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-@Entity(name = "answer_option_selective_boolean")
+@Entity
 public class SelectiveBooleanAnswerOptionModel extends AnswerOptionModel {
+
+    @Column(name = "boolean_value")
     private Boolean value;
 
     @ManyToOne(cascade = CascadeType.ALL)

@@ -19,13 +19,13 @@ public class QuizItemModel extends ItemModel {
     private int order;
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name = "question_id")
     private QuestionModel question;
 
     @OneToMany(mappedBy = "quizItem", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<AnswerModel> answers = new ArrayList<>();
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name = "quiz_id")
     private QuizModel quiz;
 }

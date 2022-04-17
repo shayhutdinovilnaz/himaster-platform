@@ -10,10 +10,10 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@Entity(name = "answer_option_selective_string")
+@Entity
 public class SelectiveStringAnswerOptionModel extends AnswerOptionModel {
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "value")
+    @JoinColumn(name = "local_string_value")
     private LocalizedStringModel value;
 }

@@ -1,7 +1,6 @@
 package ee.himaster.platform.facades.populator.quiz.answer;
 
 import ee.himaster.core.service.converter.Converter;
-import ee.himaster.platform.dto.AnswerDto;
 import ee.himaster.platform.dto.AnswerOptionDto;
 import ee.himaster.platform.dto.AnswerType;
 import ee.himaster.platform.services.model.quiz.answer.SelectiveAnswerModel;
@@ -10,21 +9,16 @@ import ee.himaster.platform.services.model.quiz.answer.option.SelectiveBooleanAn
 import ee.himaster.platform.services.model.quiz.answer.option.SelectiveNumericAnswerOptionModel;
 import ee.himaster.platform.services.model.quiz.answer.option.SelectiveStringAnswerOptionModel;
 import ee.himaster.platform.services.service.AnswerOptionService;
-import lombok.RequiredArgsConstructor;
-
-import java.util.Map;
 import org.springframework.stereotype.Component;
 
-@RequiredArgsConstructor
+import java.util.Map;
+
 @Component
 public class BasicSelectiveAnswerPopulator extends AbstractAnswerPopulator<SelectiveAnswerModel> {
-    private final Map<AnswerType, Converter<AnswerOptionDto, AnswerOptionModel>> optionConverterMap;
-    private final Map<AnswerType, AnswerOptionService<AnswerOptionModel>> optionServiceMap;
 
-    @Override
-    protected Converter<AnswerOptionDto, AnswerOptionModel> getOptionConverter(final SelectiveAnswerModel answerModel) {
-        final var answerType = getAnswerType(answerModel.getOption());
-        return optionConverterMap.get(answerType);
+    public BasicSelectiveAnswerPopulator(Map<AnswerType, Converter<AnswerOptionDto, AnswerOptionModel>> optionConverterMap,
+                                         Map<AnswerType, AnswerOptionService<AnswerOptionModel>> optionServiceMap) {
+        super(optionConverterMap, optionServiceMap);
     }
 
     @Override
@@ -39,14 +33,9 @@ public class BasicSelectiveAnswerPopulator extends AbstractAnswerPopulator<Selec
         } else if (source instanceof SelectiveStringAnswerOptionModel) {
             return AnswerType.SELECTIVE_STRING;
         } else if (source instanceof SelectiveNumericAnswerOptionModel) {
-            return AnswerType.SELECTIVE_NUMBERIC;
+            return AnswerType.SELECTIVE_NUMERIC;
         }
 
         return null;
-    }
-
-    @Override
-    protected AnswerOptionModel getAnswerOption(final AnswerDto source) {
-        return optionServiceMap.get(source.getType()).getById(source.getOption().getId());
     }
 }

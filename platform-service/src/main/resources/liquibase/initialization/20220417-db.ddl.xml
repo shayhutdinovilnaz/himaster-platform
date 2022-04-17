@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1650230693296-1" author="shaikhutdinov.ilnaz (generated)">
+        <createTable tableName="answer">
+            <column name="id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_answer"/>
+            </column>
+            <column name="dtype" type="VARCHAR(31)"/>
+            <column name="created_time" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modified_time" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="option_id" type="INT"/>
+            <column name="quiz_item" type="INT"/>
+            <column name="integer_value" type="INT"/>
+            <column name="varchar_value" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1650230693296-2" author="shaikhutdinov.ilnaz (generated)">
+        <createTable tableName="answer_option">
+            <column name="id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_answer_option"/>
+            </column>
+            <column name="dtype" type="VARCHAR(31)"/>
+            <column name="created_time" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modified_time" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="label" type="INT"/>
+            <column name="qualifier" type="VARCHAR(255)"/>
+            <column name="priority" type="INT"/>
+            <column name="question" type="INT"/>
+            <column name="next_question" type="INT"/>
+            <column name="integer_value" type="INT"/>
+            <column name="local_string_value" type="INT"/>
+            <column name="boolean_value" type="BOOLEAN"/>
+            <column name="title" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1650230693296-3" author="shaikhutdinov.ilnaz (generated)">
+        <createTable tableName="question">
+            <column name="id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_question"/>
+            </column>
+            <column name="created_time" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modified_time" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" type="VARCHAR(255)"/>
+            <column name="title" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1650230693296-4" author="shaikhutdinov.ilnaz (generated)">
+        <createTable tableName="question_mapping">
+            <column name="id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_question_mapping"/>
+            </column>
+            <column name="created_time" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modified_time" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="category_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="question_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="initial_question" type="BOOLEAN"/>
+            <column name="summarize_question" type="BOOLEAN"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1650230693296-5" author="shaikhutdinov.ilnaz (generated)">
+        <createTable tableName="quiz">
+            <column name="id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_quiz"/>
+            </column>
+            <column name="created_time" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modified_time" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="current_step" type="INT"/>
+            <column name="user_id" type="INT"/>
+            <column name="session_id" type="INT"/>
+            <column name="category_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1650230693296-6" author="shaikhutdinov.ilnaz (generated)">
+        <createTable tableName="quiz_item">
+            <column name="id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_quiz_item"/>
+            </column>
+            <column name="created_time" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modified_time" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="order" type="INT"/>
+            <column name="question_id" type="INT"/>
+            <column name="quiz_id" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1650230693296-7" author="shaikhutdinov.ilnaz (generated)">
+        <addForeignKeyConstraint baseColumnNames="option_id" baseTableName="answer" constraintName="FK_ANSWER_ON_OPTION"
+                                 referencedColumnNames="id" referencedTableName="answer_option"/>
+    </changeSet>
+    <changeSet id="1650230693296-8" author="shaikhutdinov.ilnaz (generated)">
+        <addForeignKeyConstraint baseColumnNames="quiz_item" baseTableName="answer"
+                                 constraintName="FK_ANSWER_ON_QUIZ_ITEM" referencedColumnNames="id"
+                                 referencedTableName="quiz_item"/>
+    </changeSet>
+    <changeSet id="1650230693296-9" author="shaikhutdinov.ilnaz (generated)">
+        <addForeignKeyConstraint baseColumnNames="label" baseTableName="answer_option"
+                                 constraintName="FK_ANSWER_OPTION_ON_LABEL" referencedColumnNames="id"
+                                 referencedTableName="localized_string"/>
+    </changeSet>
+    <changeSet id="1650230693296-10" author="shaikhutdinov.ilnaz (generated)">
+        <addForeignKeyConstraint baseColumnNames="local_string_value" baseTableName="answer_option"
+                                 constraintName="FK_ANSWER_OPTION_ON_LOCAL_STRING_VALUE" referencedColumnNames="id"
+                                 referencedTableName="localized_string"/>
+    </changeSet>
+    <changeSet id="1650230693296-11" author="shaikhutdinov.ilnaz (generated)">
+        <addForeignKeyConstraint baseColumnNames="next_question" baseTableName="answer_option"
+                                 constraintName="FK_ANSWER_OPTION_ON_NEXT_QUESTION" referencedColumnNames="id"
+                                 referencedTableName="question"/>
+    </changeSet>
+    <changeSet id="1650230693296-12" author="shaikhutdinov.ilnaz (generated)">
+        <addForeignKeyConstraint baseColumnNames="question" baseTableName="answer_option"
+                                 constraintName="FK_ANSWER_OPTION_ON_QUESTION" referencedColumnNames="id"
+                                 referencedTableName="question"/>
+    </changeSet>
+    <changeSet id="1650230693296-13" author="shaikhutdinov.ilnaz (generated)">
+        <addForeignKeyConstraint baseColumnNames="title" baseTableName="answer_option"
+                                 constraintName="FK_ANSWER_OPTION_ON_TITLE" referencedColumnNames="id"
+                                 referencedTableName="localized_string"/>
+    </changeSet>
+    <changeSet id="1650230693296-14" author="shaikhutdinov.ilnaz (generated)">
+        <addForeignKeyConstraint baseColumnNames="category_id" baseTableName="question_mapping"
+                                 constraintName="FK_QUESTION_MAPPING_ON_CATEGORY" referencedColumnNames="id"
+                                 referencedTableName="category"/>
+    </changeSet>
+    <changeSet id="1650230693296-15" author="shaikhutdinov.ilnaz (generated)">
+        <addForeignKeyConstraint baseColumnNames="question_id" baseTableName="question_mapping"
+                                 constraintName="FK_QUESTION_MAPPING_ON_QUESTION" referencedColumnNames="id"
+                                 referencedTableName="question"/>
+    </changeSet>
+    <changeSet id="1650230693296-16" author="shaikhutdinov.ilnaz (generated)">
+        <addForeignKeyConstraint baseColumnNames="title" baseTableName="question" constraintName="FK_QUESTION_ON_TITLE"
+                                 referencedColumnNames="id" referencedTableName="localized_string"/>
+    </changeSet>
+    <changeSet id="1650230693296-17" author="shaikhutdinov.ilnaz (generated)">
+        <addForeignKeyConstraint baseColumnNames="question_id" baseTableName="quiz_item"
+                                 constraintName="FK_QUIZ_ITEM_ON_QUESTION" referencedColumnNames="id"
+                                 referencedTableName="question"/>
+    </changeSet>
+    <changeSet id="1650230693296-18" author="shaikhutdinov.ilnaz (generated)">
+        <addForeignKeyConstraint baseColumnNames="quiz_id" baseTableName="quiz_item"
+                                 constraintName="FK_QUIZ_ITEM_ON_QUIZ" referencedColumnNames="id"
+                                 referencedTableName="quiz"/>
+    </changeSet>
+    <changeSet id="1650230693296-19" author="shaikhutdinov.ilnaz (generated)">
+        <addForeignKeyConstraint baseColumnNames="category_id" baseTableName="quiz" constraintName="FK_QUIZ_ON_CATEGORY"
+                                 referencedColumnNames="id" referencedTableName="category"/>
+    </changeSet>
+
+</databaseChangeLog>

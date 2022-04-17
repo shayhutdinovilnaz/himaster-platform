@@ -16,11 +16,11 @@ import javax.persistence.ManyToOne;
 public class QuestionMappingModel extends ItemModel {
 
     @ManyToOne
-    @JoinColumn(nullable = false)
+    @JoinColumn(nullable = false, name = "category_id")
     private CategoryModel category;
 
     @ManyToOne
-    @JoinColumn(nullable = false)
+    @JoinColumn(nullable = false, name = "question_id")
     private QuestionModel question;
 
     @Column(name = "initial_question")

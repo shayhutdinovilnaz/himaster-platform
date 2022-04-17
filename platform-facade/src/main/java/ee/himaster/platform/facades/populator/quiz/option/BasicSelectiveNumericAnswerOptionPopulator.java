@@ -14,7 +14,7 @@ public class BasicSelectiveNumericAnswerOptionPopulator extends AbstractAnswerOp
 
     @Override
     protected AnswerType getAnswerType(SelectiveNumericAnswerOptionModel source) {
-        return AnswerType.SELECTIVE_NUMBERIC;
+        return AnswerType.SELECTIVE_NUMERIC;
     }
 
     @Override

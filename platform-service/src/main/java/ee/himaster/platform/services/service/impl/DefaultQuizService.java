@@ -18,6 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -40,7 +41,7 @@ public class DefaultQuizService extends AbstractModelService<QuizModel> implemen
         }
 
         if (sessionId != null) {
-            final var quizOfSession = quizRepository.getByUserId(userId);
+            final var quizOfSession = quizRepository.getBySessionId(sessionId);
             this.delete(quizOfSession);
         }
 
@@ -63,8 +64,11 @@ public class DefaultQuizService extends AbstractModelService<QuizModel> implemen
     }
 
     @Override
+    @Transactional
     public QuestionModel getNextQuestion(final QuizModel quiz) {
         Objects.requireNonNull(quiz);
+
+        attach(quiz);
 
         return retrieveNextQuestion(quiz);
     }
@@ -91,9 +95,12 @@ public class DefaultQuizService extends AbstractModelService<QuizModel> implemen
     }
 
     @Override
+    @Transactional
     public QuizModel applyAnswers(final List<AnswerModel> answers, final QuizModel quiz) {
         Objects.requireNonNull(answers);
         Objects.requireNonNull(quiz);
+
+        attach(quiz);
 
         addAnswers(answers, quiz);
 
@@ -185,8 +192,11 @@ public class DefaultQuizService extends AbstractModelService<QuizModel> implemen
     }
 
     @Override
+    @Transactional
     public QuizModel revertToPreviousQuestion(final QuizModel quiz) {
         Objects.requireNonNull(quiz);
+
+        attach(quiz);
 
         if (quiz.getCurrentStep() <= 1) {
             return quiz;

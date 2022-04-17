@@ -3,16 +3,16 @@ package ee.himaster.platform.services.model.quiz.answer.option;
 import ee.himaster.core.localization.model.LocalizedStringModel;
 import ee.himaster.core.service.model.ItemModel;
 import ee.himaster.platform.services.model.quiz.QuestionModel;
-import javax.persistence.CascadeType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.MappedSuperclass;
+
+import javax.persistence.*;
+
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-@MappedSuperclass
+@Entity(name = "answer_option")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class AnswerOptionModel extends ItemModel {
 
     @ManyToOne(cascade = CascadeType.ALL)

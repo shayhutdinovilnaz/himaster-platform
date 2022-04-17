@@ -8,13 +8,17 @@ import ee.himaster.platform.dto.QuizItemDto;
 import ee.himaster.platform.services.model.CategoryModel;
 import ee.himaster.platform.services.model.quiz.QuizItemModel;
 import ee.himaster.platform.services.model.quiz.QuizModel;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.collections4.CollectionUtils;
+import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
+@Component
 public class BasicQuizPopulator implements Populator<QuizDto, QuizModel> {
     private final Converter<CategoryDto, CategoryModel> categoryConverter;
     private final Converter<QuizItemDto, QuizItemModel> quizItemConverter;

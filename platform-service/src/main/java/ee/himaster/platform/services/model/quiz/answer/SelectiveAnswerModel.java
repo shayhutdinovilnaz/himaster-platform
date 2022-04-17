@@ -7,6 +7,6 @@ import javax.persistence.Entity;
 
 @Getter
 @Setter
-@Entity(name = "answer_selective")
+@Entity
 public class SelectiveAnswerModel extends AnswerModel {
 }

@@ -24,7 +24,7 @@ public class QuizModel extends ItemModel {
     private Integer sessionId;
 
     @ManyToOne
-    @JoinColumn(nullable = false)
+    @JoinColumn(nullable = false, name = "category_id")
     private CategoryModel category;
 
     @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL)

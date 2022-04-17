@@ -6,20 +6,17 @@ import ee.himaster.platform.dto.AnswerOptionDto;
 import ee.himaster.platform.dto.AnswerType;
 import ee.himaster.platform.services.model.quiz.answer.InputNumericAnswerModel;
 import ee.himaster.platform.services.model.quiz.answer.option.AnswerOptionModel;
-import ee.himaster.platform.services.model.quiz.answer.option.InputNumericAnswerOptionModel;
 import ee.himaster.platform.services.service.AnswerOptionService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-@RequiredArgsConstructor
+import java.util.Map;
+
 @Component
 public class BasicInputNumericAnswerPopulator extends AbstractAnswerPopulator<InputNumericAnswerModel> {
-    private final Converter<AnswerOptionDto, AnswerOptionModel> optionConverter;
-    private final AnswerOptionService<InputNumericAnswerOptionModel> optionService;
 
-    @Override
-    protected Converter<AnswerOptionDto, AnswerOptionModel> getOptionConverter(final InputNumericAnswerModel answerModel) {
-        return optionConverter;
+    public BasicInputNumericAnswerPopulator(Map<AnswerType, Converter<AnswerOptionDto, AnswerOptionModel>> optionConverterMap,
+                                            Map<AnswerType, AnswerOptionService<AnswerOptionModel>> optionServiceMap) {
+        super(optionConverterMap, optionServiceMap);
     }
 
     @Override
@@ -30,11 +27,6 @@ public class BasicInputNumericAnswerPopulator extends AbstractAnswerPopulator<In
     @Override
     protected AnswerType getAnswerType(final AnswerOptionModel source) {
         return AnswerType.INPUT_NUMERIC;
-    }
-
-    @Override
-    protected AnswerOptionModel getAnswerOption(final AnswerDto source) {
-        return optionService.getById(source.getOption().getId());
     }
 
     @Override

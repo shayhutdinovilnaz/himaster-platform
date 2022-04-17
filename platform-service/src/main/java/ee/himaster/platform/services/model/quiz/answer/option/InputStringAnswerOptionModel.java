@@ -6,6 +6,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@Entity(name = "answer_option_input_string")
+@Entity
 public class InputStringAnswerOptionModel extends AnswerOptionModel {
 }
