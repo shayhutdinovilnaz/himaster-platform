@@ -1,6 +1,6 @@
 # Hi Master platform:
 
-##How to build:
+## How to build:
 
 1) Build locally the core-module by maven:
 
