@@ -16,12 +16,14 @@ import ee.himaster.platform.services.model.quiz.answer.InputStringAnswerModel;
 import ee.himaster.platform.services.model.quiz.answer.SelectiveAnswerModel;
 import ee.himaster.platform.services.model.quiz.answer.option.*;
 import ee.himaster.platform.services.service.AnswerOptionService;
+import ee.himaster.platform.services.service.impl.*;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
@@ -77,50 +79,60 @@ public class PlatformApplicationConfiguration {
     }
 
     @Bean
-    Converter<AnswerOptionDto, InputNumericAnswerOptionModel> inputNumericAnswerOptionConverter(List<Populator<AnswerOptionDto, InputNumericAnswerOptionModel>> populators) {
-        return new BasicConverter<>(populators, AnswerOptionDto::new, InputNumericAnswerOptionModel::new);
+    Converter<AnswerOptionDto, AnswerOptionModel> inputNumericAnswerOptionConverter(List<Populator<AnswerOptionDto, InputNumericAnswerOptionModel>> populators) {
+        return new BasicConverter(populators, AnswerOptionDto::new, InputNumericAnswerOptionModel::new);
     }
 
     @Bean
-    Converter<AnswerOptionDto, InputStringAnswerOptionModel> inputStringAnswerOptionConverter(List<Populator<AnswerOptionDto, InputStringAnswerOptionModel>> populators) {
-        return new BasicConverter<>(populators, AnswerOptionDto::new, InputStringAnswerOptionModel::new);
+    Converter<AnswerOptionDto, AnswerOptionModel> inputStringAnswerOptionConverter(List<Populator<AnswerOptionDto, InputStringAnswerOptionModel>> populators) {
+        return new BasicConverter(populators, AnswerOptionDto::new, InputStringAnswerOptionModel::new);
     }
 
     @Bean
-    Converter<AnswerOptionDto, SelectiveBooleanAnswerOptionModel> selectiveBooleanAnswerOptionConverter(List<Populator<AnswerOptionDto, SelectiveBooleanAnswerOptionModel>> populators) {
-        return new BasicConverter<>(populators, AnswerOptionDto::new, SelectiveBooleanAnswerOptionModel::new);
+    Converter<AnswerOptionDto, AnswerOptionModel> selectiveBooleanAnswerOptionConverter(List<Populator<AnswerOptionDto, SelectiveBooleanAnswerOptionModel>> populators) {
+        return new BasicConverter(populators, AnswerOptionDto::new, SelectiveBooleanAnswerOptionModel::new);
     }
 
     @Bean
-    Converter<AnswerOptionDto, SelectiveNumericAnswerOptionModel> selectiveNumericAnswerOptionConverter(List<Populator<AnswerOptionDto, SelectiveNumericAnswerOptionModel>> populators) {
-        return new BasicConverter<>(populators, AnswerOptionDto::new, SelectiveNumericAnswerOptionModel::new);
+    Converter<AnswerOptionDto, AnswerOptionModel> selectiveNumericAnswerOptionConverter(List<Populator<AnswerOptionDto, SelectiveNumericAnswerOptionModel>> populators) {
+        return new BasicConverter(populators, AnswerOptionDto::new, SelectiveNumericAnswerOptionModel::new);
     }
 
     @Bean
-    Converter<AnswerOptionDto, SelectiveStringAnswerOptionModel> selectiveStringAnswerOptionConverter(List<Populator<AnswerOptionDto, SelectiveStringAnswerOptionModel>> populators) {
-        return new BasicConverter<>(populators, AnswerOptionDto::new, SelectiveStringAnswerOptionModel::new);
+    Converter<AnswerOptionDto, AnswerOptionModel> selectiveStringAnswerOptionConverter(List<Populator<AnswerOptionDto, SelectiveStringAnswerOptionModel>> populators) {
+        return new BasicConverter(populators, AnswerOptionDto::new, SelectiveStringAnswerOptionModel::new);
     }
 
     @Bean
     Map<AnswerType, Converter<AnswerOptionDto, AnswerOptionModel>> optionConverterMap(
-            List<Populator<AnswerOptionDto, InputNumericAnswerOptionModel>> inputNumericAnswerOptionPopulators,
-            List<Populator<AnswerOptionDto, InputStringAnswerOptionModel>> inputStringAnswerOptionPopulators,
-            List<Populator<AnswerOptionDto, SelectiveBooleanAnswerOptionModel>> selectiveBooleanAnswerOptionPopulators,
-            List<Populator<AnswerOptionDto, SelectiveNumericAnswerOptionModel>> selectiveNumericAnswerOptionPopulators,
-            List<Populator<AnswerOptionDto, SelectiveStringAnswerOptionModel>> selectiveStringAnswerOptionPopulators) {
-        //TODO
-        return null;
+            Converter<AnswerOptionDto, AnswerOptionModel> inputNumericAnswerOptionConverter,
+            Converter<AnswerOptionDto, AnswerOptionModel> inputStringAnswerOptionConverter,
+            Converter<AnswerOptionDto, AnswerOptionModel> selectiveBooleanAnswerOptionConverter,
+            Converter<AnswerOptionDto, AnswerOptionModel> selectiveNumericAnswerOptionConverter,
+            Converter<AnswerOptionDto, AnswerOptionModel> selectiveStringAnswerOptionConverter) {
+        Map<AnswerType, Converter<AnswerOptionDto, AnswerOptionModel>> maps = new EnumMap<>(AnswerType.class);
+        maps.put(AnswerType.INPUT_STRING, inputStringAnswerOptionConverter);
+        maps.put(AnswerType.INPUT_NUMERIC, inputNumericAnswerOptionConverter);
+        maps.put(AnswerType.SELECTIVE_STRING, selectiveStringAnswerOptionConverter);
+        maps.put(AnswerType.SELECTIVE_BOOLEAN, selectiveBooleanAnswerOptionConverter);
+        maps.put(AnswerType.SELECTIVE_NUMERIC, selectiveNumericAnswerOptionConverter);
+        return maps;
     }
 
     @Bean
     Map<AnswerType, AnswerOptionService<AnswerOptionModel>> optionServiceMap(
-            AnswerOptionService<InputNumericAnswerOptionModel> inputNumericAnswerOptionService,
-            AnswerOptionService<InputStringAnswerOptionModel> inputStringAnswerOptionService,
-            AnswerOptionService<SelectiveBooleanAnswerOptionModel> selectiveBooleanAnswerOptionService,
-            AnswerOptionService<SelectiveNumericAnswerOptionModel> selectiveNumericAnswerOptionService,
-            AnswerOptionService<SelectiveStringAnswerOptionModel> selectiveStringAnswerOptionService) {
-        //TODO
-        return null;
+            DefaultInputNumericAnswerOptionService inputNumericAnswerOptionService,
+            DefaultInputStringAnswerOptionService inputStringAnswerOptionService,
+            DefaultSelectiveBooleanAnswerOptionService selectiveBooleanAnswerOptionService,
+            DefaultSelectiveNumericAnswerOptionService selectiveNumericAnswerOptionService,
+            DefaultSelectiveStringAnswerOptionService selectiveStringAnswerOptionService) {
+        Map<AnswerType, AnswerOptionService<AnswerOptionModel>> maps = new EnumMap<>(AnswerType.class);
+        maps.put(AnswerType.INPUT_STRING, (AnswerOptionService) inputStringAnswerOptionService);
+        maps.put(AnswerType.INPUT_NUMERIC, (AnswerOptionService) inputNumericAnswerOptionService);
+        maps.put(AnswerType.SELECTIVE_STRING, (AnswerOptionService) selectiveStringAnswerOptionService);
+        maps.put(AnswerType.SELECTIVE_BOOLEAN, (AnswerOptionService) selectiveBooleanAnswerOptionService);
+        maps.put(AnswerType.SELECTIVE_NUMERIC, (AnswerOptionService) selectiveNumericAnswerOptionService);
+        return maps;
     }
 
     @Bean

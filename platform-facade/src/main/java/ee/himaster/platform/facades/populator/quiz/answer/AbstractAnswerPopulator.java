@@ -15,7 +15,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public abstract class AbstractAnswerPopulator<S extends AnswerModel> implements Populator<AnswerDto, S> {
 
-    private final Map<AnswerType, Converter<AnswerOptionDto, AnswerOptionModel>> optionConverterMap;
+    protected final Map<AnswerType, Converter<AnswerOptionDto, AnswerOptionModel>> optionConverterMap;
     private final Map<AnswerType, AnswerOptionService<AnswerOptionModel>> optionServiceMap;
 
     @Override
