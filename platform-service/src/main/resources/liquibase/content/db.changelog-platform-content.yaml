@@ -8,3 +8,6 @@ databaseChangeLog:
   - include:
       file: db.initialization-data-language.yaml
       relativeToChangelogFile: true
+  - include:
+      file: db.initialization-data-question.yaml
+      relativeToChangelogFile: true

@@ -1,0 +1,92 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Ilnaz Shaikhutdinov
+      comment: "Initialize question"
+      changes:
+        - insert:
+            tableName: localized_string
+            columns:
+              - column:
+                  name: id
+                  value: 13
+              - column:
+                  name: default_value
+                  value: "What is the purpose of the lessons?"
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+        - insert:
+            tableName: localized_string_value
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: language
+                  value: "RUSSIAN"
+              - column:
+                  name: value
+                  value: "Какая цель занятий?"
+              - column:
+                  name: localized_value_id
+                  value: 13
+        - insert:
+            tableName: localized_string_value
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: language
+                  value: "ENGLISH"
+              - column:
+                  name: value
+                  value: "What is the purpose of the lessons?"
+              - column:
+                  name: localized_value_id
+                  value: 13
+        - insert:
+            tableName: localized_string_value
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: language
+                  value: "ESTONIAN"
+              - column:
+                  name: value
+                  value: "Mis on tundide eesmärk?"
+              - column:
+                  name: localized_value_id
+                  value: 13
+        - insert:
+            tableName: question
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: title
+                  value: 13
+              - column:
+                  name: type
+                  value: "CHECKBOX"
+
+

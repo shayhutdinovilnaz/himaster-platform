@@ -7,7 +7,7 @@
         objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
     <changeSet id="1650230693296-1" author="shaikhutdinov.ilnaz (generated)">
         <createTable tableName="answer">
-            <column name="id" type="INT">
+            <column name="id" type="INT" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_answer"/>
             </column>
             <column name="dtype" type="VARCHAR(31)"/>
@@ -25,7 +25,7 @@
     </changeSet>
     <changeSet id="1650230693296-2" author="shaikhutdinov.ilnaz (generated)">
         <createTable tableName="answer_option">
-            <column name="id" type="INT">
+            <column name="id" type="INT" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_answer_option"/>
             </column>
             <column name="dtype" type="VARCHAR(31)"/>
@@ -48,7 +48,7 @@
     </changeSet>
     <changeSet id="1650230693296-3" author="shaikhutdinov.ilnaz (generated)">
         <createTable tableName="question">
-            <column name="id" type="INT">
+            <column name="id" type="INT" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_question"/>
             </column>
             <column name="created_time" type="DATETIME">
@@ -63,7 +63,7 @@
     </changeSet>
     <changeSet id="1650230693296-4" author="shaikhutdinov.ilnaz (generated)">
         <createTable tableName="question_mapping">
-            <column name="id" type="INT">
+            <column name="id" type="INT" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_question_mapping"/>
             </column>
             <column name="created_time" type="DATETIME">
@@ -84,7 +84,7 @@
     </changeSet>
     <changeSet id="1650230693296-5" author="shaikhutdinov.ilnaz (generated)">
         <createTable tableName="quiz">
-            <column name="id" type="INT">
+            <column name="id" type="INT" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_quiz"/>
             </column>
             <column name="created_time" type="DATETIME">
@@ -103,7 +103,7 @@
     </changeSet>
     <changeSet id="1650230693296-6" author="shaikhutdinov.ilnaz (generated)">
         <createTable tableName="quiz_item">
-            <column name="id" type="INT">
+            <column name="id" type="INT" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_quiz_item"/>
             </column>
             <column name="created_time" type="DATETIME">
