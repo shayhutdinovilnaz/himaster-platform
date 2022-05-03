@@ -10,6 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
+@DiscriminatorValue("SELECTIVE_BOOLEAN")
 public class SelectiveBooleanAnswerOptionModel extends AnswerOptionModel {
 
     @Column(name = "boolean_value")

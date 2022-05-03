@@ -88,5 +88,269 @@ databaseChangeLog:
               - column:
                   name: type
                   value: "CHECKBOX"
+        - insert:
+            tableName: localized_string
+            columns:
+              - column:
+                  name: id
+                  value: 14
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+        - insert:
+            tableName: localized_string_value
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: language
+                  value: "RUSSIAN"
+              - column:
+                  name: value
+                  value: "Подготовка к экзамену вузе"
+              - column:
+                  name: localized_value_id
+                  value: 14
+        - insert:
+            tableName: localized_string_value
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: language
+                  value: "ENGLISH"
+              - column:
+                  name: value
+                  value: "University exam preparation"
+              - column:
+                  name: localized_value_id
+                  value: 14
+        - insert:
+            tableName: localized_string_value
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: language
+                  value: "ESTONIAN"
+              - column:
+                  name: value
+                  value: "Ettevalmistus ülikoolieksamiteks"
+              - column:
+                  name: localized_value_id
+                  value: 14
+        - insert:
+            tableName: localized_string
+            columns:
+              - column:
+                  name: id
+                  value: 15
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+        - insert:
+            tableName: localized_string_value
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: language
+                  value: "RUSSIAN"
+              - column:
+                  name: value
+                  value: "Повышение успеваемости"
+              - column:
+                  name: localized_value_id
+                  value: 15
+        - insert:
+            tableName: localized_string_value
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: language
+                  value: "ENGLISH"
+              - column:
+                  name: value
+                  value: "Improving academic performance"
+              - column:
+                  name: localized_value_id
+                  value: 15
+        - insert:
+            tableName: localized_string_value
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: language
+                  value: "ESTONIAN"
+              - column:
+                  name: value
+                  value: "Õppetulemuste parandamine"
+              - column:
+                  name: localized_value_id
+                  value: 15
+        - insert:
+            tableName: localized_string
+            columns:
+              - column:
+                  name: id
+                  value: 16
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+        - insert:
+            tableName: localized_string_value
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: language
+                  value: "RUSSIAN"
+              - column:
+                  name: value
+                  value: "Для себя"
+              - column:
+                  name: localized_value_id
+                  value: 16
+        - insert:
+            tableName: localized_string_value
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: language
+                  value: "ENGLISH"
+              - column:
+                  name: value
+                  value: "For yourself"
+              - column:
+                  name: localized_value_id
+                  value: 16
+        - insert:
+            tableName: localized_string_value
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: language
+                  value: "ESTONIAN"
+              - column:
+                  name: value
+                  value: "Enda jaoks"
+              - column:
+                  name: localized_value_id
+                  value: 16
+        - insert:
+            tableName: localized_string
+            columns:
+              - column:
+                  name: id
+                  value: 17
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+        - insert:
+            tableName: localized_string_value
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: language
+                  value: "RUSSIAN"
+              - column:
+                  name: value
+                  value: "Для работы"
+              - column:
+                  name: localized_value_id
+                  value: 17
+        - insert:
+            tableName: localized_string_value
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: language
+                  value: "ENGLISH"
+              - column:
+                  name: value
+                  value: "For work"
+              - column:
+                  name: localized_value_id
+                  value: 17
+        - insert:
+            tableName: localized_string_value
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: language
+                  value: "ESTONIAN"
+              - column:
+                  name: value
+                  value: "Töö jaoks"
+              - column:
+                  name: localized_value_id
+                  value: 17
 
 

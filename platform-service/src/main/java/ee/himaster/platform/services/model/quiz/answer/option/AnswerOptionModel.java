@@ -13,6 +13,8 @@ import lombok.Setter;
 @Setter
 @Entity(name = "answer_option")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="answer_option_type",
+        discriminatorType = DiscriminatorType.STRING)
 public abstract class AnswerOptionModel extends ItemModel {
 
     @ManyToOne(cascade = CascadeType.ALL)

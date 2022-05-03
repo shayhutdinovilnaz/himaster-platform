@@ -12,6 +12,8 @@ import javax.persistence.*;
 @Setter
 @Entity(name = "answer")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="answer_type",
+        discriminatorType = DiscriminatorType.STRING)
 public abstract class AnswerModel extends ItemModel {
 
     @ManyToOne

@@ -10,7 +10,7 @@
             <column name="id" type="INT" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_answer"/>
             </column>
-            <column name="dtype" type="VARCHAR(31)"/>
+            <column name="answer_type" type="VARCHAR(31)"/>
             <column name="created_time" type="DATETIME">
                 <constraints nullable="false"/>
             </column>
@@ -28,7 +28,7 @@
             <column name="id" type="INT" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_answer_option"/>
             </column>
-            <column name="dtype" type="VARCHAR(31)"/>
+            <column name="answer_option_type" type="VARCHAR(31)"/>
             <column name="created_time" type="DATETIME">
                 <constraints nullable="false"/>
             </column>
