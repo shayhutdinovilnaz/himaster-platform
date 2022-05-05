@@ -352,5 +352,896 @@ databaseChangeLog:
               - column:
                   name: localized_value_id
                   value: 17
+        - insert:
+            tableName: localized_string
+            columns:
+              - column:
+                  name: id
+                  value: 18
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+        - insert:
+            tableName: localized_string_value
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: language
+                  value: "RUSSIAN"
+              - column:
+                  name: value
+                  value: "Какой вуз?"
+              - column:
+                  name: localized_value_id
+                  value: 18
+        - insert:
+            tableName: localized_string_value
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: language
+                  value: "ENGLISH"
+              - column:
+                  name: value
+                  value: "Which university?"
+              - column:
+                  name: localized_value_id
+                  value: 18
+        - insert:
+            tableName: localized_string_value
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: language
+                  value: "ESTONIAN"
+              - column:
+                  name: value
+                  value: "Milline ülikool?"
+              - column:
+                  name: localized_value_id
+                  value: 18
+        - insert:
+            tableName: question
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: title
+                  value: 18
+              - column:
+                  name: type
+                  value: "TEXT_FIELD"
+        - insert:
+            tableName: localized_string
+            columns:
+              - column:
+                  name: id
+                  value: 19
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+        - insert:
+            tableName: localized_string_value
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: language
+                  value: "RUSSIAN"
+              - column:
+                  name: value
+                  value: "До экзамена осталось"
+              - column:
+                  name: localized_value_id
+                  value: 19
+        - insert:
+            tableName: localized_string_value
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: language
+                  value: "ENGLISH"
+              - column:
+                  name: value
+                  value: "Time left before the exam"
+              - column:
+                  name: localized_value_id
+                  value: 19
+        - insert:
+            tableName: localized_string_value
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: language
+                  value: "ESTONIAN"
+              - column:
+                  name: value
+                  value: "Aega jäänud enne eksamit"
+              - column:
+                  name: localized_value_id
+                  value: 19
+        - insert:
+            tableName: question
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: title
+                  value: 19
+              - column:
+                  name: type
+                  value: "CHECKBOX"
+        - insert:
+            tableName: localized_string
+            columns:
+              - column:
+                  name: id
+                  value: 20
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+        - insert:
+            tableName: localized_string_value
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: language
+                  value: "RUSSIAN"
+              - column:
+                  name: value
+                  value: "На каком курсе обучаетесь?"
+              - column:
+                  name: localized_value_id
+                  value: 20
+        - insert:
+            tableName: localized_string_value
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: language
+                  value: "ENGLISH"
+              - column:
+                  name: value
+                  value: "What course are you studying?"
+              - column:
+                  name: localized_value_id
+                  value: 20
+        - insert:
+            tableName: localized_string_value
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: language
+                  value: "ESTONIAN"
+              - column:
+                  name: value
+                  value: "Mis kursusel sa õpid?"
+              - column:
+                  name: localized_value_id
+                  value: 20
+        - insert:
+            tableName: question
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: title
+                  value: 20
+              - column:
+                  name: type
+                  value: "CHECKBOX"
+        - insert:
+            tableName: localized_string
+            columns:
+              - column:
+                  name: id
+                  value: 21
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+        - insert:
+            tableName: localized_string_value
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: language
+                  value: "RUSSIAN"
+              - column:
+                  name: value
+                  value: "Где вам удобно заниматься?"
+              - column:
+                  name: localized_value_id
+                  value: 21
+        - insert:
+            tableName: localized_string_value
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: language
+                  value: "ENGLISH"
+              - column:
+                  name: value
+                  value: "Where is it convenient for you to practice?"
+              - column:
+                  name: localized_value_id
+                  value: 21
+        - insert:
+            tableName: localized_string_value
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: language
+                  value: "ESTONIAN"
+              - column:
+                  name: value
+                  value: "Kus on teil mugav harjutada?"
+              - column:
+                  name: localized_value_id
+                  value: 21
+        - insert:
+            tableName: question
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: title
+                  value: 21
+              - column:
+                  name: type
+                  value: "CHECKBOX"
+        - insert:
+            tableName: localized_string
+            columns:
+              - column:
+                  name: id
+                  value: 22
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+        - insert:
+            tableName: localized_string_value
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: language
+                  value: "RUSSIAN"
+              - column:
+                  name: value
+                  value: "Ваш адрес"
+              - column:
+                  name: localized_value_id
+                  value: 22
+        - insert:
+            tableName: localized_string_value
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: language
+                  value: "ENGLISH"
+              - column:
+                  name: value
+                  value: "Your address"
+              - column:
+                  name: localized_value_id
+                  value: 22
+        - insert:
+            tableName: localized_string_value
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: language
+                  value: "ESTONIAN"
+              - column:
+                  name: value
+                  value: "Teie aadress"
+              - column:
+                  name: localized_value_id
+                  value: 22
+        - insert:
+            tableName: question
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: title
+                  value: 22
+              - column:
+                  name: type
+                  value: "TEXT_FIELD"
+        - insert:
+            tableName: localized_string
+            columns:
+              - column:
+                  name: id
+                  value: 23
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+        - insert:
+            tableName: localized_string_value
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: language
+                  value: "RUSSIAN"
+              - column:
+                  name: value
+                  value: "Куда вам удобно приехать?"
+              - column:
+                  name: localized_value_id
+                  value: 23
+        - insert:
+            tableName: localized_string_value
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: language
+                  value: "ENGLISH"
+              - column:
+                  name: value
+                  value: "Where is it convenient for you to come?"
+              - column:
+                  name: localized_value_id
+                  value: 23
+        - insert:
+            tableName: localized_string_value
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: language
+                  value: "ESTONIAN"
+              - column:
+                  name: value
+                  value: "Kuhu on teil mugav tulla?"
+              - column:
+                  name: localized_value_id
+                  value: 23
+        - insert:
+            tableName: question
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: title
+                  value: 23
+              - column:
+                  name: type
+                  value: "TEXT_FIELD"
+        - insert:
+            tableName: localized_string
+            columns:
+              - column:
+                  name: id
+                  value: 24
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+        - insert:
+            tableName: localized_string_value
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: language
+                  value: "RUSSIAN"
+              - column:
+                  name: value
+                  value: "Как долго планируете заниматься?"
+              - column:
+                  name: localized_value_id
+                  value: 24
+        - insert:
+            tableName: localized_string_value
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: language
+                  value: "ENGLISH"
+              - column:
+                  name: value
+                  value: "How long do you plan to practice?"
+              - column:
+                  name: localized_value_id
+                  value: 24
+        - insert:
+            tableName: localized_string_value
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: language
+                  value: "ESTONIAN"
+              - column:
+                  name: value
+                  value: "Kui kaua plaanid harjutada?"
+              - column:
+                  name: localized_value_id
+                  value: 24
+        - insert:
+            tableName: question
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: title
+                  value: 24
+              - column:
+                  name: type
+                  value: "CHECKBOX"
+        - insert:
+            tableName: localized_string
+            columns:
+              - column:
+                  name: id
+                  value: 25
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+        - insert:
+            tableName: localized_string_value
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: language
+                  value: "RUSSIAN"
+              - column:
+                  name: value
+                  value: "Когда удобно заниматься?"
+              - column:
+                  name: localized_value_id
+                  value: 25
+        - insert:
+            tableName: localized_string_value
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: language
+                  value: "ENGLISH"
+              - column:
+                  name: value
+                  value: "When is it convenient to practice?"
+              - column:
+                  name: localized_value_id
+                  value: 25
+        - insert:
+            tableName: localized_string_value
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: language
+                  value: "ESTONIAN"
+              - column:
+                  name: value
+                  value: "Millal on mugav harjutada?"
+              - column:
+                  name: localized_value_id
+                  value: 25
+        - insert:
+            tableName: question
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: title
+                  value: 25
+              - column:
+                  name: type
+                  value: "TEXT_FIELD"
+        - insert:
+            tableName: localized_string
+            columns:
+              - column:
+                  name: id
+                  value: 26
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+        - insert:
+            tableName: localized_string_value
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: language
+                  value: "RUSSIAN"
+              - column:
+                  name: value
+                  value: "Какой репетитор вам подходит?"
+              - column:
+                  name: localized_value_id
+                  value: 26
+        - insert:
+            tableName: localized_string_value
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: language
+                  value: "ENGLISH"
+              - column:
+                  name: value
+                  value: "Which tutor is right for you?"
+              - column:
+                  name: localized_value_id
+                  value: 26
+        - insert:
+            tableName: localized_string_value
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: language
+                  value: "ESTONIAN"
+              - column:
+                  name: value
+                  value: "Milline juhendaja sobib teile?"
+              - column:
+                  name: localized_value_id
+                  value: 26
+        - insert:
+            tableName: question
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: title
+                  value: 26
+              - column:
+                  name: type
+                  value: "CHECKBOX"
+        - insert:
+            tableName: localized_string
+            columns:
+              - column:
+                  name: id
+                  value: 27
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+        - insert:
+            tableName: localized_string_value
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: language
+                  value: "RUSSIAN"
+              - column:
+                  name: value
+                  value: "Важен ли вам пол репетитора?"
+              - column:
+                  name: localized_value_id
+                  value: 27
+        - insert:
+            tableName: localized_string_value
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: language
+                  value: "ENGLISH"
+              - column:
+                  name: value
+                  value: "Does the gender of the tutor matter to you?"
+              - column:
+                  name: localized_value_id
+                  value: 27
+        - insert:
+            tableName: localized_string_value
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: language
+                  value: "ESTONIAN"
+              - column:
+                  name: value
+                  value: "Kas juhendaja sugu on teie jaoks oluline?"
+              - column:
+                  name: localized_value_id
+                  value: 27
+        - insert:
+            tableName: question
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: title
+                  value: 27
+              - column:
+                  name: type
+                  value: "CHECKBOX"
+        - insert:
+            tableName: localized_string
+            columns:
+              - column:
+                  name: id
+                  value: 28
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+        - insert:
+            tableName: localized_string_value
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: language
+                  value: "RUSSIAN"
+              - column:
+                  name: value
+                  value: "Остались пожелания к заказу?"
+              - column:
+                  name: localized_value_id
+                  value: 28
+        - insert:
+            tableName: localized_string_value
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: language
+                  value: "ENGLISH"
+              - column:
+                  name: value
+                  value: "Do you have any wishes for an order?"
+              - column:
+                  name: localized_value_id
+                  value: 28
+        - insert:
+            tableName: localized_string_value
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: language
+                  value: "ESTONIAN"
+              - column:
+                  name: value
+                  value: "Kas teil on tellimuse osas soove?"
+              - column:
+                  name: localized_value_id
+                  value: 28
+        - insert:
+            tableName: question
+            columns:
+              - column:
+                  name: created_time
+                  value: "now()"
+              - column:
+                  name: modified_time
+                  value: "now()"
+              - column:
+                  name: title
+                  value: 28
+              - column:
+                  name: type
+                  value: "TEXT_AREA"
 
 
