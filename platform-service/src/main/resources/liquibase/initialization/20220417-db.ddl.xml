@@ -36,14 +36,10 @@
                 <constraints nullable="false"/>
             </column>
             <column name="label" type="INT"/>
-            <column name="qualifier" type="VARCHAR(255)"/>
+            <column name="facet_value" type="VARCHAR(255)"/>
             <column name="priority" type="INT"/>
             <column name="question" type="INT"/>
             <column name="next_question" type="INT"/>
-            <column name="integer_value" type="INT"/>
-            <column name="local_string_value" type="INT"/>
-            <column name="boolean_value" type="BOOLEAN"/>
-            <column name="title" type="INT"/>
         </createTable>
     </changeSet>
     <changeSet id="1650230693296-3" author="shaikhutdinov.ilnaz (generated)">
@@ -58,6 +54,7 @@
                 <constraints nullable="false"/>
             </column>
             <column name="type" type="VARCHAR(255)"/>
+            <column name="facet_id" type="VARCHAR(255)"/>
             <column name="title" type="INT"/>
         </createTable>
     </changeSet>
@@ -131,11 +128,7 @@
                                  constraintName="FK_ANSWER_OPTION_ON_LABEL" referencedColumnNames="id"
                                  referencedTableName="localized_string"/>
     </changeSet>
-    <changeSet id="1650230693296-10" author="shaikhutdinov.ilnaz (generated)">
-        <addForeignKeyConstraint baseColumnNames="local_string_value" baseTableName="answer_option"
-                                 constraintName="FK_ANSWER_OPTION_ON_LOCAL_STRING_VALUE" referencedColumnNames="id"
-                                 referencedTableName="localized_string"/>
-    </changeSet>
+
     <changeSet id="1650230693296-11" author="shaikhutdinov.ilnaz (generated)">
         <addForeignKeyConstraint baseColumnNames="next_question" baseTableName="answer_option"
                                  constraintName="FK_ANSWER_OPTION_ON_NEXT_QUESTION" referencedColumnNames="id"
@@ -145,11 +138,6 @@
         <addForeignKeyConstraint baseColumnNames="question" baseTableName="answer_option"
                                  constraintName="FK_ANSWER_OPTION_ON_QUESTION" referencedColumnNames="id"
                                  referencedTableName="question"/>
-    </changeSet>
-    <changeSet id="1650230693296-13" author="shaikhutdinov.ilnaz (generated)">
-        <addForeignKeyConstraint baseColumnNames="title" baseTableName="answer_option"
-                                 constraintName="FK_ANSWER_OPTION_ON_TITLE" referencedColumnNames="id"
-                                 referencedTableName="localized_string"/>
     </changeSet>
     <changeSet id="1650230693296-14" author="shaikhutdinov.ilnaz (generated)">
         <addForeignKeyConstraint baseColumnNames="category_id" baseTableName="question_mapping"

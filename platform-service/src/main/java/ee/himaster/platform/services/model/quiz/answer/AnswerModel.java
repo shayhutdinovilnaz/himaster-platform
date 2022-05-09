@@ -2,7 +2,6 @@ package ee.himaster.platform.services.model.quiz.answer;
 
 import ee.himaster.core.service.model.ItemModel;
 import ee.himaster.platform.services.model.quiz.QuizItemModel;
-import ee.himaster.platform.services.model.quiz.answer.option.AnswerOptionModel;
 import lombok.Getter;
 import lombok.Setter;
 

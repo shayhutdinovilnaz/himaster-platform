@@ -4,12 +4,11 @@ import ee.himaster.core.localization.service.LocalizedStringService;
 import ee.himaster.core.service.converter.Converter;
 import ee.himaster.core.service.populator.Populator;
 import ee.himaster.platform.dto.AnswerOptionDto;
-import ee.himaster.platform.dto.AnswerType;
 import ee.himaster.platform.dto.QuestionDto;
 import ee.himaster.platform.dto.QuestionType;
 import ee.himaster.platform.services.model.quiz.QuestionComponentType;
 import ee.himaster.platform.services.model.quiz.QuestionModel;
-import ee.himaster.platform.services.model.quiz.answer.option.*;
+import ee.himaster.platform.services.model.quiz.answer.AnswerOptionModel;
 import ee.himaster.platform.services.service.AnswerOptionService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,7 +17,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -26,8 +24,8 @@ import java.util.stream.Collectors;
 @Component
 public class BasicQuestionPopulator implements Populator<QuestionDto, QuestionModel> {
     private final LocalizedStringService localizedStringService;
-    private final Map<AnswerType, AnswerOptionService<AnswerOptionModel>> optionServices;
-    private final Map<AnswerType, Converter<AnswerOptionDto, AnswerOptionModel>> optionConverterMap;
+    private final Converter<AnswerOptionDto, AnswerOptionModel> optionConverter;
+    private final AnswerOptionService answerOptionService;
 
     @Override
     public QuestionDto populate(final QuestionModel source, final QuestionDto target) {
@@ -46,29 +44,8 @@ public class BasicQuestionPopulator implements Populator<QuestionDto, QuestionMo
         return questionModel
                 .getAnswerOptions()
                 .stream()
-                .map(this::convertToAnswerOption)
+                .map(optionConverter::convert)
                 .collect(Collectors.toList());
-    }
-
-    private AnswerOptionDto convertToAnswerOption(final AnswerOptionModel answerOptionModel) {
-        final var answerType = getAnswerType(answerOptionModel);
-        return optionConverterMap.get(answerType).convert(answerOptionModel);
-    }
-
-    private AnswerType getAnswerType(final AnswerOptionModel answerOptionModel) {
-        if (answerOptionModel instanceof InputNumericAnswerOptionModel) {
-            return AnswerType.INPUT_NUMERIC;
-        } else if (answerOptionModel instanceof InputStringAnswerOptionModel) {
-            return AnswerType.INPUT_STRING;
-        } else if (answerOptionModel instanceof SelectiveBooleanAnswerOptionModel) {
-            return AnswerType.SELECTIVE_BOOLEAN;
-        } else if (answerOptionModel instanceof SelectiveNumericAnswerOptionModel) {
-            return AnswerType.SELECTIVE_NUMERIC;
-        } else if (answerOptionModel instanceof SelectiveStringAnswerOptionModel) {
-            return AnswerType.SELECTIVE_STRING;
-        }
-
-        return null;
     }
 
     private QuestionType convertType(final QuestionComponentType type) {
@@ -118,7 +95,7 @@ public class BasicQuestionPopulator implements Populator<QuestionDto, QuestionMo
 
         return answerOptions
                 .stream()
-                .map(a -> optionServices.get(a.getType()).getById(a.getId()))
+                .map(s-> answerOptionService.getById(s.getId()))
                 .collect(Collectors.toList());
     }
 

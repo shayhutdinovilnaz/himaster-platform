@@ -397,18 +397,10 @@ components:
       properties:
         id:
           type: integer
-        label:
-          type: string
         value:
-          type: string
-        title:
-          type: string
-        qualifier:
           type: string
         priority:
           type: integer
-        type:
-          $ref: '#/components/schemas/AnswerType'
 
     AnswerDto:
       type: object
@@ -417,20 +409,8 @@ components:
           type: integer
         value:
           type: string
-        type:
-          $ref: '#/components/schemas/AnswerType'
         option:
           $ref: '#/components/schemas/AnswerOptionDto'
-
-    AnswerType:
-      type: string
-      enum:
-        - SELECTIVE_BOOLEAN
-        - SELECTIVE_NUMERIC
-        - SELECTIVE_STRING
-        - INPUT_STRING
-        - INPUT_NUMERIC
-        - NONE
 
     QuestionType:
       type: string

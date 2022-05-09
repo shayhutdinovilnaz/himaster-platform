@@ -8,7 +8,7 @@ import ee.himaster.platform.services.model.quiz.QuestionModel;
 import ee.himaster.platform.services.model.quiz.QuizItemModel;
 import ee.himaster.platform.services.model.quiz.QuizModel;
 import ee.himaster.platform.services.model.quiz.answer.AnswerModel;
-import ee.himaster.platform.services.model.quiz.answer.option.AnswerOptionModel;
+import ee.himaster.platform.services.model.quiz.answer.AnswerOptionModel;
 import ee.himaster.platform.services.repository.QuestionRepository;
 import ee.himaster.platform.services.repository.QuizItemRepository;
 import ee.himaster.platform.services.repository.QuizRepository;

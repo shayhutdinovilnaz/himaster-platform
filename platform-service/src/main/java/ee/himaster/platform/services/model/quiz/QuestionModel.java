@@ -2,7 +2,7 @@ package ee.himaster.platform.services.model.quiz;
 
 import ee.himaster.core.localization.model.LocalizedStringModel;
 import ee.himaster.core.service.model.ItemModel;
-import ee.himaster.platform.services.model.quiz.answer.option.AnswerOptionModel;
+import ee.himaster.platform.services.model.quiz.answer.AnswerOptionModel;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,6 +16,9 @@ public class QuestionModel extends ItemModel {
 
     @Enumerated(EnumType.STRING)
     private QuestionComponentType type;
+
+    @Column(name = "facet_id")
+    private String facetId;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "title")
