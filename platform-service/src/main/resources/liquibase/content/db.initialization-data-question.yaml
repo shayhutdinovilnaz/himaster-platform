@@ -77,6 +77,9 @@ databaseChangeLog:
             tableName: question
             columns:
               - column:
+                  name: id
+                  value: 1
+              - column:
                   name: created_time
                   value: "now()"
               - column:
@@ -154,6 +157,7 @@ databaseChangeLog:
               - column:
                   name: localized_value_id
                   value: 14
+
         - insert:
             tableName: localized_string
             columns:
