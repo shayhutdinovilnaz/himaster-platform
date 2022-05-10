@@ -19,9 +19,10 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static ee.himaster.platform.services.model.quiz.QuestionComponentType.*;
 
 @Configuration
 @EnableJpaRepositories(value = "ee.himaster.platform*")
@@ -80,8 +81,18 @@ public class PlatformApplicationConfiguration {
     }
 
     @Bean
-    Map<QuestionComponentType, Converter<AnswerDto, AnswerModel>> converters() {
-        return new HashMap<>();
+    Map<QuestionComponentType, Converter<AnswerDto, ? extends AnswerModel >> answerConverters(
+            Converter<AnswerDto, InputNumericAnswerModel> inputNumericAnswerConverter,
+            Converter<AnswerDto, InputStringAnswerModel> inputStringAnswerConverter,
+            Converter<AnswerDto, SelectiveAnswerModel> selectiveAnswerConverter) {
+        return Map.of(
+                CHECKBOX, selectiveAnswerConverter,
+                COMBO_BOX, selectiveAnswerConverter,
+                LIST_BOX, selectiveAnswerConverter,
+                NUMBER_FIELD, inputNumericAnswerConverter,
+                RADIO_BUTTON, selectiveAnswerConverter,
+                TEXT_AREA, inputStringAnswerConverter,
+                TEXT_FIELD, inputStringAnswerConverter);
     }
 
     @Bean

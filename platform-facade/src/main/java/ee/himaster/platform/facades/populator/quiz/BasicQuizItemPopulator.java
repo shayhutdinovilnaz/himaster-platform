@@ -5,26 +5,25 @@ import ee.himaster.core.service.populator.Populator;
 import ee.himaster.platform.dto.AnswerDto;
 import ee.himaster.platform.dto.QuestionDto;
 import ee.himaster.platform.dto.QuizItemDto;
+import ee.himaster.platform.services.model.quiz.QuestionComponentType;
 import ee.himaster.platform.services.model.quiz.QuestionModel;
 import ee.himaster.platform.services.model.quiz.QuizItemModel;
-import ee.himaster.platform.services.model.quiz.answer.InputNumericAnswerModel;
-import ee.himaster.platform.services.model.quiz.answer.InputStringAnswerModel;
-import ee.himaster.platform.services.model.quiz.answer.SelectiveAnswerModel;
-import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
+import ee.himaster.platform.services.model.quiz.answer.AnswerModel;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
 @Slf4j
 public class BasicQuizItemPopulator implements Populator<QuizItemDto, QuizItemModel> {
     private final Converter<QuestionDto, QuestionModel> questionConverter;
-    private final Converter<AnswerDto, SelectiveAnswerModel> selectiveAnswerConverter;
-    private final Converter<AnswerDto, InputStringAnswerModel> inputStringAnswerConverter;
-    private final Converter<AnswerDto, InputNumericAnswerModel> inputNumericAnswerConverter;
+    private final Map<QuestionComponentType, Converter<AnswerDto, AnswerModel>> answerConverters;
 
     @Override
     public QuizItemDto populate(final QuizItemModel source, final QuizItemDto target) {
@@ -35,18 +34,14 @@ public class BasicQuizItemPopulator implements Populator<QuizItemDto, QuizItemMo
         return target;
     }
 
-    private List<AnswerDto> convertAnswers(QuizItemModel source) {
-        return source.getAnswers().stream().map(answer -> {
-            if (answer instanceof SelectiveAnswerModel) {
-                return selectiveAnswerConverter.convert((SelectiveAnswerModel) answer);
-            } else if (answer instanceof InputStringAnswerModel) {
-                return inputStringAnswerConverter.convert((InputStringAnswerModel) answer);
-            } else if (answer instanceof InputNumericAnswerModel) {
-                return inputNumericAnswerConverter.convert((InputNumericAnswerModel) answer);
-            }
-            log.error("Could not convert answer. Type: {} ", answer.getClass().getSimpleName());
-            return null;
-        }).filter(Objects::nonNull).collect(Collectors.toList());
+    private List<AnswerDto> convertAnswers(final QuizItemModel source) {
+
+        final var type = source.getQuestion().getType();
+        final var answerConverter = answerConverters.get(type);
+        return source.getAnswers().stream()
+                .map(answerConverter::convert)
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
     }
 
     @Override
