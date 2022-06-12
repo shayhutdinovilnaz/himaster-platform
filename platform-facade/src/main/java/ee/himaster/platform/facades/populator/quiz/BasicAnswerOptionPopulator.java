@@ -13,7 +13,7 @@ public class BasicAnswerOptionPopulator implements Populator<AnswerOptionDto, An
     @Override
     public AnswerOptionDto populate(AnswerOptionModel source, AnswerOptionDto target) {
         target.setId(source.getId());
-        target.setValue(localizedStringService.getLocalizedStringValue(source.getLabel()));
+        target.setValue(localizedStringService.getLocalizedStringValue(source.getValue()));
         target.setPriority(source.getPriority());
         return target;
     }

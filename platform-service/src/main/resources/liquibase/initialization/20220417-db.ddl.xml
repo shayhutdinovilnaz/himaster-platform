@@ -35,7 +35,7 @@
             <column name="modified_time" type="DATETIME">
                 <constraints nullable="false"/>
             </column>
-            <column name="label" type="INT"/>
+            <column name="value" type="INT"/>
             <column name="facet_value" type="VARCHAR(255)"/>
             <column name="priority" type="INT"/>
             <column name="question" type="INT"/>
@@ -72,11 +72,9 @@
             <column name="category_id" type="INT">
                 <constraints nullable="false"/>
             </column>
-            <column name="question_id" type="INT">
+            <column name="start_question" type="INT">
                 <constraints nullable="false"/>
             </column>
-            <column name="initial_question" type="BOOLEAN"/>
-            <column name="summarize_question" type="BOOLEAN"/>
         </createTable>
     </changeSet>
     <changeSet id="1650230693296-5" author="shaikhutdinov.ilnaz (generated)">
@@ -124,7 +122,7 @@
                                  referencedTableName="quiz_item"/>
     </changeSet>
     <changeSet id="1650230693296-9" author="shaikhutdinov.ilnaz (generated)">
-        <addForeignKeyConstraint baseColumnNames="label" baseTableName="answer_option"
+        <addForeignKeyConstraint baseColumnNames="value" baseTableName="answer_option"
                                  constraintName="FK_ANSWER_OPTION_ON_LABEL" referencedColumnNames="id"
                                  referencedTableName="localized_string"/>
     </changeSet>
@@ -145,7 +143,7 @@
                                  referencedTableName="category"/>
     </changeSet>
     <changeSet id="1650230693296-15" author="shaikhutdinov.ilnaz (generated)">
-        <addForeignKeyConstraint baseColumnNames="question_id" baseTableName="question_mapping"
+        <addForeignKeyConstraint baseColumnNames="start_question" baseTableName="question_mapping"
                                  constraintName="FK_QUESTION_MAPPING_ON_QUESTION" referencedColumnNames="id"
                                  referencedTableName="question"/>
     </changeSet>

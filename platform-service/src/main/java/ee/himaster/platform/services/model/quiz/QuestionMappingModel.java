@@ -5,7 +5,6 @@ import ee.himaster.platform.services.model.CategoryModel;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -20,12 +19,6 @@ public class QuestionMappingModel extends ItemModel {
     private CategoryModel category;
 
     @ManyToOne
-    @JoinColumn(nullable = false, name = "question_id")
-    private QuestionModel question;
-
-    @Column(name = "initial_question")
-    private boolean initialQuestion;
-
-    @Column(name = "summarize_question")
-    private boolean summarizeQuestion;
+    @JoinColumn(nullable = false, name = "start_question")
+    private QuestionModel startQuestion;
 }

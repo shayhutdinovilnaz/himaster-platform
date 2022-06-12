@@ -15,8 +15,8 @@ import lombok.Setter;
 public class AnswerOptionModel extends ItemModel {
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "label")
-    private LocalizedStringModel label;
+    @JoinColumn(name = "value")
+    private LocalizedStringModel value;
 
     @Column(name = "facet_value")
     private String facetValue;
