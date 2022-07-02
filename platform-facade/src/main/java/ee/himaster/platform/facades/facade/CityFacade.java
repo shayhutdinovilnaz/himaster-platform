@@ -8,8 +8,7 @@ public interface CityFacade {
     /**
      * Find cities available for country
      *
-     * @param countryIsoCode - country's iso-code
      * @return the cities
      */
-    List<CityDto> getCities(String countryIsoCode);
+    List<CityDto> getCities();
 }

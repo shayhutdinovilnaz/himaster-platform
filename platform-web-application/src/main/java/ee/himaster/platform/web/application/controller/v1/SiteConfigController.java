@@ -25,13 +25,13 @@ public class SiteConfigController implements SiteconfigApi {
     private final LocaleFacade localeFacade;
 
     @Override
-    public ResponseEntity<List<CityDto>> getAllCitiesInCountry(String countryIsoCode, String localeCode) {
-        return ResponseEntity.ok(cityFacade.getCities(countryIsoCode));
+    public ResponseEntity<List<CityDto>> getAllCities(String localeCode) {
+        return ResponseEntity.ok(cityFacade.getCities());
     }
 
     @Override
-    public ResponseEntity<List<LanguageDto>> getAllLanguagesInCountry(String countryIsoCode, String localeCode) {
-        return ResponseEntity.ok(languageFacade.getLanguages(countryIsoCode));
+    public ResponseEntity<List<LanguageDto>> getAllLanguages(String localeCode) {
+        return ResponseEntity.ok(languageFacade.getLanguages());
     }
 
     @Override

@@ -71,17 +71,11 @@ paths:
 
   /siteconfig/city/all:
     get:
-      summary: List of cities in country
-      operationId: getAllCitiesInCountry
+      summary: List of cities
+      operationId: getAllCities
       tags:
         - "SiteConfig"
       parameters:
-        - name: "countryIsoCode"
-          in: "query"
-          description: "Iso-code of country"
-          required: true
-          schema:
-            type: string
         - in: header
           name: Locale-code
           required: true
@@ -102,16 +96,10 @@ paths:
   /siteconfig/language/all:
     get:
       summary: List of languages which avaialble in a country
-      operationId: getAllLanguagesInCountry
+      operationId: getAllLanguages
       tags:
         - "SiteConfig"
       parameters:
-        - name: "countryIsoCode"
-          in: "query"
-          description: "Iso-code of country"
-          required: true
-          schema:
-            type: string
         - in: header
           name: Locale-code
           required: true

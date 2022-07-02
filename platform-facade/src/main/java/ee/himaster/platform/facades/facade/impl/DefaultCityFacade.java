@@ -1,5 +1,6 @@
 package ee.himaster.platform.facades.facade.impl;
 
+import ee.himaster.core.localization.service.LocaleService;
 import ee.himaster.core.service.converter.impl.BasicConverter;
 import ee.himaster.platform.dto.CityDto;
 import ee.himaster.platform.facades.facade.CityFacade;
@@ -15,11 +16,12 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class DefaultCityFacade implements CityFacade {
     private final CityService cityService;
+    private final LocaleService localeService;
     private final BasicConverter<CityDto, CityModel> cityConverter;
 
     @Override
-    public List<CityDto> getCities(final String countryIsoCode) {
-        return cityService.getByCountry(countryIsoCode)
+    public List<CityDto> getCities() {
+        return cityService.getByCountry(localeService.getCurrentLocale().getRegion().getCountryIsoCode())
                 .stream()
                 .map(cityConverter::convert)
                 .sorted((a, b) -> a.getTitle().compareToIgnoreCase(b.getTitle()))
