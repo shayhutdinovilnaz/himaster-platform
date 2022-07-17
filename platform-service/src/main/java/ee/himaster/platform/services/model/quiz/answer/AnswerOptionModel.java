@@ -18,9 +18,6 @@ public class AnswerOptionModel extends ItemModel {
     @JoinColumn(name = "value")
     private LocalizedStringModel value;
 
-    @Column(name = "facet_value")
-    private String facetValue;
-
     private int priority;
 
     @ManyToOne

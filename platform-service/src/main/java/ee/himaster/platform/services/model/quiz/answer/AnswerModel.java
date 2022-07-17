@@ -6,14 +6,12 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
 @Entity(name = "answer")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="answer_type",
-        discriminatorType = DiscriminatorType.STRING)
-public abstract class AnswerModel extends ItemModel {
+public class AnswerModel extends ItemModel {
 
     @ManyToOne
     @JoinColumn(name = "option_id")
@@ -22,4 +20,8 @@ public abstract class AnswerModel extends ItemModel {
     @ManyToOne
     @JoinColumn(name = "quiz_item")
     private QuizItemModel quizItem;
+
+    @OneToMany(mappedBy = "answer", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<AnswerValueModel> values;
+
 }

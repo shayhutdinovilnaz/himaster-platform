@@ -5,3 +5,6 @@ databaseChangeLog:
   - include:
       file: 20220417-db.ddl.xml
       relativeToChangelogFile: true
+  - include:
+      file: 20220717-db.ddl.xml
+      relativeToChangelogFile: true

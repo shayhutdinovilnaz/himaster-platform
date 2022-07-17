@@ -7,7 +7,6 @@ import ee.himaster.platform.services.model.quiz.QuestionModel;
 import ee.himaster.platform.services.model.quiz.QuizItemModel;
 import ee.himaster.platform.services.model.quiz.QuizModel;
 import ee.himaster.platform.services.model.quiz.answer.AnswerModel;
-import ee.himaster.platform.services.model.quiz.answer.SelectiveAnswerModel;
 import ee.himaster.platform.services.model.quiz.answer.AnswerOptionModel;
 import ee.himaster.platform.services.repository.QuestionRepository;
 import ee.himaster.platform.services.repository.QuizItemRepository;
@@ -175,7 +174,7 @@ public class DefaultQuizServiceTest extends AbstractModelServiceTest<QuizModel> 
         answerOption.setQuestion(question1);
         answerOption.setNextQuestion(nextQuestion);
 
-        final AnswerModel answer = new SelectiveAnswerModel();
+        final AnswerModel answer = new AnswerModel();
         answer.setOption(answerOption);
         final var answers = Lists.newArrayList(answer);
 
@@ -219,7 +218,7 @@ public class DefaultQuizServiceTest extends AbstractModelServiceTest<QuizModel> 
         answerOption.setQuestion(question1);
         answerOption.setNextQuestion(null);
 
-        final AnswerModel answer = new SelectiveAnswerModel();
+        final AnswerModel answer = new AnswerModel();
         answer.setOption(answerOption);
         final var answers = Lists.newArrayList(answer);
 
@@ -266,7 +265,7 @@ public class DefaultQuizServiceTest extends AbstractModelServiceTest<QuizModel> 
         answerOption.setQuestion(question1);
         answerOption.setNextQuestion(nextQuestion);
 
-        final AnswerModel answer = new SelectiveAnswerModel();
+        final AnswerModel answer = new AnswerModel();
         answer.setOption(answerOption);
         final var answers = Lists.newArrayList(answer);
 
@@ -312,7 +311,7 @@ public class DefaultQuizServiceTest extends AbstractModelServiceTest<QuizModel> 
         answerOption.setQuestion(question2);
         answerOption.setNextQuestion(null);
 
-        final AnswerModel answer = new SelectiveAnswerModel();
+        final AnswerModel answer = new AnswerModel();
         answer.setOption(answerOption);
         final var answers = Lists.newArrayList(answer);
 
@@ -367,10 +366,10 @@ public class DefaultQuizServiceTest extends AbstractModelServiceTest<QuizModel> 
         answerOption2.setQuestion(question1);
         answerOption2.setNextQuestion(nextQuestion);
 
-        final AnswerModel answer1 = new SelectiveAnswerModel();
+        final AnswerModel answer1 = new AnswerModel();
         answer1.setOption(answerOption1);
 
-        final AnswerModel answer2 = new SelectiveAnswerModel();
+        final AnswerModel answer2 = new AnswerModel();
         answer2.setOption(answerOption2);
 
         final var answers = Lists.newArrayList(answer1, answer2);
@@ -425,10 +424,10 @@ public class DefaultQuizServiceTest extends AbstractModelServiceTest<QuizModel> 
         answerOption2.setQuestion(question1);
         answerOption2.setNextQuestion(nextQuestion2);
 
-        final AnswerModel answer1 = new SelectiveAnswerModel();
+        final AnswerModel answer1 = new AnswerModel();
         answer1.setOption(answerOption1);
 
-        final AnswerModel answer2 = new SelectiveAnswerModel();
+        final AnswerModel answer2 = new AnswerModel();
         answer2.setOption(answerOption2);
 
         final var answers = Lists.newArrayList(answer1, answer2);
@@ -483,10 +482,10 @@ public class DefaultQuizServiceTest extends AbstractModelServiceTest<QuizModel> 
         answerOption2.setQuestion(question1);
         answerOption2.setNextQuestion(null);
 
-        final AnswerModel answer1 = new SelectiveAnswerModel();
+        final AnswerModel answer1 = new AnswerModel();
         answer1.setOption(answerOption1);
 
-        final AnswerModel answer2 = new SelectiveAnswerModel();
+        final AnswerModel answer2 = new AnswerModel();
         answer2.setOption(answerOption2);
 
         final var answers = Lists.newArrayList(answer1, answer2);
@@ -538,10 +537,10 @@ public class DefaultQuizServiceTest extends AbstractModelServiceTest<QuizModel> 
         answerOption2.setQuestion(question1);
         answerOption2.setNextQuestion(null);
 
-        final AnswerModel answer1 = new SelectiveAnswerModel();
+        final AnswerModel answer1 = new AnswerModel();
         answer1.setOption(answerOption1);
 
-        final AnswerModel answer2 = new SelectiveAnswerModel();
+        final AnswerModel answer2 = new AnswerModel();
         answer2.setOption(answerOption2);
 
         final var answers = Lists.newArrayList(answer1, answer2);
@@ -594,10 +593,10 @@ public class DefaultQuizServiceTest extends AbstractModelServiceTest<QuizModel> 
         answerOption2.setQuestion(question1);
         answerOption2.setNextQuestion(null);
 
-        final AnswerModel answer1 = new SelectiveAnswerModel();
+        final AnswerModel answer1 = new AnswerModel();
         answer1.setOption(answerOption1);
 
-        final AnswerModel answer2 = new SelectiveAnswerModel();
+        final AnswerModel answer2 = new AnswerModel();
         answer2.setOption(answerOption2);
 
         final var answers = Lists.newArrayList(answer1, answer2);
@@ -661,7 +660,7 @@ public class DefaultQuizServiceTest extends AbstractModelServiceTest<QuizModel> 
         answerOption.setQuestion(question1);
         answerOption.setNextQuestion(question2);
 
-        final AnswerModel answer = new SelectiveAnswerModel();
+        final AnswerModel answer = new AnswerModel();
         answer.setOption(answerOption);
         final var answers = Lists.newArrayList(answer);
 
@@ -708,14 +707,14 @@ public class DefaultQuizServiceTest extends AbstractModelServiceTest<QuizModel> 
         answerOptionQuizItem1.setQuestion(question1);
         answerOptionQuizItem1.setNextQuestion(question2);
 
-        final AnswerModel answerQuizItem1 = new SelectiveAnswerModel();
+        final AnswerModel answerQuizItem1 = new AnswerModel();
         answerQuizItem1.setOption(answerOptionQuizItem1);
 
         final var answerOptionQuizItem2 = new AnswerOptionModel();
         answerOptionQuizItem2.setQuestion(question2);
         answerOptionQuizItem2.setNextQuestion(null);
 
-        final var answerQuizItem2 = new SelectiveAnswerModel();
+        final var answerQuizItem2 = new AnswerModel();
         answerQuizItem2.setOption(answerOptionQuizItem2);
 
         final List<QuizItemModel> quizItems = new ArrayList<>();
@@ -764,14 +763,14 @@ public class DefaultQuizServiceTest extends AbstractModelServiceTest<QuizModel> 
         answerOption1Question1.setQuestion(question1);
         answerOption1Question1.setNextQuestion(question2);
 
-        final var answerQuizItem1 = new SelectiveAnswerModel();
+        final var answerQuizItem1 = new AnswerModel();
         answerQuizItem1.setOption(answerOption1Question1);
 
         final var answerOption2Question1 = new AnswerOptionModel();
         answerOption2Question1.setQuestion(question1);
         answerOption2Question1.setNextQuestion(question3);
 
-        final AnswerModel answerQuizItem2 = new SelectiveAnswerModel();
+        final AnswerModel answerQuizItem2 = new AnswerModel();
         answerQuizItem2.setOption(answerOption2Question1);
 
         final List<QuizItemModel> quizItems = new ArrayList<>();
@@ -824,21 +823,21 @@ public class DefaultQuizServiceTest extends AbstractModelServiceTest<QuizModel> 
         answerOption1Question1.setQuestion(question1);
         answerOption1Question1.setNextQuestion(question2);
 
-        final var answer1QuizItem1 = new SelectiveAnswerModel();
+        final var answer1QuizItem1 = new AnswerModel();
         answer1QuizItem1.setOption(answerOption1Question1);
 
         final var answerOption2Question1 = new AnswerOptionModel();
         answerOption2Question1.setQuestion(question1);
         answerOption2Question1.setNextQuestion(question4);
 
-        final AnswerModel answer2QuizItem1 = new SelectiveAnswerModel();
+        final AnswerModel answer2QuizItem1 = new AnswerModel();
         answer2QuizItem1.setOption(answerOption2Question1);
 
         final var answerOption1Question2 = new AnswerOptionModel();
         answerOption1Question2.setQuestion(question2);
         answerOption1Question2.setNextQuestion(question3);
 
-        final AnswerModel answer1QuizItem2 = new SelectiveAnswerModel();
+        final AnswerModel answer1QuizItem2 = new AnswerModel();
         answer1QuizItem2.setOption(answerOption1Question2);
 
         final List<QuizItemModel> quizItems = new ArrayList<>();
@@ -901,21 +900,21 @@ public class DefaultQuizServiceTest extends AbstractModelServiceTest<QuizModel> 
         answerOption1Question1.setQuestion(question1);
         answerOption1Question1.setNextQuestion(question2);
 
-        final AnswerModel answer1QuizItem1 = new SelectiveAnswerModel();
+        final AnswerModel answer1QuizItem1 = new AnswerModel();
         answer1QuizItem1.setOption(answerOption1Question1);
 
         final var answerOption2Question1 = new AnswerOptionModel();
         answerOption2Question1.setQuestion(question1);
         answerOption2Question1.setNextQuestion(question4);
 
-        final AnswerModel answer2QuizItem1 = new SelectiveAnswerModel();
+        final AnswerModel answer2QuizItem1 = new AnswerModel();
         answer2QuizItem1.setOption(answerOption2Question1);
 
         final var answerOption1Question2 = new AnswerOptionModel();
         answerOption1Question2.setQuestion(question2);
         answerOption1Question2.setNextQuestion(question3);
 
-        final AnswerModel answer1QuizItem2 = new SelectiveAnswerModel();
+        final AnswerModel answer1QuizItem2 = new AnswerModel();
         answer1QuizItem2.setOption(answerOption1Question2);
 
         final List<QuizItemModel> quizItems = new ArrayList<>();

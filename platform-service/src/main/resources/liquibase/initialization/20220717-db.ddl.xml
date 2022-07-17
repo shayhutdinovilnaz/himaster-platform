@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1658088931197-1" author="shaikhutdinov.ilnaz (generated)">
+        <createTable tableName="answer_value">
+            <column name="id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_answer_value"/>
+            </column>
+            <column name="created_time" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modified_time" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="facet" type="INT"/>
+            <column name="value" type="VARCHAR(255)"/>
+            <column name="answer" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1658088931197-2" author="shaikhutdinov.ilnaz (generated)">
+        <createTable tableName="facet">
+            <column name="id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_facet"/>
+            </column>
+            <column name="created_time" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modified_time" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="code" type="VARCHAR(255)"/>
+            <column name="name" type="INT"/>
+            <column name="type" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1658088931197-3" author="shaikhutdinov.ilnaz (generated)">
+        <addForeignKeyConstraint baseColumnNames="answer" baseTableName="answer_value"
+                                 constraintName="FK_ANSWER_VALUE_ON_ANSWER" referencedColumnNames="id"
+                                 referencedTableName="answer"/>
+    </changeSet>
+    <changeSet id="1658088931197-5" author="shaikhutdinov.ilnaz (generated)">
+        <addForeignKeyConstraint baseColumnNames="name" baseTableName="facet" constraintName="FK_FACET_ON_NAME"
+                                 referencedColumnNames="id" referencedTableName="localized_string"/>
+    </changeSet>
+    <changeSet id="1658088931197-4" author="shaikhutdinov.ilnaz (generated)">
+        <addForeignKeyConstraint baseColumnNames="facet" baseTableName="answer_value"
+                                 constraintName="FK_ANSWER_VALUE_ON_FACET" referencedColumnNames="id"
+                                 referencedTableName="facet"/>
+    </changeSet>
+
+</databaseChangeLog>
