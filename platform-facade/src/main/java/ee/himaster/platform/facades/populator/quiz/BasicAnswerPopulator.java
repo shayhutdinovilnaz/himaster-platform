@@ -1,4 +1,4 @@
-package ee.himaster.platform.facades.populator.quiz.answer;
+package ee.himaster.platform.facades.populator.quiz;
 
 import ee.himaster.core.service.converter.Converter;
 import ee.himaster.core.service.populator.Populator;
@@ -11,7 +11,7 @@ import ee.himaster.platform.services.service.AnswerService;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class AnswerPopulator implements Populator<AnswerDto, AnswerModel> {
+public class BasicAnswerPopulator implements Populator<AnswerDto, AnswerModel> {
     private final AnswerOptionService optionService;
     private final AnswerService answerService;
     private final Converter<AnswerOptionDto, AnswerOptionModel> optionConverter;
