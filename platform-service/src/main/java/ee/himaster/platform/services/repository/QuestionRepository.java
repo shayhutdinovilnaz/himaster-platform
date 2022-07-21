@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface QuestionRepository extends JpaRepository<QuestionModel, Integer> {
 
-    @Query("SELECT u FROM question u WHERE u.id=1")
+    @Query("SELECT u.startQuestion FROM question_mapping u WHERE u.category=?1")
     QuestionModel findInitializeQuestion(CategoryModel category);
 
     @Query("SELECT u FROM question u WHERE u.id=1")

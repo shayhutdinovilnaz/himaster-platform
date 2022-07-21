@@ -18,7 +18,7 @@ public class AnswerOptionModel extends ItemModel {
     @JoinColumn(name = "value")
     private LocalizedStringModel value;
 
-    private int priority;
+    private Integer priority = 0;
 
     @ManyToOne
     @JoinColumn(name = "question")

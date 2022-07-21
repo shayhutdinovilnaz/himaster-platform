@@ -17,9 +17,6 @@ public class QuestionModel extends ItemModel {
     @Enumerated(EnumType.STRING)
     private QuestionComponentType type;
 
-    @Column(name = "facet_id")
-    private String facetId;
-
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "title")
     private LocalizedStringModel title;

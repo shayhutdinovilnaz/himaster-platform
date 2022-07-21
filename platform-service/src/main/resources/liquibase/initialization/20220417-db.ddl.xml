@@ -11,10 +11,10 @@
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_answer"/>
             </column>
             <column name="created_time" type="DATETIME">
-                <constraints nullable="false"/>
+                <constraints nullable="true"/>
             </column>
             <column name="modified_time" type="DATETIME">
-                <constraints nullable="false"/>
+                <constraints nullable="true"/>
             </column>
             <column name="option_id" type="INT"/>
             <column name="quiz_item" type="INT"/>
@@ -27,13 +27,15 @@
             </column>
             <column name="answer_option_type" type="VARCHAR(31)"/>
             <column name="created_time" type="DATETIME">
-                <constraints nullable="false"/>
+                <constraints nullable="true"/>
             </column>
             <column name="modified_time" type="DATETIME">
-                <constraints nullable="false"/>
+                <constraints nullable="true"/>
             </column>
             <column name="value" type="INT"/>
-            <column name="priority" type="INT"/>
+            <column name="priority" type="INT">
+                <constraints nullable="false"/>
+            </column>
             <column name="question" type="INT"/>
             <column name="next_question" type="INT"/>
         </createTable>
@@ -44,10 +46,10 @@
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_question"/>
             </column>
             <column name="created_time" type="DATETIME">
-                <constraints nullable="false"/>
+                <constraints nullable="true"/>
             </column>
             <column name="modified_time" type="DATETIME">
-                <constraints nullable="false"/>
+                <constraints nullable="true"/>
             </column>
             <column name="type" type="VARCHAR(255)"/>
             <column name="title" type="INT"/>
@@ -59,10 +61,10 @@
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_question_mapping"/>
             </column>
             <column name="created_time" type="DATETIME">
-                <constraints nullable="false"/>
+                <constraints nullable="true"/>
             </column>
             <column name="modified_time" type="DATETIME">
-                <constraints nullable="false"/>
+                <constraints nullable="true"/>
             </column>
             <column name="category_id" type="INT">
                 <constraints nullable="false"/>
@@ -78,10 +80,10 @@
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_quiz"/>
             </column>
             <column name="created_time" type="DATETIME">
-                <constraints nullable="false"/>
+                <constraints nullable="true"/>
             </column>
             <column name="modified_time" type="DATETIME">
-                <constraints nullable="false"/>
+                <constraints nullable="true"/>
             </column>
             <column name="current_step" type="INT"/>
             <column name="user_id" type="INT"/>
@@ -97,14 +99,15 @@
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_quiz_item"/>
             </column>
             <column name="created_time" type="DATETIME">
-                <constraints nullable="false"/>
+                <constraints nullable="true"/>
             </column>
             <column name="modified_time" type="DATETIME">
-                <constraints nullable="false"/>
+                <constraints nullable="true"/>
             </column>
-            <column name="order" type="INT"/>
             <column name="question_id" type="INT"/>
             <column name="quiz_id" type="INT"/>
+            <column name="step" type="INT"/>
+
         </createTable>
     </changeSet>
     <changeSet id="1650230693296-7" author="shaikhutdinov.ilnaz (generated)">

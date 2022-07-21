@@ -5,7 +5,6 @@ import ee.himaster.core.service.populator.Populator;
 import ee.himaster.platform.dto.AnswerDto;
 import ee.himaster.platform.dto.QuestionDto;
 import ee.himaster.platform.dto.QuizItemDto;
-import ee.himaster.platform.services.model.quiz.QuestionComponentType;
 import ee.himaster.platform.services.model.quiz.QuestionModel;
 import ee.himaster.platform.services.model.quiz.QuizItemModel;
 import ee.himaster.platform.services.model.quiz.answer.AnswerModel;
@@ -13,8 +12,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -23,25 +22,27 @@ import java.util.stream.Collectors;
 @Slf4j
 public class BasicQuizItemPopulator implements Populator<QuizItemDto, QuizItemModel> {
     private final Converter<QuestionDto, QuestionModel> questionConverter;
-    private final Map<QuestionComponentType, Converter<AnswerDto, AnswerModel>> answerConverters;
+    private final Converter<AnswerDto, AnswerModel> answerConverter;
 
     @Override
     public QuizItemDto populate(final QuizItemModel source, final QuizItemDto target) {
         target.setId(source.getId());
-        target.setOrder(source.getOrder());
+        target.setOrder(source.getStep());
         target.setAnswers(convertAnswers(source));
         target.setQuestion(questionConverter.convert(source.getQuestion()));
         return target;
     }
 
     private List<AnswerDto> convertAnswers(final QuizItemModel source) {
+        if (source.getAnswers() != null) {
 
-        final var type = source.getQuestion().getType();
-        final var answerConverter = answerConverters.get(type);
-        return source.getAnswers().stream()
-                .map(answerConverter::convert)
-                .filter(Objects::nonNull)
-                .collect(Collectors.toList());
+            return source.getAnswers().stream()
+                    .map(answerConverter::convert)
+                    .filter(Objects::nonNull)
+                    .collect(Collectors.toList());
+        }
+
+        return Collections.emptyList();
     }
 
     @Override

@@ -11,10 +11,10 @@
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_category"/>
             </column>
             <column name="created_time" type="DATETIME">
-                <constraints nullable="false"/>
+                <constraints nullable="true"/>
             </column>
             <column name="modified_time" type="DATETIME">
-                <constraints nullable="false"/>
+                <constraints nullable="true"/>
             </column>
             <column name="title" type="INT"/>
             <column name="parent_category_id" type="INT"/>
@@ -26,10 +26,10 @@
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_city"/>
             </column>
             <column name="created_time" type="DATETIME">
-                <constraints nullable="false"/>
+                <constraints nullable="true"/>
             </column>
             <column name="modified_time" type="DATETIME">
-                <constraints nullable="false"/>
+                <constraints nullable="true"/>
             </column>
             <column name="country" type="INT"/>
             <column name="title" type="INT"/>
@@ -41,10 +41,10 @@
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_country"/>
             </column>
             <column name="created_time" type="DATETIME">
-                <constraints nullable="false"/>
+                <constraints nullable="true"/>
             </column>
             <column name="modified_time" type="DATETIME">
-                <constraints nullable="false"/>
+                <constraints nullable="true"/>
             </column>
             <column name="iso_code" type="VARCHAR(255)"/>
         </createTable>
@@ -65,10 +65,10 @@
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_language"/>
             </column>
             <column name="created_time" type="DATETIME">
-                <constraints nullable="false"/>
+                <constraints nullable="true"/>
             </column>
             <column name="modified_time" type="DATETIME">
-                <constraints nullable="false"/>
+                <constraints nullable="true"/>
             </column>
             <column name="iso_code" type="VARCHAR(255)">
                 <constraints nullable="false"/>

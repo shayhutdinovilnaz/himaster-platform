@@ -1295,8 +1295,74 @@ databaseChangeLog:
                     name: next_question
                     value: 2
                 - column:
+                    name: priority
+                    value: 1
+                - column:
                     name: value
                     value: 14
+                - column:
+                    name: created_time
+                    value: "now()"
+                - column:
+                    name: modified_time
+                    value: "now()"
+          - insert:
+              tableName: answer_option
+              columns:
+                - column:
+                    name: question
+                    value: 1
+                - column:
+                    name: next_question
+                    value: 2
+                - column:
+                    name: priority
+                    value: 2
+                - column:
+                    name: value
+                    value: 15
+                - column:
+                    name: created_time
+                    value: "now()"
+                - column:
+                    name: modified_time
+                    value: "now()"
+          - insert:
+              tableName: answer_option
+              columns:
+                - column:
+                    name: question
+                    value: 1
+                - column:
+                    name: next_question
+                    value: 2
+                - column:
+                    name: priority
+                    value: 3
+                - column:
+                    name: value
+                    value: 16
+                - column:
+                    name: created_time
+                    value: "now()"
+                - column:
+                    name: modified_time
+                    value: "now()"
+          - insert:
+              tableName: answer_option
+              columns:
+                - column:
+                    name: question
+                    value: 1
+                - column:
+                    name: next_question
+                    value: 2
+                - column:
+                    name: priority
+                    value: 4
+                - column:
+                    name: value
+                    value: 17
                 - column:
                     name: created_time
                     value: "now()"
@@ -1312,6 +1378,9 @@ databaseChangeLog:
                 - column:
                     name: next_question
                     value: 3
+                - column:
+                    name: priority
+                    value: 1
                 - column:
                     name: created_time
                     value: "now()"
@@ -1393,6 +1462,9 @@ databaseChangeLog:
                 - column:
                     name: next_question
                     value: 4
+                - column:
+                    name: priority
+                    value: 1
                 - column:
                     name: value
                     value: 29
@@ -1479,6 +1551,9 @@ databaseChangeLog:
                     name: next_question
                     value: 4
                 - column:
+                    name: priority
+                    value: 2
+                - column:
                     name: value
                     value: 30
                 - column:
@@ -1563,6 +1638,9 @@ databaseChangeLog:
                 - column:
                     name: next_question
                     value: 4
+                - column:
+                    name: priority
+                    value: 3
                 - column:
                     name: value
                     value: 31
@@ -1649,6 +1727,9 @@ databaseChangeLog:
                     name: next_question
                     value: 5
                 - column:
+                    name: priority
+                    value: 1
+                - column:
                     name: value
                     value: 32
                 - column:
@@ -1733,6 +1814,9 @@ databaseChangeLog:
                 - column:
                     name: next_question
                     value: 5
+                - column:
+                    name: priority
+                    value: 2
                 - column:
                     name: value
                     value: 33
@@ -1819,6 +1903,9 @@ databaseChangeLog:
                     name: next_question
                     value: 5
                 - column:
+                    name: priority
+                    value: 3
+                - column:
                     name: value
                     value: 34
                 - column:
@@ -1903,6 +1990,9 @@ databaseChangeLog:
                 - column:
                     name: next_question
                     value: 5
+                - column:
+                    name: priority
+                    value: 4
                 - column:
                     name: value
                     value: 35
@@ -1989,6 +2079,9 @@ databaseChangeLog:
                     name: next_question
                     value: 8
                 - column:
+                    name: priority
+                    value: 1
+                - column:
                     name: value
                     value: 36
                 - column:
@@ -2073,6 +2166,9 @@ databaseChangeLog:
                 - column:
                     name: next_question
                     value: 7
+                - column:
+                    name: priority
+                    value: 2
                 - column:
                     name: value
                     value: 37
@@ -2159,6 +2255,9 @@ databaseChangeLog:
                     name: next_question
                     value: 6
                 - column:
+                    name: priority
+                    value: 1
+                - column:
                     name: value
                     value: 38
                 - column:
@@ -2243,6 +2342,9 @@ databaseChangeLog:
                 - column:
                     name: next_question
                     value: 9
+                - column:
+                    name: priority
+                    value: 1
                 - column:
                     name: value
                     value: 39
@@ -2329,6 +2431,9 @@ databaseChangeLog:
                     name: next_question
                     value: 9
                 - column:
+                    name: priority
+                    value: 2
+                - column:
                     name: value
                     value: 40
                 - column:
@@ -2414,6 +2519,9 @@ databaseChangeLog:
                     name: next_question
                     value: 9
                 - column:
+                    name: priority
+                    value: 3
+                - column:
                     name: value
                     value: 41
                 - column:
@@ -2433,6 +2541,9 @@ databaseChangeLog:
                     name: next_question
                     value: 8
                 - column:
+                    name: priority
+                    value: 1
+                - column:
                     name: created_time
                     value: "now()"
                 - column:
@@ -2449,6 +2560,9 @@ databaseChangeLog:
                     name: next_question
                     value: 8
                 - column:
+                    name: priority
+                    value: 1
+                - column:
                     name: created_time
                     value: "now()"
                 - column:
@@ -2464,6 +2578,9 @@ databaseChangeLog:
                 - column:
                     name: next_question
                     value: 10
+                - column:
+                    name: priority
+                    value: 1
                 - column:
                     name: created_time
                     value: "now()"
@@ -2546,6 +2663,9 @@ databaseChangeLog:
                 - column:
                     name: next_question
                     value: 11
+                - column:
+                    name: priority
+                    value: 1
                 - column:
                     name: value
                     value: 42
@@ -2632,6 +2752,9 @@ databaseChangeLog:
                     name: next_question
                     value: 11
                 - column:
+                    name: priority
+                    value: 2
+                - column:
                     name: value
                     value: 43
                 - column:
@@ -2716,6 +2839,9 @@ databaseChangeLog:
                 - column:
                     name: next_question
                     value: 11
+                - column:
+                    name: priority
+                    value: 3
                 - column:
                     name: value
                     value: 44
@@ -2802,6 +2928,9 @@ databaseChangeLog:
                     name: next_question
                     value: 11
                 - column:
+                    name: priority
+                    value: 4
+                - column:
                     name: value
                     value: 45
                 - column:
@@ -2886,6 +3015,9 @@ databaseChangeLog:
                 - column:
                     name: next_question
                     value: 12
+                - column:
+                    name: priority
+                    value: 1
                 - column:
                     name: value
                     value: 46
@@ -2972,6 +3104,9 @@ databaseChangeLog:
                     name: next_question
                     value: 12
                 - column:
+                    name: priority
+                    value: 2
+                - column:
                     name: value
                     value: 47
                 - column:
@@ -3056,6 +3191,9 @@ databaseChangeLog:
                 - column:
                     name: next_question
                     value: 12
+                - column:
+                    name: priority
+                    value: 3
                 - column:
                     name: value
                     value: 48

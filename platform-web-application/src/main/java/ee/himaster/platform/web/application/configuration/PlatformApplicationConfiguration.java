@@ -10,6 +10,7 @@ import ee.himaster.platform.services.model.LanguageModel;
 import ee.himaster.platform.services.model.quiz.QuestionModel;
 import ee.himaster.platform.services.model.quiz.QuizItemModel;
 import ee.himaster.platform.services.model.quiz.QuizModel;
+import ee.himaster.platform.services.model.quiz.answer.AnswerModel;
 import ee.himaster.platform.services.model.quiz.answer.AnswerOptionModel;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
@@ -58,6 +59,11 @@ public class PlatformApplicationConfiguration {
     @Bean
     BasicConverter<AnswerOptionDto, AnswerOptionModel> answerOptionConverter(List<Populator<AnswerOptionDto, AnswerOptionModel>> populators) {
         return new BasicConverter<>(populators, AnswerOptionDto::new, AnswerOptionModel::new);
+    }
+
+    @Bean
+    BasicConverter<AnswerDto, AnswerModel> answerConverter(List<Populator<AnswerDto, AnswerModel>> populators) {
+        return new BasicConverter<>(populators, AnswerDto::new, AnswerModel::new);
     }
 
     @Bean

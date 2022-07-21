@@ -37,12 +37,16 @@ public class DefaultQuizService extends AbstractModelService<QuizModel> implemen
 
         if (userId != null) {
             final var quizOfUser = quizRepository.getByUserId(userId);
-            this.delete(quizOfUser);
+            if (quizOfUser != null) {
+                this.delete(quizOfUser);
+            }
         }
 
         if (sessionId != null) {
             final var quizOfSession = quizRepository.getBySessionId(sessionId);
-            this.delete(quizOfSession);
+            if (quizOfSession != null) {
+                this.delete(quizOfSession);
+            }
         }
 
         var quizModel = new QuizModel();
@@ -80,7 +84,7 @@ public class DefaultQuizService extends AbstractModelService<QuizModel> implemen
         } else {
             for (var item : quiz.getItems()) {
                 final int nextItemOrder = quiz.getCurrentStep();
-                if (item.getOrder() == nextItemOrder) {
+                if (item.getStep() == nextItemOrder) {
                     question = item.getQuestion();
                     break;
                 }
@@ -114,8 +118,9 @@ public class DefaultQuizService extends AbstractModelService<QuizModel> implemen
 
     private void addAnswers(final List<AnswerModel> answers, final QuizModel quiz) {
         for (var item : quiz.getItems()) {
-            if (item.getOrder() == quiz.getCurrentStep()) {
-                item.setAnswers(answers);
+            if (item.getStep() == quiz.getCurrentStep()) {
+                item.getAnswers().addAll(answers);
+                answers.forEach(answerModel -> answerModel.setQuizItem(item));
                 break;
             }
         }
@@ -126,13 +131,13 @@ public class DefaultQuizService extends AbstractModelService<QuizModel> implemen
         final var newQuizItems = createNewQuizItems(answers, quiz);
 
         for (QuizItemModel existingItem : items) {
-            if (existingItem.getOrder() > quiz.getCurrentStep()) {
-                existingItem.setOrder(existingItem.getOrder() + newQuizItems.size());
+            if (existingItem.getStep() > quiz.getCurrentStep()) {
+                existingItem.setStep(existingItem.getStep() + newQuizItems.size());
             }
         }
 
         items.addAll(newQuizItems);
-        items.sort(Comparator.comparingInt(QuizItemModel::getOrder));
+        items.sort(Comparator.comparingInt(QuizItemModel::getStep));
 
 
         final var drift = newQuizItems.isEmpty() ? 0 : 1;
@@ -140,16 +145,16 @@ public class DefaultQuizService extends AbstractModelService<QuizModel> implemen
     }
 
     private List<QuizItemModel> createNewQuizItems(List<AnswerModel> answers, QuizModel quiz) {
-        int nextOrder = quiz.getCurrentStep();
+        int nextStep = quiz.getCurrentStep();
         final List<QuizItemModel> newQuizItems = new ArrayList<>();
         final List<Integer> newQuestions = new ArrayList<>();
 
         for (QuestionModel nextQuestion : getNextQuestions(answers, quiz)) {
             if (!newQuestions.contains(nextQuestion.getId())) {
-                nextOrder++;
+                nextStep++;
                 final var nextQuizItem = QuizItemModel
                         .builder()
-                        .order(nextOrder)
+                        .step(nextStep)
                         .question(nextQuestion)
                         .quiz(quiz)
                         .build();
@@ -204,12 +209,12 @@ public class DefaultQuizService extends AbstractModelService<QuizModel> implemen
 
         final var previousStep = quiz.getCurrentStep() - 1;
         final var previousItem = quiz.getItems()
-                .stream().filter(i -> i.getOrder() == previousStep)
+                .stream().filter(i -> i.getStep() == previousStep)
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("The previous question was not found. QuizId=" + quiz.getId()));
 
         final var currentItem = quiz.getItems()
-                .stream().filter(i -> i.getOrder() == quiz.getCurrentStep())
+                .stream().filter(i -> i.getStep() == quiz.getCurrentStep())
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("The previous question was not found. QuizId=" + quiz.getId()));
 
@@ -223,7 +228,7 @@ public class DefaultQuizService extends AbstractModelService<QuizModel> implemen
 
         final var isNextQuestionForPrevious = quiz.getItems().stream()
                 .filter(quizItemModel -> quizItemModel.getAnswers() != null)
-                .filter(quizItemModel -> quizItemModel.getOrder() != previousStep)
+                .filter(quizItemModel -> quizItemModel.getStep() != previousStep)
                 .flatMap(quizItemModel -> quizItemModel.getAnswers().stream())
                 .map(AnswerModel::getOption)
                 .map(AnswerOptionModel::getNextQuestion)
@@ -232,7 +237,7 @@ public class DefaultQuizService extends AbstractModelService<QuizModel> implemen
                 .anyMatch(nextQuestionId -> nextQuestionId.equals(currentItem.getQuestion().getId()));
 
         final var itemsForRemoving = quiz.getItems().stream()
-                .filter(item -> nextQuestionsIds.contains(item.getQuestion().getId()) || (item.getOrder() == quiz.getCurrentStep() && !isNextQuestionForPrevious))
+                .filter(item -> nextQuestionsIds.contains(item.getQuestion().getId()) || (item.getStep() == quiz.getCurrentStep() && !isNextQuestionForPrevious))
                 .collect(Collectors.toList());
 
         if (!itemsForRemoving.isEmpty()) {
@@ -240,8 +245,8 @@ public class DefaultQuizService extends AbstractModelService<QuizModel> implemen
         }
 
         final var newQuizItems = quiz.getItems().stream()
-                .filter(item -> !nextQuestionsIds.contains(item.getQuestion().getId()) || item.getOrder() == previousStep)
-                .sorted(Comparator.comparingInt(QuizItemModel::getOrder))
+                .filter(item -> !nextQuestionsIds.contains(item.getQuestion().getId()) || item.getStep() == previousStep)
+                .sorted(Comparator.comparingInt(QuizItemModel::getStep))
                 .collect(Collectors.toList());
 
         recalculateItemOrder(newQuizItems, quiz);
@@ -255,7 +260,7 @@ public class DefaultQuizService extends AbstractModelService<QuizModel> implemen
         int order = 0;
         for (QuizItemModel newQuizItem : newQuizItems) {
             order++;
-            newQuizItem.setOrder(order);
+            newQuizItem.setStep(order);
         }
 
         quiz.setItems(newQuizItems);

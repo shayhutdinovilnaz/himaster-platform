@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -22,6 +23,6 @@ public class AnswerModel extends ItemModel {
     private QuizItemModel quizItem;
 
     @OneToMany(mappedBy = "answer", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<AnswerValueModel> values;
+    private List<AnswerValueModel> values = new ArrayList<>();
 
 }

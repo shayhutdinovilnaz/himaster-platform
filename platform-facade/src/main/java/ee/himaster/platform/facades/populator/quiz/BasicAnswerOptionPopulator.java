@@ -5,8 +5,10 @@ import ee.himaster.core.service.populator.Populator;
 import ee.himaster.platform.dto.AnswerOptionDto;
 import ee.himaster.platform.services.model.quiz.answer.AnswerOptionModel;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
+@Component
 public class BasicAnswerOptionPopulator implements Populator<AnswerOptionDto, AnswerOptionModel> {
     protected final LocalizedStringService localizedStringService;
 

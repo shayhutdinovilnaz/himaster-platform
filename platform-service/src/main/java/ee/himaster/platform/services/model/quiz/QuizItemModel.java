@@ -16,14 +16,14 @@ import java.util.List;
 @AllArgsConstructor
 public class QuizItemModel extends ItemModel {
 
-    private int order;
+    private int step;
 
     @ManyToOne
     @JoinColumn(name = "question_id")
     private QuestionModel question;
 
     @OneToMany(mappedBy = "quizItem", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<AnswerModel> answers = new ArrayList<>();
+    private List<AnswerModel> answers;
 
     @ManyToOne
     @JoinColumn(name = "quiz_id")

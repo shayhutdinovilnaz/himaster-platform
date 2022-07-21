@@ -193,14 +193,14 @@ public class DefaultQuizServiceTest extends AbstractModelServiceTest<QuizModel> 
         Assert.assertEquals(3, result.getItems().size());
 
         Assert.assertEquals(question1, result.getItems().get(0).getQuestion());
-        Assert.assertEquals(1, result.getItems().get(0).getOrder());
+        Assert.assertEquals(1, result.getItems().get(0).getStep());
 
         Assert.assertEquals(question2, result.getItems().get(1).getQuestion());
-        Assert.assertEquals(2, result.getItems().get(1).getOrder());
+        Assert.assertEquals(2, result.getItems().get(1).getStep());
         Assert.assertEquals(answers, result.getItems().get(1).getAnswers());
 
         Assert.assertEquals(nextQuestion, result.getItems().get(2).getQuestion());
-        Assert.assertEquals(3, result.getItems().get(2).getOrder());
+        Assert.assertEquals(3, result.getItems().get(2).getStep());
 
         verify(quizRepository).save(quiz);
     }
@@ -239,10 +239,10 @@ public class DefaultQuizServiceTest extends AbstractModelServiceTest<QuizModel> 
         Assert.assertEquals(2, result.getItems().size());
 
         Assert.assertEquals(question1, result.getItems().get(0).getQuestion());
-        Assert.assertEquals(1, result.getItems().get(0).getOrder());
+        Assert.assertEquals(1, result.getItems().get(0).getStep());
 
         Assert.assertEquals(question2, result.getItems().get(1).getQuestion());
-        Assert.assertEquals(2, result.getItems().get(1).getOrder());
+        Assert.assertEquals(2, result.getItems().get(1).getStep());
         Assert.assertEquals(answers, result.getItems().get(1).getAnswers());
 
         verify(questionRepository).findSummarizeQuestion(category);
@@ -283,14 +283,14 @@ public class DefaultQuizServiceTest extends AbstractModelServiceTest<QuizModel> 
         Assert.assertEquals(3, result.getItems().size());
 
         Assert.assertEquals(question1, result.getItems().get(0).getQuestion());
-        Assert.assertEquals(1, result.getItems().get(0).getOrder());
+        Assert.assertEquals(1, result.getItems().get(0).getStep());
         Assert.assertEquals(answers, result.getItems().get(0).getAnswers());
 
         Assert.assertEquals(nextQuestion, result.getItems().get(1).getQuestion());
-        Assert.assertEquals(2, result.getItems().get(1).getOrder());
+        Assert.assertEquals(2, result.getItems().get(1).getStep());
 
         Assert.assertEquals(question3, result.getItems().get(2).getQuestion());
-        Assert.assertEquals(3, result.getItems().get(2).getOrder());
+        Assert.assertEquals(3, result.getItems().get(2).getStep());
 
         verify(quizRepository).save(quiz);
     }
@@ -333,14 +333,14 @@ public class DefaultQuizServiceTest extends AbstractModelServiceTest<QuizModel> 
         Assert.assertEquals(3, result.getItems().size());
 
         Assert.assertEquals(question1, result.getItems().get(0).getQuestion());
-        Assert.assertEquals(1, result.getItems().get(0).getOrder());
+        Assert.assertEquals(1, result.getItems().get(0).getStep());
 
         Assert.assertEquals(question2, result.getItems().get(1).getQuestion());
-        Assert.assertEquals(2, result.getItems().get(1).getOrder());
+        Assert.assertEquals(2, result.getItems().get(1).getStep());
         Assert.assertEquals(answers, result.getItems().get(1).getAnswers());
 
         Assert.assertEquals(summarizeQuestion, result.getItems().get(2).getQuestion());
-        Assert.assertEquals(3, result.getItems().get(2).getOrder());
+        Assert.assertEquals(3, result.getItems().get(2).getStep());
 
         verify(questionRepository).findSummarizeQuestion(category);
         verify(quizRepository).save(quiz);
@@ -389,14 +389,14 @@ public class DefaultQuizServiceTest extends AbstractModelServiceTest<QuizModel> 
         Assert.assertEquals(3, result.getItems().size());
 
         Assert.assertEquals(question1, result.getItems().get(0).getQuestion());
-        Assert.assertEquals(1, result.getItems().get(0).getOrder());
+        Assert.assertEquals(1, result.getItems().get(0).getStep());
 
         Assert.assertEquals(question2, result.getItems().get(1).getQuestion());
-        Assert.assertEquals(2, result.getItems().get(1).getOrder());
+        Assert.assertEquals(2, result.getItems().get(1).getStep());
         Assert.assertEquals(answers, result.getItems().get(1).getAnswers());
 
         Assert.assertEquals(nextQuestion, result.getItems().get(2).getQuestion());
-        Assert.assertEquals(3, result.getItems().get(2).getOrder());
+        Assert.assertEquals(3, result.getItems().get(2).getStep());
 
         verify(quizRepository).save(quiz);
     }
@@ -447,17 +447,17 @@ public class DefaultQuizServiceTest extends AbstractModelServiceTest<QuizModel> 
         Assert.assertEquals(4, result.getItems().size());
 
         Assert.assertEquals(question1, result.getItems().get(0).getQuestion());
-        Assert.assertEquals(1, result.getItems().get(0).getOrder());
+        Assert.assertEquals(1, result.getItems().get(0).getStep());
 
         Assert.assertEquals(question2, result.getItems().get(1).getQuestion());
-        Assert.assertEquals(2, result.getItems().get(1).getOrder());
+        Assert.assertEquals(2, result.getItems().get(1).getStep());
         Assert.assertEquals(answers, result.getItems().get(1).getAnswers());
 
         Assert.assertEquals(nextQuestion1, result.getItems().get(2).getQuestion());
-        Assert.assertEquals(3, result.getItems().get(2).getOrder());
+        Assert.assertEquals(3, result.getItems().get(2).getStep());
 
         Assert.assertEquals(nextQuestion2, result.getItems().get(3).getQuestion());
-        Assert.assertEquals(4, result.getItems().get(3).getOrder());
+        Assert.assertEquals(4, result.getItems().get(3).getStep());
 
         verify(quizRepository).save(quiz);
     }
@@ -505,14 +505,14 @@ public class DefaultQuizServiceTest extends AbstractModelServiceTest<QuizModel> 
         Assert.assertEquals(3, result.getItems().size());
 
         Assert.assertEquals(question1, result.getItems().get(0).getQuestion());
-        Assert.assertEquals(1, result.getItems().get(0).getOrder());
+        Assert.assertEquals(1, result.getItems().get(0).getStep());
 
         Assert.assertEquals(question2, result.getItems().get(1).getQuestion());
-        Assert.assertEquals(2, result.getItems().get(1).getOrder());
+        Assert.assertEquals(2, result.getItems().get(1).getStep());
         Assert.assertEquals(answers, result.getItems().get(1).getAnswers());
 
         Assert.assertEquals(nextQuestion, result.getItems().get(2).getQuestion());
-        Assert.assertEquals(3, result.getItems().get(2).getOrder());
+        Assert.assertEquals(3, result.getItems().get(2).getStep());
 
         verify(quizRepository).save(quiz);
     }
@@ -563,14 +563,14 @@ public class DefaultQuizServiceTest extends AbstractModelServiceTest<QuizModel> 
         Assert.assertEquals(3, result.getItems().size());
 
         Assert.assertEquals(question1, result.getItems().get(0).getQuestion());
-        Assert.assertEquals(1, result.getItems().get(0).getOrder());
+        Assert.assertEquals(1, result.getItems().get(0).getStep());
 
         Assert.assertEquals(question2, result.getItems().get(1).getQuestion());
-        Assert.assertEquals(2, result.getItems().get(1).getOrder());
+        Assert.assertEquals(2, result.getItems().get(1).getStep());
         Assert.assertEquals(answers, result.getItems().get(1).getAnswers());
 
         Assert.assertEquals(summarizeQuestion, result.getItems().get(2).getQuestion());
-        Assert.assertEquals(3, result.getItems().get(2).getOrder());
+        Assert.assertEquals(3, result.getItems().get(2).getStep());
 
         verify(questionRepository).findSummarizeQuestion(category);
         verify(quizRepository).save(quiz);
@@ -619,10 +619,10 @@ public class DefaultQuizServiceTest extends AbstractModelServiceTest<QuizModel> 
         Assert.assertEquals(2, result.getItems().size());
 
         Assert.assertEquals(question1, result.getItems().get(0).getQuestion());
-        Assert.assertEquals(1, result.getItems().get(0).getOrder());
+        Assert.assertEquals(1, result.getItems().get(0).getStep());
 
         Assert.assertEquals(summarizeQuestion, result.getItems().get(1).getQuestion());
-        Assert.assertEquals(2, result.getItems().get(1).getOrder());
+        Assert.assertEquals(2, result.getItems().get(1).getStep());
         Assert.assertEquals(answers, result.getItems().get(1).getAnswers());
 
         verify(questionRepository).findSummarizeQuestion(category);
@@ -683,7 +683,7 @@ public class DefaultQuizServiceTest extends AbstractModelServiceTest<QuizModel> 
         Assert.assertEquals(1, result.getItems().size());
 
         Assert.assertEquals(question1, result.getItems().get(0).getQuestion());
-        Assert.assertEquals(1, result.getItems().get(0).getOrder());
+        Assert.assertEquals(1, result.getItems().get(0).getStep());
         Assert.assertEquals(answers, result.getItems().get(0).getAnswers());
 
         verify(quizItemRepository).deleteAll(quizItemArgumentCaptor.capture());
@@ -739,7 +739,7 @@ public class DefaultQuizServiceTest extends AbstractModelServiceTest<QuizModel> 
         Assert.assertEquals(2, result.getItems().size());
 
         Assert.assertEquals(question1, result.getItems().get(0).getQuestion());
-        Assert.assertEquals(1, result.getItems().get(0).getOrder());
+        Assert.assertEquals(1, result.getItems().get(0).getStep());
         Assert.assertEquals(answersForQuizItem1, result.getItems().get(0).getAnswers());
 
         verify(quizItemRepository).deleteAll(quizItemArgumentCaptor.capture());
@@ -795,7 +795,7 @@ public class DefaultQuizServiceTest extends AbstractModelServiceTest<QuizModel> 
         Assert.assertEquals(1, result.getItems().size());
 
         Assert.assertEquals(question1, result.getItems().get(0).getQuestion());
-        Assert.assertEquals(1, result.getItems().get(0).getOrder());
+        Assert.assertEquals(1, result.getItems().get(0).getStep());
         Assert.assertEquals(answersForQuizItem1, result.getItems().get(0).getAnswers());
 
         verify(quizItemRepository).deleteAll(quizItemArgumentCaptor.capture());
@@ -866,15 +866,15 @@ public class DefaultQuizServiceTest extends AbstractModelServiceTest<QuizModel> 
         Assert.assertEquals(3, result.getItems().size());
 
         Assert.assertEquals(question1, result.getItems().get(0).getQuestion());
-        Assert.assertEquals(1, result.getItems().get(0).getOrder());
+        Assert.assertEquals(1, result.getItems().get(0).getStep());
         Assert.assertEquals(answersForQuizItem1, result.getItems().get(0).getAnswers());
 
         Assert.assertEquals(question2, result.getItems().get(1).getQuestion());
-        Assert.assertEquals(2, result.getItems().get(1).getOrder());
+        Assert.assertEquals(2, result.getItems().get(1).getStep());
         Assert.assertEquals(answersForQuizItem2, result.getItems().get(1).getAnswers());
 
         Assert.assertEquals(question4, result.getItems().get(2).getQuestion());
-        Assert.assertEquals(3, result.getItems().get(2).getOrder());
+        Assert.assertEquals(3, result.getItems().get(2).getStep());
 
         verify(quizItemRepository).deleteAll(quizItemArgumentCaptor.capture());
         Assert.assertEquals(quizItem3, quizItemArgumentCaptor.getValue().get(0));
@@ -943,18 +943,18 @@ public class DefaultQuizServiceTest extends AbstractModelServiceTest<QuizModel> 
         Assert.assertEquals(4, result.getItems().size());
 
         Assert.assertEquals(question1, result.getItems().get(0).getQuestion());
-        Assert.assertEquals(1, result.getItems().get(0).getOrder());
+        Assert.assertEquals(1, result.getItems().get(0).getStep());
         Assert.assertEquals(answersForQuizItem1, result.getItems().get(0).getAnswers());
 
         Assert.assertEquals(question2, result.getItems().get(1).getQuestion());
-        Assert.assertEquals(2, result.getItems().get(1).getOrder());
+        Assert.assertEquals(2, result.getItems().get(1).getStep());
         Assert.assertEquals(answersForQuizItem2, result.getItems().get(1).getAnswers());
 
         Assert.assertEquals(question3, result.getItems().get(2).getQuestion());
-        Assert.assertEquals(3, result.getItems().get(2).getOrder());
+        Assert.assertEquals(3, result.getItems().get(2).getStep());
 
         Assert.assertEquals(question4, result.getItems().get(3).getQuestion());
-        Assert.assertEquals(4, result.getItems().get(3).getOrder());
+        Assert.assertEquals(4, result.getItems().get(3).getStep());
 
         verify(quizRepository).save(quiz);
         verifyNoMoreInteractions(quizRepository, quizItemRepository);
@@ -963,7 +963,7 @@ public class DefaultQuizServiceTest extends AbstractModelServiceTest<QuizModel> 
     private QuizItemModel createItem(QuestionModel question, List<AnswerModel> answers, int order) {
         var quizItemModel = new QuizItemModel();
         quizItemModel.setQuestion(question);
-        quizItemModel.setOrder(order);
+        quizItemModel.setStep(order);
         quizItemModel.setAnswers(answers);
 
         return quizItemModel;
